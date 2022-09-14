@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on SLTaurus的博客</title>
+    <link>https://sltaurusblog.gitee.io/post/</link>
+    <description>Recent content in Posts on SLTaurus的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cmn-Hans</language>
+    <lastBuildDate>Fri, 05 Jun 2020 09:00:03 +0800</lastBuildDate>
+    
+	<atom:link href="https://sltaurusblog.gitee.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Redis基础</title>
+      <link>https://sltaurusblog.gitee.io/2020/06/redis%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Fri, 05 Jun 2020 09:00:03 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/06/redis%E5%9F%BA%E7%A1%80/</guid>
+      <description>&lt;p&gt;Redis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>计件工资项目</title>
+      <link>https://sltaurusblog.gitee.io/2020/05/%E8%AE%A1%E4%BB%B6%E5%B7%A5%E8%B5%84%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Mon, 11 May 2020 15:10:26 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/05/%E8%AE%A1%E4%BB%B6%E5%B7%A5%E8%B5%84%E9%A1%B9%E7%9B%AE/</guid>
+      <description>&lt;p&gt;计件工资项目学习过程整理记录。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Windows PowerShell指南</title>
+      <link>https://sltaurusblog.gitee.io/2020/04/windows-powershell%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Mon, 27 Apr 2020 16:55:15 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/04/windows-powershell%E6%8C%87%E5%8D%97/</guid>
+      <description>&lt;p&gt;Windows PowerShell 是专门为系统管理员设计的 Windows 命令行 Shell。 Windows PowerShell 包括可以单独或组合使用的交互提示和脚本编写环境。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>24种设计模式之设计模式原则 </title>
+      <link>https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%8E%9F%E5%88%99/</link>
+      <pubDate>Mon, 27 Apr 2020 16:28:11 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%8E%9F%E5%88%99/</guid>
+      <description>&lt;p&gt;24种设计模式汇总，不一定讲得很深，但是结合自己使用情况不断学习。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>24种设计模式之行为型 </title>
+      <link>https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A1%8C%E4%B8%BA%E5%9E%8B/</link>
+      <pubDate>Mon, 27 Apr 2020 16:18:10 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A1%8C%E4%B8%BA%E5%9E%8B/</guid>
+      <description>&lt;p&gt;24种设计模式汇总，不一定讲得很深，但是结合自己使用情况不断学习。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>24种设计模式之结构型 </title>
+      <link>https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BB%93%E6%9E%84%E5%9E%8B/</link>
+      <pubDate>Tue, 21 Apr 2020 22:36:33 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BB%93%E6%9E%84%E5%9E%8B/</guid>
+      <description>&lt;p&gt;24种设计模式汇总，不一定讲得很深，但是结合自己使用情况不断学习。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>24种设计模式之创建型 </title>
+      <link>https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%9E%8B/</link>
+      <pubDate>Tue, 21 Apr 2020 21:56:44 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%9E%8B/</guid>
+      <description>&lt;p&gt;24种设计模式汇总，不一定讲得很深，但是结合自己使用情况不断学习。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MySql拾遗 </title>
+      <link>https://sltaurusblog.gitee.io/2020/04/mysql%E6%8B%BE%E9%81%97/</link>
+      <pubDate>Mon, 20 Apr 2020 22:22:11 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/04/mysql%E6%8B%BE%E9%81%97/</guid>
+      <description>&lt;p&gt;简略记录下MySql学习过程中的重要知识点和经常记不住的知识点。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比 </title>
+      <link>https://sltaurusblog.gitee.io/2020/04/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/</link>
+      <pubDate>Mon, 20 Apr 2020 21:21:47 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/04/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文地址：&lt;a href=&#34;https://blog.csdn.net/qq_40600379/article/details/101680870&#34;&gt;EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>内置泛型委托：Action、Func和Predicate</title>
+      <link>https://sltaurusblog.gitee.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/</link>
+      <pubDate>Thu, 14 Nov 2019 15:28:26 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/</guid>
+      <description>&lt;p&gt;通常都习惯用delegate来写委托的，看到很多其他程序猿写的源码都是用action和func方式，当时感觉对这很陌生所以看起源码也觉得陌生，而且重要的是写的代码很简洁。所以这边做下学习总结。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>EntityFramework</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/entityframework/</link>
+      <pubDate>Wed, 23 Oct 2019 08:25:23 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/entityframework/</guid>
+      <description>&lt;p&gt;ADO.NET Entity Framework 是一个对象-关系的映射架构。它支持直接定义完全独立于数据库结构的实体类，并把它们映射到数据库的表和关系上。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORM整理</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/orm%E6%95%B4%E7%90%86/</link>
+      <pubDate>Tue, 22 Oct 2019 08:46:45 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/orm%E6%95%B4%E7%90%86/</guid>
+      <description>&lt;p&gt;对象关系映射（Object-Relational Mapping），是一种程序技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。从效果上说，它其实是创建了一个可在编程语言里使用的&amp;ndash;“虚拟对象数据库”。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>反射整理之日常用途</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/%E5%8F%8D%E5%B0%84%E6%95%B4%E7%90%86%E4%B9%8B%E6%97%A5%E5%B8%B8%E7%94%A8%E9%80%94/</link>
+      <pubDate>Fri, 18 Oct 2019 16:30:26 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/%E5%8F%8D%E5%B0%84%E6%95%B4%E7%90%86%E4%B9%8B%E6%97%A5%E5%B8%B8%E7%94%A8%E9%80%94/</guid>
+      <description>&lt;p&gt;在.NET中，反射是重要的机制，它可以动态的分析程序集Assembly,模块Module,类型Type等等,我们在不需要使用new关键的情况下，就可以动态创建对象，使用对象。降低代码耦合性提高了程序的灵活性。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ADO.NET</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/ado.net/</link>
+      <pubDate>Thu, 17 Oct 2019 08:13:30 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/ado.net/</guid>
+      <description>&lt;p&gt;无论技术怎么发展其实都是从最基础的技能出发，掌握基础技能很重要。不忘初心,方得始终。这里重新学习下基础ADO.NET，做下笔记，方便复习、查阅。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MVC整理</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/mvc%E6%95%B4%E7%90%86/</link>
+      <pubDate>Tue, 15 Oct 2019 20:25:35 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/mvc%E6%95%B4%E7%90%86/</guid>
+      <description>&lt;p&gt;ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&amp;rdquo;约定&amp;rdquo;。直接讲这些&amp;rdquo;约定&amp;rdquo;会让人困惑，而且东西太多容易忘记。这里重头学习别人的教程做Demo，抓重点记录下来，方便查阅、记忆。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SqlService笔记</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 13 Oct 2019 19:52:37 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;这里是sqlservice的一些知识的记录，方便随时查看，非常常用的就不再记录了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>精通CSharp(第六版)</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/%E7%B2%BE%E9%80%9Acsharp%E7%AC%AC%E5%85%AD%E7%89%88/</link>
+      <pubDate>Sat, 12 Oct 2019 15:12:16 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/%E7%B2%BE%E9%80%9Acsharp%E7%AC%AC%E5%85%AD%E7%89%88/</guid>
+      <description>&lt;p&gt;工欲善其事必先利其器。C#需要记忆的基础汇总下，供时常翻阅查看。感觉暂时不需要的就只记录标题在，如果以后再需要则重新翻阅记录理解。
+#缩略显示的梗概，这里把注释删去，写成文章的简介或者梗概，在首页时候可以只显示梗概&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JavaScript入门经典第6版笔记(下)</title>
+      <link>https://sltaurusblog.gitee.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/</link>
+      <pubDate>Mon, 23 Sep 2019 14:46:39 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/</guid>
+      <description>&lt;p&gt;这里较为记录下JavaScript入门经典第6版的看书笔记，用来大家入门需要和自己温故知新。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JavaScript入门经典第6版笔记(上)</title>
+      <link>https://sltaurusblog.gitee.io/2019/08/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8A/</link>
+      <pubDate>Thu, 29 Aug 2019 08:39:39 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/08/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8A/</guid>
+      <description>&lt;p&gt;这里较为记录下JavaScript入门经典第6版的看书笔记，用来大家入门需要和自己温故知新。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>windows10环境下搭建Hugo个人博客&#43;git分布式版本控制&#43;valine评论</title>
+      <link>https://sltaurusblog.gitee.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/</link>
+      <pubDate>Fri, 23 Aug 2019 17:05:35 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/</guid>
+      <description>&lt;p&gt;自己在windows平台上搭建hugo个人博客的教程，这个博客部署在远端github的仓库上，添加了Valine评论和页面内音乐。详细记录下搭建博客的大概流程，以及搭建过程中遇到的困难，给想搭建自己博客的童鞋们做个铺路。&lt;/p&gt;
+
+&lt;p&gt;可以看下&lt;a href=&#34;https://www.bilibili.com/video/av51574688&#34;&gt;B站up主CodeSheep的视频&lt;/a&gt;和&lt;a href=&#34;https://saquarius.com/2019/07/hugo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2windows10/&#34;&gt;saquarius&lt;/a&gt;的教程，解决了我很多的迷惑，一路跟着搭建的，非常感谢！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Markdown语法完整版</title>
+      <link>https://sltaurusblog.gitee.io/2019/08/markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E6%95%B4%E7%89%88/</link>
+      <pubDate>Thu, 22 Aug 2019 17:14:39 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/08/markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E6%95%B4%E7%89%88/</guid>
+      <description>&lt;p&gt;此页提供了 Markdown 的简单概念， 语法说明 页提供了完整详细的文档，说明了每项功能。但是 Markdown 其实很简单就可以上手，此页文档提供了一些范例，并且每个范例都会提供输出的 HTML 结果。
+其实直接试试看也是一个很不错的方法， &lt;a href=&#34;https://daringfireball.net/projects/markdown/dingus&#34; title=&#34;Dingus&#34;&gt;Dingus&lt;/a&gt; 是一个网页应用程序，你可以把自已编写的 Markdown 文档转成 XHTML。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Markdown快速入门</title>
+      <link>https://sltaurusblog.gitee.io/2019/08/markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Wed, 21 Aug 2019 17:14:39 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/08/markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</guid>
+      <description>&lt;p&gt;此页提供了 Markdown 的简单概念， 语法说明 页提供了完整详细的文档，说明了每项功能。但是 Markdown 其实很简单就可以上手，此页文档提供了一些范例，并且每个范例都会提供输出的 HTML 结果。
+其实直接试试看也是一个很不错的方法， &lt;a href=&#34;https://daringfireball.net/projects/markdown/dingus&#34; title=&#34;Dingus&#34;&gt;Dingus&lt;/a&gt; 是一个网页应用程序，你可以把自已编写的 Markdown 文档转成 XHTML。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ref和out使用时的区别</title>
+      <link>https://sltaurusblog.gitee.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Wed, 21 Aug 2019 10:25:08 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+      <description>&lt;p&gt;在C#中通过使用方法来获取返回值时，通常只能得到一个返回值。因此，当一个方法需要返回多个值的时候，就需要用到ref和out，那么这两个方法区别在哪儿呢？&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+ADO.NET
+</title>
+
+    
+  <link href="https://sltaurusblog.gitee.io/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+  
+  <meta name="author" content="SLTaurus" />
+  <meta name="description" content="SLTaurus的博客" />
+
+
+
+<meta name="generator" content="Hugo 0.57.2" />
+
+<link rel="canonical" href="https://sltaurusblog.gitee.io/2019/10/ado.net/" />
+
+
+<meta property="og:title" content="ADO.NET" />
+<meta property="og:description" content="无论技术怎么发展其实都是从最基础的技能出发，掌握基础技能很重要。不忘初心,方得始终。这里重新学习下基础ADO.NET，做下笔记，方便复习、查阅。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sltaurusblog.gitee.io/2019/10/ado.net/" />
+<meta property="article:published_time" content="2019-10-17T08:13:30+08:00" />
+<meta property="article:modified_time" content="2019-10-17T08:13:30+08:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ADO.NET"/>
+<meta name="twitter:description" content="无论技术怎么发展其实都是从最基础的技能出发，掌握基础技能很重要。不忘初心,方得始终。这里重新学习下基础ADO.NET，做下笔记，方便复习、查阅。"/>
+
+
+<link rel="stylesheet" href="https://sltaurusblog.gitee.io/css/github-markdown.css" />
+<link rel="stylesheet" href="https://sltaurusblog.gitee.io/css/semantic.min.css" />
+<link rel="stylesheet" href="https://sltaurusblog.gitee.io/css/site.css" />
+
+
+  
+    <link rel="stylesheet"  href="https://sltaurusblog.gitee.io/css/prism.css">
+  
+
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+  </head>
+
+  
+  <body style="background: black;">
+  
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/sltaurusblog.gitee.io'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h2 class="ui header">
+          ADO.NET
+          <div class="sub header">@ SLTaurus · Thursday, Oct 17, 2019 · 10 分钟阅读 · 更新于 Oct 17, 2019</div>
+        </h2>
+      </header>
+      <article style="margin-top: 2rem;">
+		<p>无论技术怎么发展其实都是从最基础的技能出发，掌握基础技能很重要。不忘初心,方得始终。这里重新学习下基础ADO.NET，做下笔记，方便复习、查阅。</p>
+
+<h1 id="table-of-contents"></h1><nav id="TableOfContents">
+<ul>
+<li><a href="#ado-net概要">ADO.NET概要</a></li>
+<li><a href="#ado-net的组成">ADO.NET的组成</a></li>
+<li><a href="#connection连接对象">Connection连接对象</a>
+<ul>
+<li><a href="#连接字符串">连接字符串</a></li>
+<li><a href="#连接到数据库">连接到数据库</a></li>
+<li><a href="#示例">示例</a></li>
+</ul></li>
+<li><a href="#command对象">Command对象</a></li>
+<li><a href="#dataadapter">DataAdapter</a></li>
+<li><a href="#封装sqlhelper">封装SqlHelper</a>
+<ul>
+<li><a href="#封装sql的实例演示">封装Sql的实例演示</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="ado-net概要">ADO.NET概要</h1>
+
+<p>ADO.NET是.NET框架中的重要组件，主要用于完成C#应用程序访问数据库。</p>
+
+<h1 id="ado-net的组成">ADO.NET的组成</h1>
+
+<p><img src="https://sltaurusblog.gitee.io/images/ADONETConstituent.png" alt="ADONETConstituent" /></p>
+
+<ul>
+<li>System.Data → DataTable，DataSet，DataRow，DataColumn，DataRelation，Constraint，DataColumnMapping，DataTableMapping</li>
+<li>System.Data.Coummon → 各种数据访问类的基类和接口</li>
+<li>System.Data.SqlClient → 对Sql Server进行操作的数据访问类</li>
+</ul>
+
+<p>主要有：</p>
+
+<ul>
+<li>SqlConnection            → 数据库连接器</li>
+<li>SqlCommand               → 数据库命名对象</li>
+<li>SqlCommandBuilder        → 生存SQL命令</li>
+<li>SqlDataReader            → 数据读取器</li>
+<li>SqlDataAdapter           → 数据适配器，填充DataSet</li>
+<li>SqlParameter             → 为存储过程定义参数</li>
+<li>SqlTransaction           → 数据库事物</li>
+</ul>
+
+<h1 id="connection连接对象">Connection连接对象</h1>
+
+<p>Connection对象也称为数据库连接对象，Connection对象的功能是负责对数据源的连接。所有Connection对象的基类都是DbConnection类。</p>
+
+<h2 id="连接字符串">连接字符串</h2>
+
+<p>基本语法：数据源(Data Source)+数据库名称(Initial Catalog)+用户名(User ID)+密码(Password)</p>
+
+<p><strong>SQL Server连接字符串：</strong></p>
+
+<p>标准安全连接：</p>
+
+<pre><code>Data Source=.;Initial Catalog=myDataBase;User Id=myUsername;Password=myPassword;
+</code></pre>
+
+<p>或者</p>
+
+<pre><code>Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;Trusted_Connection=False;
+</code></pre>
+
+<p>可信连接：</p>
+
+<pre><code>Data Source=myServerAddress;Initial Catalog=myDataBase;Integrated Security=SSPI;
+</code></pre>
+
+<p>或者</p>
+
+<pre><code>Server=myServerAddress;Database=myDatabase;Trusted_Connection=True; 
+</code></pre>
+
+<p><strong>Access连接字符串：</strong></p>
+
+<pre><code>Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\myDatabase.mdb;User Id=admin;Password=;
+</code></pre>
+
+<p><strong>MySQL连接字符串：</strong></p>
+
+<pre><code>Server=myServerAddress;Database=myDatabase;Uid=myUsername;Pwd=myPassword;
+</code></pre>
+
+<p><strong>DB2连接字符串：</strong></p>
+
+<pre><code>Server=myAddress:myPortNumber;Database=myDatabase;UID=myUsername;PWD=myPassword;
+</code></pre>
+
+<p><strong>Oracle连接字符串：</strong></p>
+
+<pre><code>Data Source=TORCL;User Id=myUsername;Password=myPassword; 
+</code></pre>
+
+<p>在VS中获得连接字符串并连接到数据库：工具-&gt;连接到数据库，也可以方便的获取连接字符串。</p>
+
+<h2 id="连接到数据库">连接到数据库</h2>
+
+<p>对象Connection主要是用于连接到数据库的。</p>
+
+<p>Connection常用属性：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">ConncetionString</td>
+<td align="left">获取或设置用于打开数据库的字符串</td>
+</tr>
+
+<tr>
+<td align="left">ConnectioTimeout</td>
+<td align="left">获取在尝试建立连接时终止尝试并生成错误之前所等待的时间</td>
+</tr>
+
+<tr>
+<td align="left">DataBase</td>
+<td align="left">获取当前数据库，或者连接打开后要使用的数据名称</td>
+</tr>
+
+<tr>
+<td align="left">DataSource</td>
+<td align="left">获取连接的数据库服务器的名称</td>
+</tr>
+
+<tr>
+<td align="left">State</td>
+<td align="left">数据库连接状态</td>
+</tr>
+</tbody>
+</table>
+
+<p>Connection常用方法：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Open</td>
+<td align="left">打开数据库连接</td>
+</tr>
+
+<tr>
+<td align="left">Close</td>
+<td align="left">关闭数据库连接</td>
+</tr>
+
+<tr>
+<td align="left">Dispose</td>
+<td align="left">释放Connection使用的所有资源</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="示例">示例</h2>
+
+<p><strong>创建数据库与表：</strong>
+提前准备好数据库，后面使用：</p>
+
+<pre><code>--创建数据库
+create database ExampleInfo
+--创建学生表
+create table StudentTable(
+Sid int not null primary key identity,
+Sname varchar(50),
+Sage datetime,
+Ssex nvarchar(10)
+)
+insert into StudentTable(Sname,Sage,Ssex) values ('王昭君',18,'女'),('貂蝉',18,'女'),('韩信',18,'男'),
+('李白',20,'男'),('蔡文姬',19,'女'),('后裔',19,'男'),('伽罗',19,'女')
+
+--创建课程表
+create table CourseTable(
+Cid int not null primary key identity,
+Cname varchar(50),
+Tid int
+)
+insert into CourseTable(Cname,Tid) values ('语文',1),('数学',3),('英语',5),
+('物理',4),('化学',6),('生物',5),('地理',2)
+
+--创建教师表
+create table TeacherTable(
+Tid int not null primary key identity,
+Tname varchar(50)
+)
+
+insert into TeacherTable(Tname) values ('诸葛亮'),('黄总'),('老夫子'),('墨子'),('女娲'),('伏羲')
+
+--创建一张学生课程表
+create table SCTable(
+Sid int,
+Cid int,
+Score int,
+foreign Key (Sid) REFERENCES StudentTable(Sid),
+foreign Key (Cid) REFERENCES CourseTable(Cid)
+)
+
+insert into SCTable (Sid,Cid,Score) values (1,1,80),(1,2,89),(1,3,88),(1,4,87),(1,5,78),
+(1,6,48),(1,7,87),(2,1,55),(2,2,77),(2,4,99),(2,5,89),(2,6,15),(3,1,88),(3,2,77),(3,3,78),(3,4,75),(3,5,67),
+(3,6,89),(3,7,88),(4,1,78),(4,4,98),(4,5,89),(4,6,78),(4,7,79),(5,1,77),(5,2,85),(5,3,82),(5,5,76),
+(5,6,95),(6,1,94),(6,4,48),(7,1,58),(7,2,88),(7,4,75),
+(7,6,84),(7,7,99)
+</code></pre>
+
+<p><strong>连接到数据</strong>
+创建连接对象，打开数据:</p>
+
+<pre><code>这是一个使用模板
+//编写连接字符串
+String constr = &quot;Data Source = .;Initial Catalog = ExampleInfo;Integrated Security = True&quot;
+//创建连接对象
+using(SqlConnection conn = new Sqlnnection(Constr))
+{　
+    // 当在某个代码段中使用了类的实例，而希望无论因为什么原因，只要离开了这个代码段就自动调用这个类实例的Dispose
+    //要达到这样的目的，用try...catch来捕捉异常也是可以的，但用using也很方便。　　　
+    //写Sql语句 
+    //创建command对象
+    //打开数据
+    //执行
+}
+</code></pre>
+
+<h1 id="command对象">Command对象</h1>
+
+<p>Command对象也称为数据库命令对象，Command对象主要执行包括添加、删除、修改及查询数据的操作的命令。也可以用来执行存储过程。用于执行存储过程时需要将Command对象的CommandType 属性设置为CommandType.StoredProcedure，默认情况下CommandType 属性为CommandType.Text，表示执行的是普通SQL语句。</p>
+
+<p><strong>Command对象常用的属性:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">CommandType</td>
+<td align="left">获取要执行命令的类型</td>
+</tr>
+
+<tr>
+<td align="left">CommandText</td>
+<td align="left">获取或者设置要对数据源执行的SQL语句或存储过程或表名</td>
+</tr>
+
+<tr>
+<td align="left">Conncetion</td>
+<td align="left">获取或设置这个Command使用的Connection对象的名称</td>
+</tr>
+
+<tr>
+<td align="left">Parameters</td>
+<td align="left">获取Command对象需要使用的参数集合</td>
+</tr>
+
+<tr>
+<td align="left">Transaction</td>
+<td align="left">获取或设置将在其中执行的SqlTransaction</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>这是一个Command使用模板
+//编写连接字符串
+String constr = &quot;Data Source = .;Initial Catalog = ExampleInfo;Integrated Security = True&quot;
+//创建连接对象
+using(SqlConnection conn = new Sqlnnection(Constr))
+{
+    //写Sql语句
+    string sql = &quot;select * from StudentTable&quot;;
+    using(SqlCommand cmd = new Command(sql,conn))
+    {
+        //打开数据
+        conn.Open();
+        //执行   
+　　　　.... 
+    }
+}
+</code></pre>
+
+<p>**Command主要有三个方法： **</p>
+
+<ul>
+<li>ExecuteNonQuery() 执行一个SQL语句，返回受影响的行数，这个方法主要用于执行对数据库执行增加、更新、删除操作，注意查询的时候不是调用这个方法。用于完成insert，delete，update操作。</li>
+<li>ExecuteScalar() 从数据库检索单个值。这个方法主要用于统计操作。ExecuteScalar()这个方法是针对SQL语句执行的结果是一行一列的结果集，这个方法只返回查询结果集的第一行第一列。executeScalar主要用于查询单行单列的值，如聚合函数（count,max,min,avg,sum）。</li>
+<li>ExecuteReader()用于实现只进只读的高效数据查询。ExecuteReader：返回一个SqlDataReader对象，可以通过这个对象来检查查询结果，它提供了只进只读的执行方式，即从结果中读取一行之后，移动到另一行，则前一行就无法再用。有一点要注意的是执行之后，要等到手动去调用Read()方法之后，DataReader对象才会移动到结果集的第一行，同时此方法也返回一个Bool值，表明下一行是否可用，返回True则可用，返回False则到达结果集末尾。</li>
+</ul>
+
+<p><strong>实例展示</strong>
+ExecuteNonQuery()用于执行非select语句，比如增删改，它会返回影响的行数:</p>
+
+<pre><code>//创建连接字符串
+string constr = &quot;Data Source=.;Initial Catalog=ExampleInfo;User Id=sa;Password=u471561270&quot;;
+//创建连接对象
+using (SqlConnection conn = new SqlConnection(constr))
+{
+    //床架sql语句
+    string sql = &quot;insert into StudentTable (Sname,Sage,Ssex) values ('露娜',16,'女')&quot;;
+    //创建command对象
+    using (SqlCommand cmd = new SqlCommand(sql, conn))
+    {
+        //打开数据库
+        conn.Open();
+        //执行数据语句的command方法
+        int x = cmd.ExecuteNonQuery();  //返回的是受影响的行数
+        if (x &gt; 0)
+        {
+            MessageBox.Show(&quot;插入成功&quot;);
+        }
+        else
+        {
+            MessageBox.Show(&quot;插入失败&quot;);
+        }
+    }
+}
+</code></pre>
+
+<p>ExecuteScalar()通常用来执行SELECT查询命令，返回第一行第一列值，所以都是用来执行带有Count() 或者是Sum()函数的数据库SQL语句:</p>
+
+<pre><code>//创建连接字符串
+string constr = &quot;Data Source=.;Initial Catalog=ExampleInfo;User Id=sa;Password=u471561270&quot;;
+//创建连接对象
+using (SqlConnection conn = new SqlConnection(constr))
+{
+    string sql = &quot;select Count(*) from StudentTable&quot;;
+    //创建command对象
+    using (SqlCommand cmd = new SqlCommand(sql, conn))
+    {
+        //打开数据库
+        conn.Open();
+        //执行数据语句的command方法
+        object x = cmd.ExecuteScalar();
+        MessageBox.Show(x.ToString());
+
+    }
+}
+</code></pre>
+
+<p>ExecuteReader()通常是和DataReader一起使用的，这块再聊下DataReader。DataReader是一个简单的数据集，DataReader对象的常用属性如下：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Connection</td>
+<td align="left">获取与DataReader关联的Conncetion对象</td>
+</tr>
+
+<tr>
+<td align="left">HasRows</td>
+<td align="left">判断数据库中是否有数据</td>
+</tr>
+
+<tr>
+<td align="left">FieldCount</td>
+<td align="left">获取当前行的列数</td>
+</tr>
+
+<tr>
+<td align="left">IsClosed</td>
+<td align="left">是否已关闭DataReader实例，是一个bool值</td>
+</tr>
+
+<tr>
+<td align="left">Item</td>
+<td align="left">获取指定列的以本机的格式表示的值</td>
+</tr>
+</tbody>
+</table>
+
+<p>DataReader对象的常用方法：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">ISDBNull</td>
+<td align="left">获取一个值，判断是否是空值</td>
+</tr>
+
+<tr>
+<td align="left">Read</td>
+<td align="left">使DataReader对象指向下一条记录</td>
+</tr>
+
+<tr>
+<td align="left">NextResult</td>
+<td align="left">使数据读取器前进到下一个结果</td>
+</tr>
+
+<tr>
+<td align="left">Close  关闭DataReader</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">Get</td>
+<td align="left">用来读取数据集的当前行的某一列的数据</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>//连接字符串 
+string constr = &quot;Data Source=.;Initial Catalog=ExampleInfo;User Id=sa;Password=u471561270&quot;;
+//创建连接对象
+using (SqlConnection conn = new SqlConnection(constr))
+{
+    //sql语句
+    string sql = &quot;select * from StudentTable&quot;;
+    //创建Command对象
+    using (SqlCommand comm = new SqlCommand(sql, conn))
+    {//打开数据库
+        conn.Open();
+        //创建DataReader对象
+        using (SqlDataReader reader = comm.ExecuteReader())
+        {
+            if (reader.HasRows)  //如果有数据，一条一条去读数据
+            {
+                //reader.Read() 向后移动一条数据（因为默认指向-1,就是开始时候不指向任何数据），有数据就会返回true
+                while (reader.Read())
+                {
+                    if (reader[&quot;Sname&quot;] != DBNull.Value)
+                        MessageBox.Show(reader[&quot;Sname&quot;].ToString());
+                    //获取其他属性
+                }
+            }
+        }
+    }
+}
+</code></pre>
+
+<h1 id="dataadapter">DataAdapter</h1>
+
+<p>DataAdapter表示一组SQL命令和一个数据库连接，它们用于填充 DataSet和更新数据源。DataAdapter的属性：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">SelectCommand</td>
+<td align="left">引用从数据源中检索行的Command对象</td>
+</tr>
+
+<tr>
+<td align="left">InsertCommand</td>
+<td align="left">引用将插入的行从DataSet写入数据源的Command对象</td>
+</tr>
+
+<tr>
+<td align="left">UpdateCommand</td>
+<td align="left">引用将修改的行从DataSet写入数据源的Command对象</td>
+</tr>
+
+<tr>
+<td align="left">DeleteCommand</td>
+<td align="left">引用从数据源中删除行的Command对象</td>
+</tr>
+</tbody>
+</table>
+
+<p>DataAdapter的方法：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Fill</td>
+<td align="left">使用SqlDataAdapter（或OleDbDataAdapter）的这个方法，从数据源增加或刷新行，并将这些行放到DataSet表中。Fill方法调用SelectCommand属性所指定的SELECT语句</td>
+</tr>
+
+<tr>
+<td align="left">Update</td>
+<td align="left">使用DataAdapter对象的这个方法，将DataSet表的更改传送到相应的数据源中。该方法为DataSet的DataTable中每一指定的行调用相应的INSERT、UPDATE或DELETE命令</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>//连接字符串 
+string constr = &quot;Data Source=.;Initial Catalog=ExampleInfo;User Id=sa;Password=u471561270&quot;;
+//创建连接对象
+using (SqlConnection conn = new SqlConnection(constr))
+{
+    //床架sql语句
+    string sql = &quot;select * from StudentTable&quot;;
+    //创建command对象
+    using (SqlCommand cmd = new SqlCommand(sql, conn))
+    {
+        //创建一个DataTable对象
+        DataTable ds = new DataTable();
+        using (SqlDataAdapter adapter = new SqlDataAdapter(sql, constr))
+        {
+            //打开数据库
+            conn.Open();
+            adapter.Fill(ds);
+        }
+        //绑定dataGridView控件
+        this.dataGridView1.DataSource = ds;
+    }
+}
+</code></pre>
+
+<p>也可以把datatable改为dataset：</p>
+
+<pre><code>//连接字符串 
+string constr = &quot;Data Source=.;Initial Catalog=ExampleInfo;User Id=sa;Password=u471561270&quot;;
+//创建连接对象
+using (SqlConnection conn = new SqlConnection(constr))
+{
+    //床架sql语句
+    string sql = &quot;select * from StudentTable&quot;;
+    //创建command对象
+    using (SqlCommand cmd = new SqlCommand(sql, conn))
+    {
+        //创建一个DataTable对象
+        DataSet ds = new DataSet();
+        using (SqlDataAdapter adapter = new SqlDataAdapter(sql, constr))
+        {
+            //打开数据库
+            conn.Open();
+            adapter.Fill(ds);
+        }
+        //绑定dataGridView控件
+        this.dataGridView1.DataSource = ds.Tables[0];
+    }
+}
+</code></pre>
+
+<h1 id="封装sqlhelper">封装SqlHelper</h1>
+
+<p>如果不封装的话，我们每写一次查询就要写一次连接字符串，连接对象等等，如果一个程序当中有n个，就要写n此。那么不如将其封装起来，可以直接调用。我们只用提供sql语句和参数就可以了。</p>
+
+<pre><code>public class SqlHelper
+{
+    private static readonly string constr = ConfigurationManager.ConnectionStrings[&quot;sqlConnection&quot;].ConnectionString;
+    /// &lt;summary&gt;
+    /// 执行增删改的方法
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;sql&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;paras&quot;&gt;可能存在sql语句中带有参数，那么需要把参数给加进去&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static int ExecuteNonQuery(string sql, params SqlParameter[] paras)
+    {
+        using (SqlConnection conn = new SqlConnection(constr))
+        {
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                if (paras != null)
+                {
+                    cmd.Parameters.AddRange(paras);
+                }
+                conn.Open();
+                return cmd.ExecuteNonQuery();
+            }
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// 执行查询，返回单个值方法
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;sql&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;paras&quot;&gt;可能存在sql语句中带有参数，那么需要把参数给加进去&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static object ExecuteScalar(string sql, params SqlParameter[] paras)
+    {
+        using (SqlConnection conn = new SqlConnection(constr))
+        {
+            using (SqlCommand comm = new SqlCommand(sql, conn))
+            {
+                if (paras != null)
+                {
+                    comm.Parameters.AddRange(paras);
+                }
+                conn.Open();
+                return comm.ExecuteScalar();
+            }
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// 执行查询 返回SqlDataReader
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;sql&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;paras&quot;&gt;可能存在sql语句中带有参数，那么需要把参数给加进去&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static SqlDataReader ExecuteReader(string sql, params SqlParameter[] paras)
+    {
+        using (SqlConnection conn = new SqlConnection(constr))
+        {
+            using (SqlCommand comm = new SqlCommand(sql, conn))
+            {
+                if (paras != null)
+                {
+                    comm.Parameters.AddRange(paras);
+                }
+                try
+                {
+                    conn.Open();
+                    return comm.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                }
+                catch
+                {
+                    conn.Close();
+                    conn.Dispose();
+                    throw;
+                }
+            }
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// 执行查询 返回DataTable
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;sql&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;paras&quot;&gt;可能存在sql语句中带有参数，那么需要把参数给加进去&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static DataTable ExecuteDataTable(string sql, params SqlParameter[] paras)
+    {
+        DataTable dt = new DataTable();
+        using (SqlDataAdapter adapter = new SqlDataAdapter(sql, constr))
+        {
+            if (paras != null)
+            {
+                adapter.SelectCommand.Parameters.AddRange(paras);
+            }
+            adapter.Fill(dt);
+        }
+        return dt;
+    }
+
+    /// &lt;summary&gt;
+    /// 执行查询 返回DataTable
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;sql&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;paras&quot;&gt;可能存在sql语句中带有参数，那么需要把参数给加进去&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static DataSet ExecuteDataSet(string sql, params SqlParameter[] paras)
+    {
+        DataSet ds = new DataSet();
+        using (SqlDataAdapter adapter = new SqlDataAdapter(sql, constr))
+        {
+            if (paras != null)
+            {
+                adapter.SelectCommand.Parameters.AddRange(paras);
+            }
+            adapter.Fill(ds);
+        }
+        return ds;
+    }
+}
+</code></pre>
+
+<h2 id="封装sql的实例演示">封装Sql的实例演示</h2>
+
+<p>实例演示如下：</p>
+
+<pre><code>string Sname = textBox1.Text.Trim();         //Trim() 移除多余的空格
+string Sage = textBox2.Text.Trim();
+string Ssex = textBox3.Text.Trim();
+string sql = &quot;insert into StudentTable(Sname,Sage,Ssex) values (@Sname,@Sage,@Ssex)&quot;;
+//这里是创建参数，更加的安全，防止不法人员注入sql语句，造成错误
+SqlParameter[] paras = new SqlParameter[] { 
+        new SqlParameter(&quot;@Sname&quot;,SqlDbType.NVarChar,50){Value = Sname},
+        new SqlParameter(&quot;@Sage&quot;,SqlDbType.NVarChar,50){Value = Sage},
+        new SqlParameter(&quot;@Ssex&quot;,SqlDbType.NVarChar,50){Value = Ssex}
+};
+//因为执行的是插入操作，所以调用ExecuteNonQuery
+int x = SqlHelper.ExecuteNonQuery(sql,paras);
+if (x &gt; 0)
+{
+    MessageBox.Show(&quot;新增成功&quot;);
+    //成功的同时，重新加载表格中的数据
+    LoadDate();
+}
+else 
+{
+    MessageBox.Show(&quot;新增失败&quot;);
+}
+</code></pre>
+
+<p>其他的方法使用也类似。</p>
+	  </article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+        
+          <a class="ui label" href="https://sltaurusblog.gitee.io/tags/ado.net" title="ADO.NET">ADO.NET</a>
+        
+      
+      <div
+        class="ui label"
+        style="float: right; background: #1b1c1d !important; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i> Save as image
+      </div>
+    </footer>
+
+    
+
+    
+      <footer class="ui bottom attached stacked segment post-disqus-area" data-html2canvas-ignore="true">
+        <div id="disqus_thread"></div>
+        <script>
+          
+
+
+          var disqus_config = function () {
+            this.page.url = 'https:\/\/sltaurusblog.gitee.io\/2019\/10\/ado.net\/';  
+            this.page.identifier = '\/2019\/10\/ado.net\/'; 
+          };
+
+          (function() { 
+            var d = document, s = d.createElement('script');
+            s.src = 'https://' + '...' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </footer>
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="https://sltaurusblog.gitee.io/images/head.jpg">
+      
+    </div>
+
+    <h1 class="ui medium header">SLTaurus的博客<div class="sub header" style="margin-top: 0.5rem;">合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。</div>
+    </h1>
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="https://sltaurusblog.gitee.io/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="https://sltaurusblog.gitee.io/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+  <section class="ui attached center aligned segment dream-tags">
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/ado.net" title="ado.net">ado.net</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/ef" title="ef">ef</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/hugo" title="hugo">hugo</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/javascript" title="javascript">javascript</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8" title="markdown快速入门">markdown快速入门</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E6%95%B4%E7%89%88" title="markdown语法完整版">markdown语法完整版</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/mvc" title="mvc">mvc</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/mysql" title="mysql">mysql</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/orm%E5%AF%B9%E6%AF%94" title="orm对比">orm对比</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/orm%E6%95%B4%E7%90%86" title="orm整理">orm整理</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/powershell" title="powershell">powershell</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/redis" title="redis">redis</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/ref%E5%92%8Cout" title="ref和out">ref和out</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/sqlservice" title="sqlservice">sqlservice</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98" title="内置泛型委托">内置泛型委托</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E5%8F%8D%E5%B0%84" title="反射">反射</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E7%B2%BE%E9%80%9Ac" title="精通c#">精通c#</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%88%9B%E5%BB%BA%E5%9E%8B" title="设计模式-创建型">设计模式-创建型</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8E%9F%E5%88%99" title="设计模式-原则">设计模式-原则</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%BB%93%E6%9E%84%E5%9E%8B" title="设计模式-结构型">设计模式-结构型</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E9%A1%B9%E7%9B%AE" title="项目">项目</a>
+    
+  </section>
+  
+
+  
+  <section class="ui attached segment dream-categories">
+    <div class="ui accordion">
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/c" class="item">c#</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/" class="item">内置泛型委托：Action、Func和Predicate</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/%E5%8F%8D%E5%B0%84%E6%95%B4%E7%90%86%E4%B9%8B%E6%97%A5%E5%B8%B8%E7%94%A8%E9%80%94/" class="item">反射整理之日常用途</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/ado.net/" class="item">ADO.NET</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/mvc%E6%95%B4%E7%90%86/" class="item">MVC整理</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/%E7%B2%BE%E9%80%9Acsharp%E7%AC%AC%E5%85%AD%E7%89%88/" class="item">精通CSharp(第六版)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/" class="item">ref和out使用时的区别</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/javascript" class="item">javascript</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/" class="item">JavaScript入门经典第6版笔记(下)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8A/" class="item">JavaScript入门经典第6版笔记(上)</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/markdown" class="item">markdown</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E6%95%B4%E7%89%88/" class="item">Markdown语法完整版</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="item">Markdown快速入门</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/orm" class="item">orm</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/" class="item">EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/entityframework/" class="item">EntityFramework</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/orm%E6%95%B4%E7%90%86/" class="item">ORM整理</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/redis" class="item">redis</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/06/redis%E5%9F%BA%E7%A1%80/" class="item">Redis基础</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E5%8D%9A%E5%AE%A2" class="item">博客</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/" class="item">windows10环境下搭建Hugo个人博客&#43;git分布式版本控制&#43;valine评论</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93" class="item">数据库</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/mysql%E6%8B%BE%E9%81%97/" class="item">MySql拾遗 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/" class="item">SqlService笔记</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E8%87%AA%E5%8A%A8%E5%8C%96" class="item">自动化</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/windows-powershell%E6%8C%87%E5%8D%97/" class="item">Windows PowerShell指南</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" class="item">设计模式</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%8E%9F%E5%88%99/" class="item">24种设计模式之设计模式原则 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A1%8C%E4%B8%BA%E5%9E%8B/" class="item">24种设计模式之行为型 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BB%93%E6%9E%84%E5%9E%8B/" class="item">24种设计模式之结构型 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%9E%8B/" class="item">24种设计模式之创建型 </a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E9%A1%B9%E7%9B%AE" class="item">项目</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/05/%E8%AE%A1%E4%BB%B6%E5%B7%A5%E8%B5%84%E9%A1%B9%E7%9B%AE/" class="item">计件工资项目</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+    </div>
+  </section>
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="mailto:1641061313@qq.com">
+        <i class=" mail icon" title="email"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://twitter.com/SLTaurus" target="_blank">
+        <i class=" twitter icon" title="twitter"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://facebook.com/SLTaurus" target="_blank">
+        <i class=" facebook icon" title="facebook"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://instagram.com/SLTaurus" target="_blank">
+        <i class=" instagram icon" title="instagram"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.linkedin.com/in/SLTaurus" target="_blank">
+        <i class=" linkedin icon" title="linkedin"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/SLTaurus" target="_blank">
+        <i class=" github icon" title="github"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.stackoverflow.com/users/SLTaurus" target="_blank">
+        <i class=" stack overflow icon" title="stackoverflow"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://codepen.io/SLTaurus" target="_blank">
+        <i class=" codepen icon" title="codepen"></i>
+      </a>
+    </div>
+  
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2019 - 2020 SLTaurus的博客</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/sltaurusblog.gitee.io'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交链接</h3>
+      </div>
+      <div class="ui attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="mailto:1641061313@qq.com">
+        <i class="large mail icon" title="email"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://twitter.com/SLTaurus" target="_blank">
+        <i class="large twitter icon" title="twitter"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://facebook.com/SLTaurus" target="_blank">
+        <i class="large facebook icon" title="facebook"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://instagram.com/SLTaurus" target="_blank">
+        <i class="large instagram icon" title="instagram"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.linkedin.com/in/SLTaurus" target="_blank">
+        <i class="large linkedin icon" title="linkedin"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/SLTaurus" target="_blank">
+        <i class="large github icon" title="github"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.stackoverflow.com/users/SLTaurus" target="_blank">
+        <i class="large stack overflow icon" title="stackoverflow"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://codepen.io/SLTaurus" target="_blank">
+        <i class="large codepen icon" title="codepen"></i>
+      </a>
+    </div>
+  
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+  
+    <section class="sixteen wide mobile eight wide tablet eight wide computer column dream-column">
+      <footer class="ui segment">
+        <div id="disqus_thread"></div>
+        <script>
+          
+
+
+          var disqus_config = function () {
+            this.page.url = 'https:\/\/sltaurusblog.gitee.io\/2019\/10\/ado.net\/about';  
+            this.page.identifier = '/about'; 
+          };
+
+          (function() { 
+            var d = document, s = d.createElement('script');
+            s.src = 'https://' + '...' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </footer>
+    </section>
+  
+
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script src="https://sltaurusblog.gitee.io/js/jquery.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/semantic.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/imagesloaded.pkgd.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/masonry.pkgd.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/nav.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/header.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/main.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/theme.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/html2canvas.min.js"></script>
+
+  
+    <script src="https://sltaurusblog.gitee.io/js/prism.js"></script>
+  
+
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', '...', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+  </body>
+</html>

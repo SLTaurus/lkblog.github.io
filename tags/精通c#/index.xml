@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>精通C# on SLTaurus的博客</title>
+    <link>https://sltaurusblog.gitee.io/tags/%E7%B2%BE%E9%80%9Ac#/</link>
+    <description>Recent content in 精通C# on SLTaurus的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cmn-Hans</language>
+    <lastBuildDate>Sat, 12 Oct 2019 15:12:16 +0800</lastBuildDate>
+    
+	<atom:link href="https://sltaurusblog.gitee.io/tags/%E7%B2%BE%E9%80%9Ac#/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>精通CSharp(第六版)</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/%E7%B2%BE%E9%80%9Acsharp%E7%AC%AC%E5%85%AD%E7%89%88/</link>
+      <pubDate>Sat, 12 Oct 2019 15:12:16 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/%E7%B2%BE%E9%80%9Acsharp%E7%AC%AC%E5%85%AD%E7%89%88/</guid>
+      <description>&lt;p&gt;工欲善其事必先利其器。C#需要记忆的基础汇总下，供时常翻阅查看。感觉暂时不需要的就只记录标题在，如果以后再需要则重新翻阅记录理解。
+#缩略显示的梗概，这里把注释删去，写成文章的简介或者梗概，在首页时候可以只显示梗概&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>反射 on SLTaurus的博客</title>
+    <link>https://sltaurusblog.gitee.io/tags/%E5%8F%8D%E5%B0%84/</link>
+    <description>Recent content in 反射 on SLTaurus的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cmn-Hans</language>
+    <lastBuildDate>Fri, 18 Oct 2019 16:30:26 +0800</lastBuildDate>
+    
+	<atom:link href="https://sltaurusblog.gitee.io/tags/%E5%8F%8D%E5%B0%84/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>反射整理之日常用途</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/%E5%8F%8D%E5%B0%84%E6%95%B4%E7%90%86%E4%B9%8B%E6%97%A5%E5%B8%B8%E7%94%A8%E9%80%94/</link>
+      <pubDate>Fri, 18 Oct 2019 16:30:26 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/%E5%8F%8D%E5%B0%84%E6%95%B4%E7%90%86%E4%B9%8B%E6%97%A5%E5%B8%B8%E7%94%A8%E9%80%94/</guid>
+      <description>&lt;p&gt;在.NET中，反射是重要的机制，它可以动态的分析程序集Assembly,模块Module,类型Type等等,我们在不需要使用new关键的情况下，就可以动态创建对象，使用对象。降低代码耦合性提高了程序的灵活性。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

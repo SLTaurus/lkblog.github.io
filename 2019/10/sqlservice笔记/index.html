@@ -1,0 +1,3753 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+SqlService笔记
+</title>
+
+    
+  <link href="https://sltaurusblog.gitee.io/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+  
+  <meta name="author" content="SLTaurus" />
+  <meta name="description" content="SLTaurus的博客" />
+
+
+
+<meta name="generator" content="Hugo 0.57.2" />
+
+<link rel="canonical" href="https://sltaurusblog.gitee.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/" />
+
+
+<meta property="og:title" content="SqlService笔记" />
+<meta property="og:description" content="这里是sqlservice的一些知识的记录，方便随时查看，非常常用的就不再记录了。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sltaurusblog.gitee.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/" />
+<meta property="article:published_time" content="2019-10-13T19:52:37+08:00" />
+<meta property="article:modified_time" content="2019-10-13T19:52:37+08:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SqlService笔记"/>
+<meta name="twitter:description" content="这里是sqlservice的一些知识的记录，方便随时查看，非常常用的就不再记录了。"/>
+
+
+<link rel="stylesheet" href="https://sltaurusblog.gitee.io/css/github-markdown.css" />
+<link rel="stylesheet" href="https://sltaurusblog.gitee.io/css/semantic.min.css" />
+<link rel="stylesheet" href="https://sltaurusblog.gitee.io/css/site.css" />
+
+
+  
+    <link rel="stylesheet"  href="https://sltaurusblog.gitee.io/css/prism.css">
+  
+
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+  </head>
+
+  
+  <body style="background: black;">
+  
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/sltaurusblog.gitee.io'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h2 class="ui header">
+          SqlService笔记
+          <div class="sub header">@ SLTaurus · Sunday, Oct 13, 2019 · 29 分钟阅读 · 更新于 Oct 13, 2019</div>
+        </h2>
+      </header>
+      <article style="margin-top: 2rem;">
+		<p>这里是sqlservice的一些知识的记录，方便随时查看，非常常用的就不再记录了。</p>
+
+<h1 id="table-of-contents"></h1><nav id="TableOfContents">
+<ul>
+<li><a href="#sql-语法">SQL 语法</a>
+<ul>
+<li><a href="#重要事项">重要事项</a></li>
+<li><a href="#sql-语句后面的分号">SQL 语句后面的分号</a></li>
+<li><a href="#sql-dml-和-ddl">SQL DML 和 DDL</a></li>
+</ul></li>
+<li><a href="#sql-order-by-子句">SQL ORDER BY 子句</a></li>
+<li><a href="#sql-top-子句">SQL TOP 子句</a></li>
+<li><a href="#sql-top-percent-实例">SQL TOP PERCENT 实例</a></li>
+<li><a href="#sql-通配符">SQL 通配符</a>
+<ul>
+<li><a href="#使用-通配符">使用 _ 通配符</a></li>
+<li><a href="#使用-charlist-通配符">使用 [charlist] 通配符</a></li>
+</ul></li>
+<li><a href="#sql-between-操作符">SQL BETWEEN 操作符</a></li>
+<li><a href="#sql-full-join-关键字">SQL FULL JOIN 关键字</a></li>
+<li><a href="#sql-union-和-union-all-操作符">SQL UNION 和 UNION ALL 操作符</a>
+<ul>
+<li><a href="#sql-union-操作符">SQL UNION 操作符</a></li>
+</ul></li>
+<li><a href="#select-into-语句">SELECT INTO 语句</a>
+<ul>
+<li><a href="#sql-select-into-实例-制作备份复件">SQL SELECT INTO 实例 - 制作备份复件</a></li>
+<li><a href="#sql-select-into-实例-带有-where-子句">SQL SELECT INTO 实例 - 带有 WHERE 子句</a></li>
+<li><a href="#sql-select-into-实例-被连接的表">SQL SELECT INTO 实例 - 被连接的表</a></li>
+</ul></li>
+<li><a href="#create-database-语句">CREATE DATABASE 语句</a></li>
+<li><a href="#create-table-语句">CREATE TABLE 语句</a></li>
+<li><a href="#sql-约束-constraints">SQL 约束 (Constraints)</a>
+<ul>
+<li><a href="#sql-not-null-约束">SQL NOT NULL 约束</a></li>
+<li><a href="#sql-unique-约束">SQL UNIQUE 约束</a>
+<ul>
+<li><a href="#unique-constraint-on-create-table">UNIQUE Constraint on CREATE TABLE</a></li>
+<li><a href="#sql-unique-constraint-on-alter-table">SQL UNIQUE Constraint on ALTER TABLE</a></li>
+<li><a href="#撤销-unique-约束">撤销 UNIQUE 约束</a></li>
+</ul></li>
+<li><a href="#primary-key-约束">PRIMARY KEY 约束</a>
+<ul>
+<li><a href="#sql-primary-key-constraint-on-create-table">SQL PRIMARY KEY Constraint on CREATE TABLE</a></li>
+<li><a href="#sql-primary-key-constraint-on-alter-table">SQL PRIMARY KEY Constraint on ALTER TABLE</a></li>
+<li><a href="#撤销-primary-key-约束">撤销 PRIMARY KEY 约束</a></li>
+</ul></li>
+<li><a href="#foreign-key-约束">FOREIGN KEY 约束</a>
+<ul>
+<li><a href="#sql-foreign-key-constraint-on-create-table">SQL FOREIGN KEY Constraint on CREATE TABLE</a></li>
+<li><a href="#sql-foreign-key-constraint-on-alter-table">SQL FOREIGN KEY Constraint on ALTER TABLE</a></li>
+<li><a href="#撤销-foreign-key-约束">撤销 FOREIGN KEY 约束</a></li>
+</ul></li>
+<li><a href="#check-约束">CHECK 约束</a>
+<ul>
+<li><a href="#check-constraint-on-create-table">CHECK Constraint on CREATE TABLE</a></li>
+<li><a href="#check-constraint-on-alter-table">CHECK Constraint on ALTER TABLE</a></li>
+<li><a href="#撤销-check-约束">撤销 CHECK 约束</a></li>
+</ul></li>
+<li><a href="#default-约束">DEFAULT 约束</a>
+<ul>
+<li><a href="#default-constraint-on-create-table">DEFAULT Constraint on CREATE TABLE</a></li>
+<li><a href="#default-constraint-on-alter-table">DEFAULT Constraint on ALTER TABLE</a></li>
+<li><a href="#撤销-default-约束">撤销 DEFAULT 约束</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#create-index-语句">CREATE INDEX 语句</a>
+<ul>
+<li><a href="#create-index-语法">CREATE INDEX 语法</a></li>
+<li><a href="#create-unique-index-语法">CREATE UNIQUE INDEX 语法</a></li>
+<li><a href="#create-index-实例">CREATE INDEX 实例</a></li>
+</ul></li>
+<li><a href="#撤销索引-表以及数据库">撤销索引、表以及数据库</a>
+<ul>
+<li><a href="#drop-index-语句">DROP INDEX 语句</a></li>
+<li><a href="#sql-drop-table-语句">SQL DROP TABLE 语句</a></li>
+<li><a href="#drop-database-语句">DROP DATABASE 语句</a></li>
+<li><a href="#truncate-table-语句">TRUNCATE TABLE 语句</a></li>
+</ul></li>
+<li><a href="#alter-table-语句">ALTER TABLE 语句</a>
+<ul>
+<li><a href="#sql-alter-table-实例">SQL ALTER TABLE 实例</a></li>
+<li><a href="#drop-column-实例">DROP COLUMN 实例</a></li>
+</ul></li>
+<li><a href="#auto-increment-字段">AUTO INCREMENT 字段</a></li>
+<li><a href="#view">VIEW</a>
+<ul>
+<li><a href="#create-view-语句">CREATE VIEW 语句</a></li>
+<li><a href="#sql更新视图">SQL更新视图</a></li>
+<li><a href="#撤销视图">撤销视图</a></li>
+</ul></li>
+<li><a href="#date函数">Date函数</a>
+<ul>
+<li><a href="#mysql-date-函数">MySQL Date 函数</a></li>
+<li><a href="#sqlserver-date函数">SQLServer Date函数</a></li>
+<li><a href="#date数据类型">Date数据类型</a></li>
+</ul></li>
+<li><a href="#null函数isnull-nvl-ifnull-和coalesce">NULL函数ISNULL()、NVL()、IFNULL()和COALESCE()</a></li>
+<li><a href="#数据类型">数据类型</a>
+<ul>
+<li><a href="#microsoft-access-数据类型">Microsoft Access 数据类型</a></li>
+<li><a href="#mysql-数据类型">MySQL 数据类型</a></li>
+<li><a href="#sql-server数据类型">SQL Server数据类型</a></li>
+</ul></li>
+<li><a href="#sql-服务器-rdbms">SQL 服务器-RDBMS</a></li>
+<li><a href="#sql函数">SQL函数</a>
+<ul>
+<li><a href="#合计函数-aggregate-functions">合计函数（Aggregate functions）</a></li>
+<li><a href="#scalar-函数">Scalar 函数</a></li>
+<li><a href="#avg-函数">AVG 函数</a></li>
+<li><a href="#count-函数">COUNT() 函数</a></li>
+<li><a href="#first-和last-函数">FIRST()和LAST()函数</a></li>
+<li><a href="#having-子句">HAVING 子句</a></li>
+<li><a href="#ucase-和lcase-函数">UCASE()和LCASE()函数</a></li>
+<li><a href="#mid-函数">MID()函数</a></li>
+<li><a href="#round-函数">ROUND()函数</a></li>
+<li><a href="#now-函数">NOW()函数</a></li>
+<li><a href="#format-函数">FORMAT()函数</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="sql-语法">SQL 语法</h1>
+
+<h2 id="重要事项">重要事项</h2>
+
+<p>一定要记住，SQL 对大小写不敏感！</p>
+
+<h2 id="sql-语句后面的分号">SQL 语句后面的分号</h2>
+
+<p>某些数据库系统要求在每条 SQL 命令的末端使用分号。在我们的教程中不使用分号。分号是在数据库系统中分隔每条 SQL 语句的标准方法，这样就可以在对服务器的相同请求中执行一条以上的语句。如果您使用的是 MS Access 和 SQL Server 2000，则不必在每条 SQL 语句之后使用分号，不过某些数据库软件要求必须使用分号。</p>
+
+<h2 id="sql-dml-和-ddl">SQL DML 和 DDL</h2>
+
+<p>可以把 SQL 分为两个部分：数据操作语言 (DML) 和 数据定义语言 (DDL)。 SQL (结构化查询语言)是用于执行查询的语法。但是 SQL 语言也包含用于更新、插入和删除记录的语法。查询和更新指令构成了 SQL 的 DML 部分：</p>
+
+<ul>
+<li>SELECT - 从数据库表中获取数据</li>
+<li>UPDATE - 更新数据库表中的数据</li>
+<li>DELETE - 从数据库表中删除数据</li>
+<li>INSERT INTO - 向数据库表中插入数据</li>
+</ul>
+
+<p>SQL 的数据定义语言 (DDL) 部分使我们有能力创建或删除表格。我们也可以定义索引（键），规定表之间的链接，以及施加表间的约束。SQL 中最重要的 DDL 语句:</p>
+
+<ul>
+<li>CREATE DATABASE - 创建新数据库</li>
+<li>ALTER DATABASE - 修改数据库</li>
+<li>CREATE TABLE - 创建新表</li>
+<li>ALTER TABLE - 变更（改变）数据库表</li>
+<li>DROP TABLE - 删除表</li>
+<li>CREATE INDEX - 创建索引（搜索键）</li>
+<li>DROP INDEX - 删除索引</li>
+</ul>
+
+<h1 id="sql-order-by-子句">SQL ORDER BY 子句</h1>
+
+<p>以逆字母顺序显示公司名称，并以数字顺序显示顺序号：</p>
+
+<pre><code>SELECT Company, OrderNumber FROM Orders ORDER BY Company DESC, OrderNumber ASC
+</code></pre>
+
+<h1 id="sql-top-子句">SQL TOP 子句</h1>
+
+<h1 id="sql-top-percent-实例">SQL TOP PERCENT 实例</h1>
+
+<p>现在，我们希望从上面的 &ldquo;Persons&rdquo; 表中选取 50% 的记录。我们可以使用下面的 SELECT 语句：</p>
+
+<pre><code>SELECT TOP 50 PERCENT * FROM Persons
+</code></pre>
+
+<h1 id="sql-通配符">SQL 通配符</h1>
+
+<p>在搜索数据库中的数据时，SQL 通配符可以替代一个或多个字符。SQL 通配符必须与 LIKE 运算符一起使用。在 SQL 中，可使用以下通配符：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">通配符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">%</td>
+<td align="center">替代一个或多个字符</td>
+</tr>
+
+<tr>
+<td align="center">_</td>
+<td align="center">仅替代一个字符</td>
+</tr>
+
+<tr>
+<td align="center">[charlist]</td>
+<td align="center">字符列中的任何单一字符</td>
+</tr>
+
+<tr>
+<td align="center">[^charlist] 或者 [!charlist]</td>
+<td align="center">不在字符列中的任何单一字符</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="使用-通配符">使用 _ 通配符</h2>
+
+<p>现在，我们希望从上面的 &ldquo;Persons&rdquo; 表中选取名字的第一个字符之后是 &ldquo;eorge&rdquo; 的人：</p>
+
+<pre><code>SELECT * FROM Persons WHERE FirstName LIKE '_eorge'
+</code></pre>
+
+<p>接下来，我们希望从 &ldquo;Persons&rdquo; 表中选取的这条记录的姓氏以 &ldquo;C&rdquo; 开头，然后是一个任意字符，然后是 &ldquo;r&rdquo;，然后是任意字符，然后是 &ldquo;er&rdquo;：</p>
+
+<pre><code>SELECT * FROM Persons WHERE LastName LIKE 'C_r_er'
+</code></pre>
+
+<h2 id="使用-charlist-通配符">使用 [charlist] 通配符</h2>
+
+<p>现在，我们希望从上面的 &ldquo;Persons&rdquo; 表中选取居住的城市以 &ldquo;A&rdquo; 或 &ldquo;L&rdquo; 或 &ldquo;N&rdquo; 开头的人：</p>
+
+<pre><code>SELECT * FROM Persons WHERE City LIKE '[ALN]%'
+</code></pre>
+
+<p>现在，我们希望从上面的 &ldquo;Persons&rdquo; 表中选取居住的城市不以 &ldquo;A&rdquo; 或 &ldquo;L&rdquo; 或 &ldquo;N&rdquo; 开头的人：</p>
+
+<pre><code>SELECT * FROM Persons WHERE City LIKE '[!ALN]%'
+</code></pre>
+
+<h1 id="sql-between-操作符">SQL BETWEEN 操作符</h1>
+
+<p>操作符 BETWEEN &hellip; AND 会选取介于两个值之间的数据范围。这些值可以是数值、文本或者日期。</p>
+
+<p>如需以字母顺序显示介于 &ldquo;Adams&rdquo;（包括）和 &ldquo;Carter&rdquo;（不包括）之间的人，请使用下面的 SQL：</p>
+
+<pre><code>SELECT * FROM Persons WHERE LastName BETWEEN 'Adams' AND 'Carter'
+</code></pre>
+
+<p>重要事项：不同的数据库对 BETWEEN&hellip;AND 操作符的处理方式是有差异的。某些数据库会列出介于 &ldquo;Adams&rdquo; 和 &ldquo;Carter&rdquo; 之间的人，但不包括 &ldquo;Adams&rdquo; 和 &ldquo;Carter&rdquo; ；某些数据库会列出介于 &ldquo;Adams&rdquo; 和 &ldquo;Carter&rdquo; 之间并包括 &ldquo;Adams&rdquo; 和 &ldquo;Carter&rdquo; 的人；而另一些数据库会列出介于 &ldquo;Adams&rdquo; 和 &ldquo;Carter&rdquo; 之间的人，包括 &ldquo;Adams&rdquo; ，但不包括 &ldquo;Carter&rdquo; 。<strong>所以，请检查你的数据库是如何处理 BETWEEN&hellip;.AND 操作符的！</strong></p>
+
+<p>如需使用上面的例子显示范围之外的人，请使用 NOT 操作符：</p>
+
+<pre><code>SELECT * FROM Persons WHERE LastName NOT BETWEEN 'Adams' AND 'Carter'
+</code></pre>
+
+<h1 id="sql-full-join-关键字">SQL FULL JOIN 关键字</h1>
+
+<p>只要其中某个表存在匹配，FULL JOIN 关键字就会返回行。</p>
+
+<pre><code>SELECT column_name(s)
+FROM table_name1
+FULL JOIN table_name2 
+ON table_name1.column_name=table_name2.column_name
+</code></pre>
+
+<p><strong>注释：在某些数据库中， FULL JOIN 称为 FULL OUTER JOIN。</strong></p>
+
+<p>我们希望列出所有的人，以及他们的定单，以及所有的定单，以及定购它们的人。</p>
+
+<pre><code>SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo
+FROM Persons
+FULL JOIN Orders
+ON Persons.Id_P=Orders.Id_P
+ORDER BY Persons.LastName
+</code></pre>
+
+<p>FULL JOIN 关键字会从左表 (Persons) 和右表 (Orders) 那里返回所有的行。如果 &ldquo;Persons&rdquo; 中的行在表 &ldquo;Orders&rdquo; 中没有匹配，或者如果 &ldquo;Orders&rdquo; 中的行在表 &ldquo;Persons&rdquo; 中没有匹配，这些行同样会列出。</p>
+
+<h1 id="sql-union-和-union-all-操作符">SQL UNION 和 UNION ALL 操作符</h1>
+
+<h2 id="sql-union-操作符">SQL UNION 操作符</h2>
+
+<p>UNION 操作符用于合并两个或多个 SELECT 语句的结果集。请注意，UNION 内部的 SELECT 语句必须拥有相同数量的列。列也必须拥有相似的数据类型。同时，每条 SELECT 语句中的列的顺序必须相同。SQL UNION 语法</p>
+
+<pre><code>SELECT column_name(s) FROM table_name1
+UNION
+SELECT column_name(s) FROM table_name2
+</code></pre>
+
+<p>** 注释：默认地，UNION 操作符选取不同的值。如果允许重复的值，请使用 UNION ALL。 **
+** SQL UNION ALL 语法</p>
+
+<p>SELECT column_name(s) FROM table_name1
+UNION ALL
+SELECT column_name(s) FROM table_name2</p>
+
+<p>** 另外，UNION 结果集中的列名总是等于 UNION 中第一个 SELECT 语句中的列名。 **</p>
+
+<h1 id="select-into-语句">SELECT INTO 语句</h1>
+
+<p>SELECT INTO 语句从一个表中选取数据，然后把数据插入另一个表中。SELECT INTO 语句常用于创建表的备份复件或者用于对记录进行存档。SQL SELECT INTO 语法，您可以把所有的列插入新表：</p>
+
+<pre><code>SELECT *
+INTO new_table_name [IN externaldatabase] 
+FROM old_tablename
+</code></pre>
+
+<p>或者只把希望的列插入新表：</p>
+
+<pre><code>SELECT column_name(s)
+INTO new_table_name [IN externaldatabase] 
+FROM old_tablename
+</code></pre>
+
+<h2 id="sql-select-into-实例-制作备份复件">SQL SELECT INTO 实例 - 制作备份复件</h2>
+
+<p>下面的例子会制作 &ldquo;Persons&rdquo; 表的备份复件：</p>
+
+<pre><code>SELECT *
+INTO Persons_backup
+FROM Persons
+</code></pre>
+
+<p>IN 子句可用于向另一个数据库中拷贝表：</p>
+
+<pre><code>SELECT *
+INTO Persons IN 'Backup.mdb'
+FROM Persons
+</code></pre>
+
+<p>如果我们希望拷贝某些域，可以在 SELECT 语句后列出这些域：</p>
+
+<pre><code>SELECT LastName,FirstName
+INTO Persons_backup
+FROM Persons
+</code></pre>
+
+<h2 id="sql-select-into-实例-带有-where-子句">SQL SELECT INTO 实例 - 带有 WHERE 子句</h2>
+
+<p>我们也可以添加 WHERE 子句。下面的例子通过从 &ldquo;Persons&rdquo; 表中提取居住在 &ldquo;Beijing&rdquo; 的人的信息，创建了一个带有两个列的名为 &ldquo;Persons_backup&rdquo; 的表：</p>
+
+<pre><code>SELECT LastName,Firstname
+INTO Persons_backup
+FROM Persons
+WHERE City='Beijing'
+</code></pre>
+
+<h2 id="sql-select-into-实例-被连接的表">SQL SELECT INTO 实例 - 被连接的表</h2>
+
+<p>从一个以上的表中选取数据也是可以做到的。下面的例子会创建一个名为 &ldquo;Persons_Order_Backup&rdquo; 的新表，其中包含了从 Persons 和 Orders 两个表中取得的信息：</p>
+
+<pre><code>SELECT Persons.LastName,Orders.OrderNo
+INTO Persons_Order_Backup
+FROM Persons
+INNER JOIN Orders
+ON Persons.Id_P=Orders.Id_P
+</code></pre>
+
+<h1 id="create-database-语句">CREATE DATABASE 语句</h1>
+
+<p>CREATE DATABASE 用于创建数据库。SQL CREATE DATABASE 语法：</p>
+
+<pre><code>CREATE DATABASE database_name
+</code></pre>
+
+<h1 id="create-table-语句">CREATE TABLE 语句</h1>
+
+<p>CREATE TABLE 语句用于创建数据库中的表。SQL CREATE TABLE 语法：</p>
+
+<pre><code>CREATE TABLE 表名称
+(
+列名称1 数据类型,
+列名称2 数据类型,
+列名称3 数据类型,
+....
+)
+</code></pre>
+
+<h1 id="sql-约束-constraints">SQL 约束 (Constraints)</h1>
+
+<p>约束用于限制加入表的数据的类型。可以在创建表时规定约束（通过 CREATE TABLE 语句），或者在表创建之后也可以（通过 ALTER TABLE 语句）。我们将主要探讨以下几种约束：</p>
+
+<ul>
+<li>NOT NULL</li>
+<li>UNIQUE</li>
+<li>PRIMARY KEY</li>
+<li>FOREIGN KEY</li>
+<li>CHECK</li>
+<li>DEFAULT</li>
+</ul>
+
+<h2 id="sql-not-null-约束">SQL NOT NULL 约束</h2>
+
+<p>NOT NULL 约束强制列不接受 NULL 值。NOT NULL 约束强制字段始终包含值。这意味着，如果不向字段添加值，就无法插入新记录或者更新记录。下面的 SQL 语句强制 &ldquo;Id_P&rdquo; 列和 &ldquo;LastName&rdquo; 列不接受 NULL 值：</p>
+
+<pre><code>CREATE TABLE Persons
+(
+Id_P int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+)
+</code></pre>
+
+<h2 id="sql-unique-约束">SQL UNIQUE 约束</h2>
+
+<p>UNIQUE 约束唯一标识数据库表中的每条记录。UNIQUE 和 PRIMARY KEY 约束均为列或列集合提供了唯一性的保证。PRIMARY KEY 拥有自动定义的 UNIQUE 约束。请注意，每个表可以有多个 UNIQUE 约束，但是每个表只能有一个 PRIMARY KEY 约束。</p>
+
+<h3 id="unique-constraint-on-create-table">UNIQUE Constraint on CREATE TABLE</h3>
+
+<p>下面的 SQL 在 &ldquo;Persons&rdquo; 表创建时在 &ldquo;Id_P&rdquo; 列创建 UNIQUE 约束：</p>
+
+<p>MySQL:</p>
+
+<pre><code>CREATE TABLE Persons
+(
+Id_P int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+UNIQUE (Id_P)
+)
+</code></pre>
+
+<p>SQL Server / Oracle / MS Access:</p>
+
+<pre><code>CREATE TABLE Persons
+(
+Id_P int NOT NULL UNIQUE,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+)
+</code></pre>
+
+<p>如果需要命名 UNIQUE 约束，以及为多个列定义 UNIQUE 约束，请使用下面的 SQL 语法：</p>
+
+<p>MySQL / SQL Server / Oracle / MS Access:</p>
+
+<pre><code>CREATE TABLE Persons
+(
+Id_P int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+CONSTRAINT uc_PersonID UNIQUE (Id_P,LastName)
+)
+</code></pre>
+
+<h3 id="sql-unique-constraint-on-alter-table">SQL UNIQUE Constraint on ALTER TABLE</h3>
+
+<p>当表已被创建时，如需在 &ldquo;Id_P&rdquo; 列创建 UNIQUE 约束，请使用下列 SQL：</p>
+
+<p>MySQL / SQL Server / Oracle / MS Access:</p>
+
+<pre><code>ALTER TABLE Persons
+ADD UNIQUE (Id_P)
+</code></pre>
+
+<p>如需命名 UNIQUE 约束，并定义多个列的 UNIQUE 约束，请使用下面的 SQL 语法：</p>
+
+<p>MySQL / SQL Server / Oracle / MS Access:</p>
+
+<pre><code>ALTER TABLE Persons
+ADD CONSTRAINT uc_PersonID UNIQUE (Id_P,LastName)
+</code></pre>
+
+<h3 id="撤销-unique-约束">撤销 UNIQUE 约束</h3>
+
+<p>如需撤销 UNIQUE 约束，请使用下面的 SQL：</p>
+
+<p>MySQL:</p>
+
+<pre><code>ALTER TABLE Persons
+DROP INDEX uc_PersonID
+</code></pre>
+
+<p>SQL Server / Oracle / MS Access:</p>
+
+<pre><code>ALTER TABLE Persons
+DROP CONSTRAINT uc_PersonID
+</code></pre>
+
+<h2 id="primary-key-约束">PRIMARY KEY 约束</h2>
+
+<p>PRIMARY KEY 约束唯一标识数据库表中的每条记录。主键必须包含唯一的值。主键列不能包含 NULL 值。每个表都应该有一个主键，并且每个表只能有一个主键。</p>
+
+<h3 id="sql-primary-key-constraint-on-create-table">SQL PRIMARY KEY Constraint on CREATE TABLE</h3>
+
+<p>下面的 SQL 在 &ldquo;Persons&rdquo; 表创建时在 &ldquo;Id_P&rdquo; 列创建 PRIMARY KEY 约束：</p>
+
+<p>MySQL:</p>
+
+<pre><code>CREATE TABLE Persons
+(
+Id_P int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+PRIMARY KEY (Id_P)
+)
+</code></pre>
+
+<p>SQL Server / Oracle / MS Access:</p>
+
+<pre><code>CREATE TABLE Persons
+(
+Id_P int NOT NULL PRIMARY KEY,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+)
+</code></pre>
+
+<p>如果需要命名 PRIMARY KEY 约束，以及为多个列定义 PRIMARY KEY 约束，请使用下面的 SQL 语法：</p>
+
+<p>MySQL / SQL Server / Oracle / MS Access:</p>
+
+<pre><code>CREATE TABLE Persons
+(
+Id_P int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+CONSTRAINT pk_PersonID PRIMARY KEY (Id_P,LastName)
+)
+</code></pre>
+
+<h3 id="sql-primary-key-constraint-on-alter-table">SQL PRIMARY KEY Constraint on ALTER TABLE</h3>
+
+<p>如果在表已存在的情况下为 &ldquo;Id_P&rdquo; 列创建 PRIMARY KEY 约束，请使用下面的 SQL：</p>
+
+<p>MySQL / SQL Server / Oracle / MS Access:</p>
+
+<pre><code>ALTER TABLE Persons
+ADD PRIMARY KEY (Id_P)
+</code></pre>
+
+<p>如果需要命名 PRIMARY KEY 约束，以及为多个列定义 PRIMARY KEY 约束，请使用下面的 SQL 语法：</p>
+
+<p>MySQL / SQL Server / Oracle / MS Access:</p>
+
+<pre><code>ALTER TABLE Persons
+ADD CONSTRAINT pk_PersonID PRIMARY KEY (Id_P,LastName)
+</code></pre>
+
+<p>** 注释：如果您使用 ALTER TABLE 语句添加主键，必须把主键列声明为不包含 NULL 值（在表首次创建时）。  **</p>
+
+<h3 id="撤销-primary-key-约束">撤销 PRIMARY KEY 约束</h3>
+
+<p>如需撤销 PRIMARY KEY 约束，请使用下面的 SQL：</p>
+
+<p>MySQL:</p>
+
+<pre><code>ALTER TABLE Persons
+DROP PRIMARY KEY
+</code></pre>
+
+<p>SQL Server / Oracle / MS Access:</p>
+
+<pre><code>ALTER TABLE Persons
+DROP CONSTRAINT pk_PersonID
+</code></pre>
+
+<h2 id="foreign-key-约束">FOREIGN KEY 约束</h2>
+
+<p>一个表中的 FOREIGN KEY 指向另一个表中的 PRIMARY KEY。让我们通过一个例子来解释外键。请看下面两个表：</p>
+
+<p>&ldquo;Persons&rdquo; 表：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Id_P</th>
+<th align="center">LastName</th>
+<th align="center">FirstName</th>
+<th align="center">Address</th>
+<th align="center">City</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">Adams</td>
+<td align="center">John</td>
+<td align="center">Oxford Street</td>
+<td align="center">London</td>
+</tr>
+
+<tr>
+<td align="center">2</td>
+<td align="center">Bush</td>
+<td align="center">George</td>
+<td align="center">Fifth Avenue</td>
+<td align="center">New York</td>
+</tr>
+
+<tr>
+<td align="center">3</td>
+<td align="center">Carter</td>
+<td align="center">Thomas</td>
+<td align="center">Changan Street</td>
+<td align="center">Beijing</td>
+</tr>
+</tbody>
+</table>
+
+<p>&ldquo;Orders&rdquo; 表：</p>
+
+<p>| Id_O | OrderNo | Id_P |
+| :&mdash;-: | :&mdash;-: | :&mdash;-: |
+| 1 | 77895 | 3 |
+| 2 | 44678 | 3 |
+| 3 | 77895 | 1 |
+| 4 | 77895 | 1 |</p>
+
+<p>请注意，&rdquo;Orders&rdquo; 中的 &ldquo;Id_P&rdquo; 列指向 &ldquo;Persons&rdquo; 表中的 &ldquo;Id_P&rdquo; 列。&rdquo;Persons&rdquo; 表中的 &ldquo;Id_P&rdquo; 列是 &ldquo;Persons&rdquo; 表中的 PRIMARY KEY。&rdquo;Orders&rdquo; 表中的 &ldquo;Id_P&rdquo; 列是 &ldquo;Orders&rdquo; 表中的 FOREIGN KEY。FOREIGN KEY约束用于预防破坏表之间连接的动作。FOREIGN KEY 约束也能防止非法数据插入外键列，因为它必须是它指向的那个表中的值之一。</p>
+
+<h3 id="sql-foreign-key-constraint-on-create-table">SQL FOREIGN KEY Constraint on CREATE TABLE</h3>
+
+<p>下面的 SQL 在 &ldquo;Orders&rdquo; 表创建时为 &ldquo;Id_P&rdquo; 列创建 FOREIGN KEY：</p>
+
+<p>MySQL:</p>
+
+<pre><code>CREATE TABLE Orders
+(
+Id_O int NOT NULL,
+OrderNo int NOT NULL,
+Id_P int,
+PRIMARY KEY (Id_O),
+FOREIGN KEY (Id_P) REFERENCES Persons(Id_P)
+)
+</code></pre>
+
+<p>SQL Server / Oracle / MS Access:</p>
+
+<pre><code>CREATE TABLE Orders
+(
+Id_O int NOT NULL PRIMARY KEY,
+OrderNo int NOT NULL,
+Id_P int FOREIGN KEY REFERENCES Persons(Id_P)
+)
+</code></pre>
+
+<p>如果需要命名 FOREIGN KEY 约束，以及为多个列定义 FOREIGN KEY 约束，请使用下面的 SQL 语法：</p>
+
+<p>MySQL / SQL Server / Oracle / MS Access:</p>
+
+<pre><code>CREATE TABLE Orders
+(
+Id_O int NOT NULL,
+OrderNo int NOT NULL,
+Id_P int,
+PRIMARY KEY (Id_O),
+CONSTRAINT fk_PerOrders FOREIGN KEY (Id_P)
+REFERENCES Persons(Id_P)
+)
+</code></pre>
+
+<h3 id="sql-foreign-key-constraint-on-alter-table">SQL FOREIGN KEY Constraint on ALTER TABLE</h3>
+
+<p>如果在 &ldquo;Orders&rdquo; 表已存在的情况下为 &ldquo;Id_P&rdquo; 列创建 FOREIGN KEY 约束，请使用下面的 SQL：</p>
+
+<p>MySQL / SQL Server / Oracle / MS Access:</p>
+
+<pre><code>ALTER TABLE Orders
+ADD FOREIGN KEY (Id_P)
+REFERENCES Persons(Id_P)
+</code></pre>
+
+<p>如果需要命名 FOREIGN KEY 约束，以及为多个列定义 FOREIGN KEY 约束，请使用下面的 SQL 语法：</p>
+
+<p>MySQL / SQL Server / Oracle / MS Access:</p>
+
+<pre><code>ALTER TABLE Orders
+ADD CONSTRAINT fk_PerOrders
+FOREIGN KEY (Id_P)
+REFERENCES Persons(Id_P)
+</code></pre>
+
+<h3 id="撤销-foreign-key-约束">撤销 FOREIGN KEY 约束</h3>
+
+<p>如需撤销 FOREIGN KEY 约束，请使用下面的 SQL：</p>
+
+<p>MySQL:</p>
+
+<pre><code>ALTER TABLE Orders
+DROP FOREIGN KEY fk_PerOrders
+</code></pre>
+
+<p>SQL Server / Oracle / MS Access:</p>
+
+<pre><code>ALTER TABLE Orders
+DROP CONSTRAINT fk_PerOrders
+</code></pre>
+
+<h2 id="check-约束">CHECK 约束</h2>
+
+<p>CHECK约束用于限制列中的值的范围。如果对单个列定义CHECK约束，那么该列只允许特定的值。如果对一个表定义CHECK约束，那么此约束会在特定的列中对值进行限制。</p>
+
+<h3 id="check-constraint-on-create-table">CHECK Constraint on CREATE TABLE</h3>
+
+<p>下面的 SQL 在 &ldquo;Persons&rdquo; 表创建时为 &ldquo;Id_P&rdquo; 列创建 CHECK 约束。CHECK 约束规定 &ldquo;Id_P&rdquo; 列必须只包含大于 0 的整数。</p>
+
+<p>My SQL:</p>
+
+<pre><code>CREATE TABLE Persons
+(
+Id_P int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+CHECK (Id_P&gt;0)
+)
+</code></pre>
+
+<p>SQL Server / Oracle / MS Access:</p>
+
+<pre><code>CREATE TABLE Persons
+(
+Id_P int NOT NULL CHECK (Id_P&gt;0),
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+)
+</code></pre>
+
+<p>如果需要命名 CHECK 约束，以及为多个列定义 CHECK 约束，请使用下面的 SQL 语法：</p>
+
+<p>MySQL / SQL Server / Oracle / MS Access:</p>
+
+<pre><code>CREATE TABLE Persons
+(
+Id_P int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+CONSTRAINT chk_Person CHECK (Id_P&gt;0 AND City='Sandnes')
+)
+</code></pre>
+
+<h3 id="check-constraint-on-alter-table">CHECK Constraint on ALTER TABLE</h3>
+
+<p>如果在表已存在的情况下为 &ldquo;Id_P&rdquo; 列创建 CHECK 约束，请使用下面的 SQL：</p>
+
+<p>MySQL / SQL Server / Oracle / MS Access:</p>
+
+<pre><code>ALTER TABLE Persons
+ADD CHECK (Id_P&gt;0)
+</code></pre>
+
+<p>如果需要命名 CHECK 约束，以及为多个列定义 CHECK 约束，请使用下面的 SQL 语法：</p>
+
+<p>MySQL / SQL Server / Oracle / MS Access:</p>
+
+<pre><code>ALTER TABLE Persons
+ADD CONSTRAINT chk_Person CHECK (Id_P&gt;0 AND City='Sandnes')
+</code></pre>
+
+<h3 id="撤销-check-约束">撤销 CHECK 约束</h3>
+
+<p>如需撤销 CHECK 约束，请使用下面的 SQL：</p>
+
+<p>SQL Server / Oracle / MS Access:</p>
+
+<pre><code>ALTER TABLE Persons
+DROP CONSTRAINT chk_Person
+</code></pre>
+
+<p>MySQL:</p>
+
+<pre><code>ALTER TABLE Persons
+DROP CHECK chk_Person
+</code></pre>
+
+<h2 id="default-约束">DEFAULT 约束</h2>
+
+<p>DEFAULT 约束用于向列中插入默认值。如果没有规定其他的值，那么会将默认值添加到所有的新记录。</p>
+
+<h3 id="default-constraint-on-create-table">DEFAULT Constraint on CREATE TABLE</h3>
+
+<p>下面的 SQL 在 &ldquo;Persons&rdquo; 表创建时为 &ldquo;City&rdquo; 列创建 DEFAULT 约束：</p>
+
+<p>My SQL / SQL Server / Oracle / MS Access:</p>
+
+<pre><code>CREATE TABLE Persons
+(
+Id_P int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255) DEFAULT 'Sandnes'
+)
+</code></pre>
+
+<p>通过使用类似 GETDATE() 这样的函数，DEFAULT 约束也可以用于插入系统值：</p>
+
+<pre><code>CREATE TABLE Orders
+(
+Id_O int NOT NULL,
+OrderNo int NOT NULL,
+Id_P int,
+OrderDate date DEFAULT GETDATE()
+)
+</code></pre>
+
+<h3 id="default-constraint-on-alter-table">DEFAULT Constraint on ALTER TABLE</h3>
+
+<p>如果在表已存在的情况下为 &ldquo;City&rdquo; 列创建 DEFAULT 约束，请使用下面的 SQL：</p>
+
+<p>MySQL:</p>
+
+<pre><code>ALTER TABLE Persons
+ALTER City SET DEFAULT 'SANDNES'
+</code></pre>
+
+<p>SQL Server / Oracle / MS Access:</p>
+
+<pre><code>ALTER TABLE Persons
+ALTER COLUMN City SET DEFAULT 'SANDNES'
+</code></pre>
+
+<h3 id="撤销-default-约束">撤销 DEFAULT 约束</h3>
+
+<p>如需撤销 DEFAULT 约束，请使用下面的 SQL：</p>
+
+<p>MySQL:</p>
+
+<pre><code>ALTER TABLE Persons
+ALTER City DROP DEFAULT
+</code></pre>
+
+<p>SQL Server / Oracle / MS Access:</p>
+
+<pre><code>ALTER TABLE Persons
+ALTER COLUMN City DROP DEFAULT
+</code></pre>
+
+<h1 id="create-index-语句">CREATE INDEX 语句</h1>
+
+<p>CREATE INDEX语句用于在表中创建索引。在不读取整个表的情况下，索引使数据库应用程序可以更快更高效地查找数据。用户无法看到索引，它们只能被用来加速搜索/查询。</p>
+
+<p><strong>注释：更新一个包含索引的表需要比更新一个没有索引的表更多的时间，这是由于索引本身也需要更新。因此，理想的做法是仅仅在常常被搜索的列（以及表）上面创建索引。</strong></p>
+
+<h2 id="create-index-语法">CREATE INDEX 语法</h2>
+
+<p>在表上创建一个简单的索引。允许使用重复的值：</p>
+
+<pre><code>CREATE INDEX index_name
+ON table_name (column_name)
+</code></pre>
+
+<p><strong>注释：&rdquo;column_name&rdquo; 规定需要索引的列。</strong></p>
+
+<h2 id="create-unique-index-语法">CREATE UNIQUE INDEX 语法</h2>
+
+<p>在表上创建一个唯一的索引。唯一的索引意味着两个行不能拥有相同的索引值。</p>
+
+<pre><code>CREATE UNIQUE INDEX index_name
+ON table_name (column_name)
+</code></pre>
+
+<h2 id="create-index-实例">CREATE INDEX 实例</h2>
+
+<p>本例会创建一个简单的索引，名为 &ldquo;PersonIndex&rdquo;，在 Person 表的 LastName 列：</p>
+
+<pre><code>CREATE INDEX PersonIndex
+ON Person (LastName)
+</code></pre>
+
+<p>如果您希望以降序索引某个列中的值，您可以在列名称之后添加保留字 DESC：</p>
+
+<pre><code>CREATE INDEX PersonIndex
+ON Person (LastName DESC)
+</code></pre>
+
+<p>假如您希望索引不止一个列，您可以在括号中列出这些列的名称，用逗号隔开：</p>
+
+<pre><code>CREATE INDEX PersonIndex
+ON Person (LastName, FirstName)
+</code></pre>
+
+<h1 id="撤销索引-表以及数据库">撤销索引、表以及数据库</h1>
+
+<p>通过使用 DROP 语句，可以轻松地删除索引、表和数据库。</p>
+
+<h2 id="drop-index-语句">DROP INDEX 语句</h2>
+
+<p>我们可以使用 DROP INDEX 命令删除表格中的索引。</p>
+
+<p>用于 Microsoft SQLJet (以及 Microsoft Access) 的语法:</p>
+
+<pre><code>DROP INDEX index_name ON table_name
+</code></pre>
+
+<p>用于 MS SQL Server 的语法:</p>
+
+<pre><code>DROP INDEX table_name.index_name
+</code></pre>
+
+<p>用于 IBM DB2 和 Oracle 语法:</p>
+
+<pre><code>DROP INDEX index_name
+</code></pre>
+
+<p>用于 MySQL 的语法:</p>
+
+<pre><code>ALTER TABLE table_name DROP INDEX index_name
+</code></pre>
+
+<h2 id="sql-drop-table-语句">SQL DROP TABLE 语句</h2>
+
+<p>DROP TABLE 语句用于删除表（表的结构、属性以及索引也会被删除）：</p>
+
+<pre><code>DROP TABLE 表名称
+</code></pre>
+
+<h2 id="drop-database-语句">DROP DATABASE 语句</h2>
+
+<p>DROP DATABASE 语句用于删除数据库：</p>
+
+<pre><code>DROP DATABASE 数据库名称
+</code></pre>
+
+<h2 id="truncate-table-语句">TRUNCATE TABLE 语句</h2>
+
+<p>如果我们仅仅需要除去表内的数据，但并不删除表本身，那么我们该如何做呢？请使用 TRUNCATE TABLE 命令（仅仅删除表格中的数据）：</p>
+
+<pre><code>TRUNCATE TABLE 表名称
+</code></pre>
+
+<h1 id="alter-table-语句">ALTER TABLE 语句</h1>
+
+<p>ALTER TABLE 语句用于在已有的表中添加、修改或删除列。</p>
+
+<p>SQL ALTER TABLE 语法</p>
+
+<p>如需在表中添加列，请使用下列语法:</p>
+
+<pre><code>ALTER TABLE table_name
+ADD column_name datatype
+</code></pre>
+
+<p>要删除表中的列，请使用下列语法：</p>
+
+<pre><code>ALTER TABLE table_name 
+DROP COLUMN column_name
+</code></pre>
+
+<p><strong>注释：某些数据库系统不允许这种在数据库表中删除列的方式 (DROP COLUMN column_name)。</strong></p>
+
+<p>要改变表中列的数据类型，请使用下列语法：</p>
+
+<p>要改变表中列的数据类型，请使用下列语法：</p>
+
+<pre><code>ALTER TABLE table_name
+ALTER COLUMN column_name datatype
+</code></pre>
+
+<h2 id="sql-alter-table-实例">SQL ALTER TABLE 实例</h2>
+
+<p>现在，我们希望在表 &ldquo;Persons&rdquo; 中添加一个名为 &ldquo;Birthday&rdquo; 的新列。</p>
+
+<pre><code>ALTER TABLE Persons
+ADD Birthday date
+</code></pre>
+
+<p>请注意，新列 &ldquo;Birthday&rdquo; 的类型是 date，可以存放日期。数据类型规定列中可以存放的数据的类型。</p>
+
+<p>现在我们希望改变 &ldquo;Persons&rdquo; 表中 &ldquo;Birthday&rdquo; 列的数据类型。我们使用下列 SQL 语句：</p>
+
+<pre><code>ALTER TABLE Persons
+ALTER COLUMN Birthday year
+</code></pre>
+
+<p>请注意，&rdquo;Birthday&rdquo; 列的数据类型是 year，可以存放 2 位或 4 位格式的年份。</p>
+
+<h2 id="drop-column-实例">DROP COLUMN 实例</h2>
+
+<p>接下来，我们删除 &ldquo;Person&rdquo; 表中的 &ldquo;Birthday&rdquo; 列：</p>
+
+<pre><code>ALTER TABLE Person
+DROP COLUMN Birthday
+</code></pre>
+
+<h1 id="auto-increment-字段">AUTO INCREMENT 字段</h1>
+
+<p>Auto-increment 会在新记录插入表中时生成一个唯一的数字。</p>
+
+<p><strong>AUTO INCREMENT 字段</strong>
+我们通常希望在每次插入新记录时，自动地创建主键字段的值。我们可以在表中创建一个 auto-increment 字段。</p>
+
+<p><strong>用于 MySQL 的语法</strong></p>
+
+<p>下列 SQL 语句把 &ldquo;Persons&rdquo; 表中的 &ldquo;P_Id&rdquo; 列定义为 auto-increment 主键：</p>
+
+<pre><code>CREATE TABLE Persons
+(
+P_Id int NOT NULL AUTO_INCREMENT,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+PRIMARY KEY (P_Id)
+)
+</code></pre>
+
+<p>MySQL 使用 AUTO_INCREMENT 关键字来执行 auto-increment 任务。默认地，AUTO_INCREMENT 的开始值是 1，每条新记录递增 1。要让 AUTO_INCREMENT 序列以其他的值起始，请使用下列 SQL 语法：</p>
+
+<pre><code>ALTER TABLE Persons AUTO_INCREMENT=100
+</code></pre>
+
+<p>要在 &ldquo;Persons&rdquo; 表中插入新记录，我们不必为 &ldquo;P_Id&rdquo; 列规定值（会自动添加一个唯一的值）：</p>
+
+<pre><code>INSERT INTO Persons (FirstName,LastName)
+VALUES ('Bill','Gates')
+</code></pre>
+
+<p>上面的 SQL 语句会在 &ldquo;Persons&rdquo; 表中插入一条新记录。&rdquo;P_Id&rdquo; 会被赋予一个唯一的值。&rdquo;FirstName&rdquo; 会被设置为 &ldquo;Bill&rdquo;，&rdquo;LastName&rdquo; 列会被设置为 &ldquo;Gates&rdquo;。</p>
+
+<p><strong>用于 SQL Server 的语法</strong></p>
+
+<p>下列 SQL 语句把 &ldquo;Persons&rdquo; 表中的 &ldquo;P_Id&rdquo; 列定义为 auto-increment 主键：</p>
+
+<pre><code>CREATE TABLE Persons
+(
+P_Id int PRIMARY KEY IDENTITY,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+)
+</code></pre>
+
+<p>MS SQL 使用 IDENTITY 关键字来执行 auto-increment 任务。默认地，IDENTITY 的开始值是 1，每条新记录递增 1。要规定 &ldquo;P_Id&rdquo; 列以 20 起始且递增 10，请把 identity 改为 IDENTITY(20,10)要在 &ldquo;Persons&rdquo; 表中插入新记录，我们不必为 &ldquo;P_Id&rdquo; 列规定值（会自动添加一个唯一的值）：</p>
+
+<pre><code>INSERT INTO Persons (FirstName,LastName)
+VALUES ('Bill','Gates')
+</code></pre>
+
+<p>上面的 SQL 语句会在 &ldquo;Persons&rdquo; 表中插入一条新记录。&rdquo;P_Id&rdquo; 会被赋予一个唯一的值。&rdquo;FirstName&rdquo; 会被设置为 &ldquo;Bill&rdquo;，&rdquo;LastName&rdquo; 列会被设置为 &ldquo;Gates&rdquo;。</p>
+
+<p><strong>用于 Access 的语法</strong>
+下列 SQL 语句把 &ldquo;Persons&rdquo; 表中的 &ldquo;P_Id&rdquo; 列定义为 auto-increment 主键：</p>
+
+<pre><code>CREATE TABLE Persons
+(
+P_Id int PRIMARY KEY AUTOINCREMENT,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+)
+</code></pre>
+
+<p>MS Access 使用 AUTOINCREMENT 关键字来执行 auto-increment 任务。默认地，AUTOINCREMENT 的开始值是 1，每条新记录递增 1。要规定 &ldquo;P_Id&rdquo; 列以 20 起始且递增 10，请把 autoincrement 改为 AUTOINCREMENT(20,10)。要在 &ldquo;Persons&rdquo; 表中插入新记录，我们不必为 &ldquo;P_Id&rdquo; 列规定值（会自动添加一个唯一的值）：</p>
+
+<pre><code>INSERT INTO Persons (FirstName,LastName)
+VALUES ('Bill','Gates')
+</code></pre>
+
+<p>上面的 SQL 语句会在 &ldquo;Persons&rdquo; 表中插入一条新记录。&rdquo;P_Id&rdquo; 会被赋予一个唯一的值。&rdquo;FirstName&rdquo; 会被设置为 &ldquo;Bill&rdquo;，&rdquo;LastName&rdquo; 列会被设置为 &ldquo;Gates&rdquo;。</p>
+
+<p><strong>用于 Oracle 的语法</strong>
+在 Oracle 中，代码稍微复杂一点。您必须通过 sequence 对创建 auto-increment 字段（该对象生成数字序列）。请使用下面的 CREATE SEQUENCE 语法：</p>
+
+<pre><code>CREATE SEQUENCE seq_person
+MINVALUE 1
+START WITH 1
+INCREMENT BY 1
+CACHE 10
+</code></pre>
+
+<p>上面的代码创建名为seq_person的序列对象，它以1起始且以1递增。该对象缓存10个值以提高性能。CACHE选项规定了为了提高访问速度要存储多少个序列值。</p>
+
+<p>要在 &ldquo;Persons&rdquo; 表中插入新记录，我们必须使用 nextval 函数（该函数从 seq_person 序列中取回下一个值）：</p>
+
+<pre><code>INSERT INTO Persons (P_Id,FirstName,LastName)
+VALUES (seq_person.nextval,'Lars','Monsen')
+</code></pre>
+
+<p>上面的SQL语句会在&rdquo;Persons&rdquo;表中插入一条新记录。&rdquo;P_Id&rdquo;的赋值是来自seq_person序列的下一个数字。&rdquo;FirstName&rdquo;会被设置为&rdquo;Bill&rdquo;，&rdquo;LastName&rdquo; 列会被设置为 &ldquo;Gates&rdquo;。</p>
+
+<h1 id="view">VIEW</h1>
+
+<p>视图是可视化的表。</p>
+
+<h2 id="create-view-语句">CREATE VIEW 语句</h2>
+
+<p>什么是视图？
+在SQL中，视图是基于 SQL 语句的结果集的可视化的表。</p>
+
+<p>视图包含行和列，就像一个真实的表。视图中的字段就是来自一个或多个数据库中的真实的表中的字段。我们可以向视图添加SQL函数、WHERE 以及 JOIN 语句，我们也可以提交数据，就像这些来自于某个单一的表。</p>
+
+<p>注释：数据库的设计和结构不会受到视图中的函数、where 或 join 语句的影响。</p>
+
+<p>CREATE VIEW 语法：</p>
+
+<pre><code>CREATE VIEW view_name AS
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+</code></pre>
+
+<p><strong>注释：视图总是显示最近的数据。每当用户查询视图时，数据库引擎通过使用SQL语句来重建数据。</strong></p>
+
+<p><strong>SQL CREATE VIEW 实例</strong></p>
+
+<p>可以从某个查询内部、某个存储过程内部，或者从另一个视图内部来使用视图。通过向视图添加函数、join等等，我们可以向用户精确地提交我们希望提交的数据。</p>
+
+<p>样本数据库Northwind拥有一些被默认安装的视图。视图&rdquo;Current Product List&rdquo;会从Products表列出所有正在使用的产品。这个视图使用下列 SQL 创建：</p>
+
+<pre><code>CREATE VIEW [Current Product List] AS
+SELECT ProductID,ProductName
+FROM Products
+WHERE Discontinued=No
+</code></pre>
+
+<p>我们可以查询上面这个视图：</p>
+
+<pre><code>SELECT * FROM [Current Product List]
+</code></pre>
+
+<p>Northwind 样本数据库的另一个视图会选取 Products 表中所有单位价格高于平均单位价格的产品：</p>
+
+<pre><code>CREATE VIEW [Products Above Average Price] AS
+SELECT ProductName,UnitPrice
+FROM Products
+WHERE UnitPrice&gt;(SELECT AVG(UnitPrice) FROM Products) 
+</code></pre>
+
+<p>我们可以像这样查询上面这个视图：</p>
+
+<pre><code>SELECT * FROM [Products Above Average Price]
+</code></pre>
+
+<p>另一个来自 Northwind 数据库的视图实例会计算在 1997年每个种类的销售总数。请注意，这个视图会从另一个名为 &ldquo;Product Sales for 1997&rdquo; 的视图那里选取数据：</p>
+
+<pre><code>CREATE VIEW [Category Sales For 1997] AS
+SELECT DISTINCT CategoryName,Sum(ProductSales) AS CategorySales
+FROM [Product Sales for 1997]
+GROUP BY CategoryName
+</code></pre>
+
+<p>我们可以像这样查询上面这个视图：</p>
+
+<pre><code>SELECT * FROM [Category Sales For 1997]
+</code></pre>
+
+<p>我们也可以向查询添加条件。现在，我们仅仅需要查看 &ldquo;Beverages&rdquo; 类的全部销量：</p>
+
+<pre><code>SELECT * FROM [Category Sales For 1997]
+WHERE CategoryName='Beverages'
+</code></pre>
+
+<h2 id="sql更新视图">SQL更新视图</h2>
+
+<p>您可以使用下面的语法来更新视图：</p>
+
+<pre><code>SQL CREATE OR REPLACE VIEW Syntax
+CREATE OR REPLACE VIEW view_name AS
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+</code></pre>
+
+<p>现在，我们希望向 &ldquo;Current Product List&rdquo; 视图添加 &ldquo;Category&rdquo; 列。我们将通过下列SQL更新视图：</p>
+
+<pre><code>CREATE VIEW [Current Product List] AS
+SELECT ProductID,ProductName,Category
+FROM Products
+WHERE Discontinued=No
+</code></pre>
+
+<h2 id="撤销视图">撤销视图</h2>
+
+<p>您可以通过 DROP VIEW 命令来删除视图：</p>
+
+<pre><code>SQL DROP VIEW Syntax
+DROP VIEW view_name
+</code></pre>
+
+<h1 id="date函数">Date函数</h1>
+
+<h2 id="mysql-date-函数">MySQL Date 函数</h2>
+
+<p>下面的表格列出了 MySQL 中最重要的内建日期函数：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">NOW()</td>
+<td align="left">返回当前的日期和时间</td>
+</tr>
+
+<tr>
+<td align="left">CURDATE()</td>
+<td align="left">返回当前的日期</td>
+</tr>
+
+<tr>
+<td align="left">CURTIME()</td>
+<td align="left">返回当前的时间</td>
+</tr>
+
+<tr>
+<td align="left">DATE()</td>
+<td align="left">提取日期或日期/时间表达式的日期部分</td>
+</tr>
+
+<tr>
+<td align="left">EXTRACT()</td>
+<td align="left">返回日期/时间按的单独部分</td>
+</tr>
+
+<tr>
+<td align="left">DATE_ADD()</td>
+<td align="left">给日期添加指定的时间间隔</td>
+</tr>
+
+<tr>
+<td align="left">DATE_SUB()</td>
+<td align="left">从日期减去指定的时间间隔</td>
+</tr>
+
+<tr>
+<td align="left">DATEDIFF()</td>
+<td align="left">返回两个日期之间的天数</td>
+</tr>
+
+<tr>
+<td align="left">DATE_FORMAT()</td>
+<td align="left">用不同的格式显示日期/时间</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>函数实例展示</strong>
+NOW()、CURDATE()和CURTIME()：</p>
+
+<p>SELECT NOW(),CURDATE(),CURTIME()</p>
+
+<p>结果类似：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">NOW()</th>
+<th align="left">CURDATE()</th>
+<th align="left">CURTIME()</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">2008-12-29 16:25:46</td>
+<td align="left">2008-12-29</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<p>DATE() 函数返回日期或日期/时间表达式的日期部分,date的时间：2008-12-29 16:25:46.635,语法:</p>
+
+<pre><code>DATE(date)
+</code></pre>
+
+<p>返回2008-12-29。</p>
+
+<p>EXTRACT() 函数用于返回日期/时间的单独部分，比如年、月、日、小时、分钟等等，语法：</p>
+
+<pre><code>EXTRACT(unit FROM date)
+</code></pre>
+
+<p>date 参数是合法的日期表达式。unit 参数可以是下列的值：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Unit 值</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">MICROSECOND</td>
+</tr>
+
+<tr>
+<td align="left">SECOND</td>
+</tr>
+
+<tr>
+<td align="left">MINUTE</td>
+</tr>
+
+<tr>
+<td align="left">HOUR</td>
+</tr>
+
+<tr>
+<td align="left">DAY</td>
+</tr>
+
+<tr>
+<td align="left">WEEK</td>
+</tr>
+
+<tr>
+<td align="left">MONTH</td>
+</tr>
+
+<tr>
+<td align="left">QUARTER</td>
+</tr>
+
+<tr>
+<td align="left">YEAR</td>
+</tr>
+
+<tr>
+<td align="left">SECOND_MICROSECOND</td>
+</tr>
+
+<tr>
+<td align="left">MINUTE_MICROSECOND</td>
+</tr>
+
+<tr>
+<td align="left">MINUTE_SECOND</td>
+</tr>
+
+<tr>
+<td align="left">HOUR_MICROSECOND</td>
+</tr>
+
+<tr>
+<td align="left">HOUR_SECOND</td>
+</tr>
+
+<tr>
+<td align="left">HOUR_MINUTE</td>
+</tr>
+
+<tr>
+<td align="left">DAY_MICROSECOND</td>
+</tr>
+
+<tr>
+<td align="left">DAY_SECOND</td>
+</tr>
+
+<tr>
+<td align="left">DAY_MINUTE</td>
+</tr>
+
+<tr>
+<td align="left">DAY_HOUR</td>
+</tr>
+
+<tr>
+<td align="left">YEAR_MONTH</td>
+</tr>
+</tbody>
+</table>
+
+<p>DATE_ADD()和DATE_SUB()函数向日期添加指定的时间间隔,语法:</p>
+
+<pre><code>DATE_ADD(date,INTERVAL expr type)
+DATE_SUB(date,INTERVAL expr type)
+</code></pre>
+
+<p>date 参数是合法的日期表达式。expr 参数是您希望添加的时间间隔。type 参数的值如上述的Unit值。</p>
+
+<p>实例:</p>
+
+<pre><code>SELECT OrderId,DATE_ADD(OrderDate,INTERVAL 2 DAY) AS OrderPayDate
+FROM Orders
+</code></pre>
+
+<p>OrderDate的值：2008-12-29 16:25:46.635，最终结果值：2008-12-31 16:25:46.635。</p>
+
+<p>DATEDIFF() 函数返回两个日期之间的天数，语法：</p>
+
+<pre><code>DATEDIFF(date1,date2)
+</code></pre>
+
+<p>date1 和 date2 参数是合法的日期或日期/时间表达式。<strong>只有值的日期部分参与计算。</strong></p>
+
+<pre><code>SELECT DATEDIFF('2008-12-30','2008-12-29') AS DiffDate --值为1
+SELECT DATEDIFF('2008-12-29','2008-12-30') AS DiffDate --值为-1
+</code></pre>
+
+<p>DATE_FORMAT() 函数用于以不同的格式显示日期/时间数据，语法：</p>
+
+<pre><code>DATE_FORMAT(date,format)
+</code></pre>
+
+<p>date 参数是合法的日期。format规定日期/时间的输出格式。可以使用的格式有：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">格式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">%a</td>
+<td align="left">缩写星期名</td>
+</tr>
+
+<tr>
+<td align="left">%b</td>
+<td align="left">缩写月名</td>
+</tr>
+
+<tr>
+<td align="left">%c</td>
+<td align="left">月，数值</td>
+</tr>
+
+<tr>
+<td align="left">%D</td>
+<td align="left">带有英文前缀的月中的天</td>
+</tr>
+
+<tr>
+<td align="left">%d</td>
+<td align="left">月的天，数值(00-31)</td>
+</tr>
+
+<tr>
+<td align="left">%e</td>
+<td align="left">月的天，数值(0-31)</td>
+</tr>
+
+<tr>
+<td align="left">%f</td>
+<td align="left">微秒</td>
+</tr>
+
+<tr>
+<td align="left">%H</td>
+<td align="left">小时 (00-23)</td>
+</tr>
+
+<tr>
+<td align="left">%h</td>
+<td align="left">小时 (01-12)</td>
+</tr>
+
+<tr>
+<td align="left">%I</td>
+<td align="left">小时 (01-12)</td>
+</tr>
+
+<tr>
+<td align="left">%i</td>
+<td align="left">分钟，数值(00-59)</td>
+</tr>
+
+<tr>
+<td align="left">%j</td>
+<td align="left">年的天 (001-366)</td>
+</tr>
+
+<tr>
+<td align="left">%k</td>
+<td align="left">小时 (0-23)</td>
+</tr>
+
+<tr>
+<td align="left">%l</td>
+<td align="left">小时 (1-12)</td>
+</tr>
+
+<tr>
+<td align="left">%M</td>
+<td align="left">月名</td>
+</tr>
+
+<tr>
+<td align="left">%m</td>
+<td align="left">月，数值(00-12)</td>
+</tr>
+
+<tr>
+<td align="left">%p</td>
+<td align="left">AM 或 PM</td>
+</tr>
+
+<tr>
+<td align="left">%r</td>
+<td align="left">时间，12-小时（hh:mm:ss AM 或 PM）</td>
+</tr>
+
+<tr>
+<td align="left">%S</td>
+<td align="left">秒(00-59)</td>
+</tr>
+
+<tr>
+<td align="left">%s</td>
+<td align="left">秒(00-59)</td>
+</tr>
+
+<tr>
+<td align="left">%T</td>
+<td align="left">时间, 24-小时 (hh:mm:ss)</td>
+</tr>
+
+<tr>
+<td align="left">%U</td>
+<td align="left">周 (00-53) 星期日是一周的第一天</td>
+</tr>
+
+<tr>
+<td align="left">%u</td>
+<td align="left">周 (00-53) 星期一是一周的第一天</td>
+</tr>
+
+<tr>
+<td align="left">%V</td>
+<td align="left">周 (01-53) 星期日是一周的第一天，与 %X 使用</td>
+</tr>
+
+<tr>
+<td align="left">%v</td>
+<td align="left">周 (01-53) 星期一是一周的第一天，与 %x 使用</td>
+</tr>
+
+<tr>
+<td align="left">%W</td>
+<td align="left">星期名</td>
+</tr>
+
+<tr>
+<td align="left">%w</td>
+<td align="left">周的天 （0=星期日, 6=星期六）</td>
+</tr>
+
+<tr>
+<td align="left">%X</td>
+<td align="left">年，其中的星期日是周的第一天，4 位，与 %V 使用</td>
+</tr>
+
+<tr>
+<td align="left">%x</td>
+<td align="left">年，其中的星期一是周的第一天，4 位，与 %v 使用</td>
+</tr>
+
+<tr>
+<td align="left">%Y</td>
+<td align="left">年，4 位</td>
+</tr>
+
+<tr>
+<td align="left">%y</td>
+<td align="left">年，2 位</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>实例</strong>
+下面的脚本使用 DATE_FORMAT() 函数来显示不同的格式。我们使用 NOW() 来获得当前的日期/时间：</p>
+
+<pre><code>DATE_FORMAT(NOW(),'%b %d %Y %h:%i %p')
+DATE_FORMAT(NOW(),'%m-%d-%Y')
+DATE_FORMAT(NOW(),'%d %b %y')
+DATE_FORMAT(NOW(),'%d %b %Y %T:%f')
+</code></pre>
+
+<p>结果类似：</p>
+
+<pre><code>Dec 29 2008 11:45 PM
+12-29-2008
+29 Dec 08
+29 Dec 2008 16:25:46.635
+</code></pre>
+
+<h2 id="sqlserver-date函数">SQLServer Date函数</h2>
+
+<p>下面的表格列出了 SQL Server 中最重要的内建日期函数：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">GETDATE()</td>
+<td align="left">返回当前日期和时间</td>
+</tr>
+
+<tr>
+<td align="left">DATEPART()</td>
+<td align="left">返回日期/时间的单独部分</td>
+</tr>
+
+<tr>
+<td align="left">DATEADD()</td>
+<td align="left">在日期中添加或减去指定的时间间隔</td>
+</tr>
+
+<tr>
+<td align="left">DATEDIFF()</td>
+<td align="left">返回两个日期之间的时间</td>
+</tr>
+
+<tr>
+<td align="left">CONVERT()</td>
+<td align="left">用不同的格式显示日期/时间</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>函数实例展示</strong>
+DATEPART() 函数用于返回日期/时间的单独部分，比如年、月、日、小时、分钟等等,语法:</p>
+
+<pre><code>DATEPART(datepart,date)
+</code></pre>
+
+<p>date 参数是合法的日期表达式。datepart 参数可以是下列的值：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">datepart</th>
+<th align="left">缩写</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">年</td>
+<td align="left">yy, yyyy</td>
+</tr>
+
+<tr>
+<td align="left">季度</td>
+<td align="left">qq, q</td>
+</tr>
+
+<tr>
+<td align="left">月</td>
+<td align="left">mm, m</td>
+</tr>
+
+<tr>
+<td align="left">年中的日</td>
+<td align="left">dy, y</td>
+</tr>
+
+<tr>
+<td align="left">日</td>
+<td align="left">dd, d</td>
+</tr>
+
+<tr>
+<td align="left">周</td>
+<td align="left">wk, ww</td>
+</tr>
+
+<tr>
+<td align="left">星期</td>
+<td align="left">dw, w</td>
+</tr>
+
+<tr>
+<td align="left">小时</td>
+<td align="left">hh</td>
+</tr>
+
+<tr>
+<td align="left">分钟</td>
+<td align="left">mi, n</td>
+</tr>
+
+<tr>
+<td align="left">秒</td>
+<td align="left">ss, s</td>
+</tr>
+
+<tr>
+<td align="left">毫秒</td>
+<td align="left">ms</td>
+</tr>
+
+<tr>
+<td align="left">微妙</td>
+<td align="left">mcs</td>
+</tr>
+
+<tr>
+<td align="left">纳秒</td>
+<td align="left">ns</td>
+</tr>
+</tbody>
+</table>
+
+<p>DATEADD() 函数在日期中添加或减去指定的时间间隔，语法：</p>
+
+<pre><code>DATEADD(datepart,number,date)
+</code></pre>
+
+<p>date 参数是合法的日期表达式。number 是您希望添加的间隔数；对于未来的时间，此数是正数，对于过去的时间，此数是负数。datepart参数可以是上述datepart列表中的值。</p>
+
+<p>DATEDIFF() 函数返回两个日期之间的时间，语法：</p>
+
+<pre><code>DATEDIFF(datepart,startdate,enddate)
+</code></pre>
+
+<p>startdate 和 enddate 参数是合法的日期表达式。datepart参数可以如上述的列表。实例：</p>
+
+<pre><code>SELECT DATEDIFF(day,'2008-12-29','2008-12-30') AS DiffDate --返回值1
+SELECT DATEDIFF(day,'2008-12-30','2008-12-29') AS DiffDate --返回值-1
+</code></pre>
+
+<p>CONVERT() 函数是把日期转换为新数据类型的通用函数，CONVERT() 函数可以用不同的格式显示日期/时间数据。语法：</p>
+
+<pre><code>CONVERT(data_type(length),data_to_be_converted,style)
+</code></pre>
+
+<p>data_type(length) 规定目标数据类型（带有可选的长度）。data_to_be_converted 含有需要转换的值。style规定日期/时间的输出格式。可以使用的style值：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Style ID</th>
+<th align="left">Style 格式</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">100 或者 0</td>
+<td align="left">mon dd yyyy hh:miAM （或者 PM）</td>
+</tr>
+
+<tr>
+<td align="left">101</td>
+<td align="left">mm/dd/yy</td>
+</tr>
+
+<tr>
+<td align="left">102</td>
+<td align="left">yy.mm.dd</td>
+</tr>
+
+<tr>
+<td align="left">103</td>
+<td align="left">dd/mm/yy</td>
+</tr>
+
+<tr>
+<td align="left">104</td>
+<td align="left">dd.mm.yy</td>
+</tr>
+
+<tr>
+<td align="left">105</td>
+<td align="left">dd-mm-yy</td>
+</tr>
+
+<tr>
+<td align="left">106</td>
+<td align="left">dd mon yy</td>
+</tr>
+
+<tr>
+<td align="left">107</td>
+<td align="left">Mon dd, yy</td>
+</tr>
+
+<tr>
+<td align="left">108</td>
+<td align="left">hh:mm:ss</td>
+</tr>
+
+<tr>
+<td align="left">109 或者 9</td>
+<td align="left">mon dd yyyy hh:mi:ss:mmmAM（或者 PM）</td>
+</tr>
+
+<tr>
+<td align="left">110</td>
+<td align="left">mm-dd-yy</td>
+</tr>
+
+<tr>
+<td align="left">111</td>
+<td align="left">yy/mm/dd</td>
+</tr>
+
+<tr>
+<td align="left">112</td>
+<td align="left">yymmdd</td>
+</tr>
+
+<tr>
+<td align="left">113 或者 13</td>
+<td align="left">dd mon yyyy hh:mm:ss:mmm(24h)</td>
+</tr>
+
+<tr>
+<td align="left">114</td>
+<td align="left">hh:mi:ss:mmm(24h)</td>
+</tr>
+
+<tr>
+<td align="left">120 或者 20</td>
+<td align="left">yyyy-mm-dd hh:mi:ss(24h)</td>
+</tr>
+
+<tr>
+<td align="left">121 或者 21</td>
+<td align="left">yyyy-mm-dd hh:mi:ss.mmm(24h)</td>
+</tr>
+
+<tr>
+<td align="left">126</td>
+<td align="left">yyyy-mm-ddThh:mm:ss.mmm（没有空格）</td>
+</tr>
+
+<tr>
+<td align="left">130</td>
+<td align="left">dd mon yyyy hh:mi:ss:mmmAM</td>
+</tr>
+
+<tr>
+<td align="left">131</td>
+<td align="left">dd/mm/yy hh:mi:ss:mmmAM</td>
+</tr>
+</tbody>
+</table>
+
+<p>下面的脚本使用 CONVERT() 函数来显示不同的格式。我们将使用 GETDATE() 函数来获得当前的日期/时间：</p>
+
+<pre><code>CONVERT(VARCHAR(19),GETDATE())
+CONVERT(VARCHAR(10),GETDATE(),110) 
+CONVERT(VARCHAR(11),GETDATE(),106)
+CONVERT(VARCHAR(24),GETDATE(),113)
+</code></pre>
+
+<p>结果类似：</p>
+
+<pre><code>10 16 2019  2:35PM
+10-16-2019
+16 10 2019
+16 10 2019 14:35:15:790
+</code></pre>
+
+<h2 id="date数据类型">Date数据类型</h2>
+
+<p>MySQL 使用下列数据类型在数据库中存储日期或日期/时间值：</p>
+
+<ul>
+<li>DATE - 格式 YYYY-MM-DD</li>
+<li>DATETIME - 格式: YYYY-MM-DD HH:MM:SS</li>
+<li>TIMESTAMP - 格式: YYYY-MM-DD HH:MM:SS</li>
+<li>YEAR - 格式 YYYY 或 YY</li>
+</ul>
+
+<p>SQL Server 使用下列数据类型在数据库中存储日期或日期/时间值：</p>
+
+<ul>
+<li>DATE - 格式 YYYY-MM-DD</li>
+<li>DATETIME - 格式: YYYY-MM-DD HH:MM:SS</li>
+<li>SMALLDATETIME - 格式: YYYY-MM-DD HH:MM:SS</li>
+<li>TIMESTAMP - 格式: 唯一的数字</li>
+</ul>
+
+<h1 id="null函数isnull-nvl-ifnull-和coalesce">NULL函数ISNULL()、NVL()、IFNULL()和COALESCE()</h1>
+
+<p>微软的ISNULL()函数用于规定如何处理NULL值。NVL(), IFNULL() 和 COALESCE() 函数也可以达到相同的结果。</p>
+
+<p>SQL Server / MS Access</p>
+
+<pre><code>SELECT ProductName,UnitPrice*(UnitsInStock+ISNULL(UnitsOnOrder,0)) 
+FROM Products
+</code></pre>
+
+<p>Oracle</p>
+
+<p>Oracle 没有ISNULL()函数。不过，我们可以使用NVL()函数达到相同的结果：</p>
+
+<pre><code>SELECT ProductName,UnitPrice*(UnitsInStock+NVL(UnitsOnOrder,0))
+FROM Products
+</code></pre>
+
+<p>MySQL</p>
+
+<p>MySQL也拥有类似ISNULL()的函数。不过它的工作方式与微软的ISNULL()函数有点不同。在MySQL中，我们可以使用IFNULL()函数，就像这样：</p>
+
+<pre><code>SELECT ProductName,UnitPrice*(UnitsInStock+IFNULL(UnitsOnOrder,0))
+FROM Products
+</code></pre>
+
+<p>或者我们可以使用 COALESCE() 函数，就像这样：</p>
+
+<pre><code>SELECT ProductName,UnitPrice*(UnitsInStock+COALESCE(UnitsOnOrder,0))
+FROM Products
+</code></pre>
+
+<h1 id="数据类型">数据类型</h1>
+
+<p>Microsoft Access、MySQL 以及 SQL Server 所使用的数据类型和范围。</p>
+
+<h2 id="microsoft-access-数据类型">Microsoft Access 数据类型</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th align="left">描述</th>
+<th align="left">存储</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Text</td>
+<td align="left">用于文本或文本与数字的组合。最多 255 个字符。</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">Memo</td>
+<td align="left">Memo 用于更大数量的文本。最多存储 65,536 个字符。注释：无法对 memo 字段进行排序。不过它们是可搜索的。</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">Byte</td>
+<td align="left">允许 0 到 255 的数字。</td>
+<td align="left">1 字节</td>
+</tr>
+
+<tr>
+<td align="left">Integer</td>
+<td align="left">允许介于 -32,768 到 32,767 之间的数字。</td>
+<td align="left">2 字节</td>
+</tr>
+
+<tr>
+<td align="left">Long</td>
+<td align="left">允许介于 -2,147,483,648 与 2,147,483,647 之间的全部数字</td>
+<td align="left">4 字节</td>
+</tr>
+
+<tr>
+<td align="left">Single</td>
+<td align="left">单精度浮点。处理大多数小数。</td>
+<td align="left">4 字节</td>
+</tr>
+
+<tr>
+<td align="left">Double</td>
+<td align="left">双精度浮点。处理大多数小数。</td>
+<td align="left">8 字节</td>
+</tr>
+
+<tr>
+<td align="left">Currency</td>
+<td align="left">用于货币。支持 15 位的元，外加 4 位小数。提示：您可以选择使用哪个国家的货币。</td>
+<td align="left">8 字节</td>
+</tr>
+
+<tr>
+<td align="left">AutoNumber</td>
+<td align="left">AutoNumber 字段自动为每条记录分配数字，通常从 1 开始。</td>
+<td align="left">4 字节</td>
+</tr>
+
+<tr>
+<td align="left">Date/Time</td>
+<td align="left">用于日期和时间</td>
+<td align="left">8 字节</td>
+</tr>
+
+<tr>
+<td align="left">Yes/No</td>
+<td align="left">逻辑字段，可以显示为 Yes/No、True/False 或 On/Off。在代码中，使用常量 True 和 False （等价于 1 和 0）注释：Yes/No 字段中不允许 Null 值</td>
+<td align="left">1 比特</td>
+</tr>
+
+<tr>
+<td align="left">Ole Object</td>
+<td align="left">可以存储图片、音频、视频或其他 BLOBs (Binary Large OBjects)</td>
+<td align="left">最多 1GB</td>
+</tr>
+
+<tr>
+<td align="left">Hyperlink</td>
+<td align="left">包含指向其他文件的链接，包括网页。</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">Lookup Wizard</td>
+<td align="left">允许你创建一个可从下列列表中进行选择的选项列表。</td>
+<td align="left">4 字节</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="mysql-数据类型">MySQL 数据类型</h2>
+
+<p>在 MySQL 中，有三种主要的类型：文本、数字和日期/时间类型。</p>
+
+<p>Text 类型：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">CHAR(size)</td>
+<td align="left">保存固定长度的字符串（可包含字母、数字以及特殊字符）。在括号中指定字符串的长度。最多 255 个字符。</td>
+</tr>
+
+<tr>
+<td align="left">VARCHAR(size)</td>
+<td align="left">保存可变长度的字符串（可包含字母、数字以及特殊字符）。在括号中指定字符串的最大长度。最多 255 个字符。注释：如果值的长度大于 255，则被转换为 TEXT 类型。</td>
+</tr>
+
+<tr>
+<td align="left">TINYTEXT</td>
+<td align="left">存放最大长度为 255 个字符的字符串。</td>
+</tr>
+
+<tr>
+<td align="left">TEXT</td>
+<td align="left">存放最大长度为 65,535 个字符的字符串。</td>
+</tr>
+
+<tr>
+<td align="left">BLOB</td>
+<td align="left">用于 BLOBs (Binary Large OBjects)。存放最多 65,535 字节的数据。</td>
+</tr>
+
+<tr>
+<td align="left">MEDIUMTEXT</td>
+<td align="left">存放最大长度为 16,777,215 个字符的字符串。</td>
+</tr>
+
+<tr>
+<td align="left">MEDIUMBLOB</td>
+<td align="left">用于 BLOBs (Binary Large OBjects)。存放最多 16,777,215 字节的数据。</td>
+</tr>
+
+<tr>
+<td align="left">LONGTEXT</td>
+<td align="left">存放最大长度为 4,294,967,295 个字符的字符串。</td>
+</tr>
+
+<tr>
+<td align="left">LONGBLOB</td>
+<td align="left">用于 BLOBs (Binary Large OBjects)。存放最多 4,294,967,295 字节的数据。</td>
+</tr>
+
+<tr>
+<td align="left">ENUM(x,y,z,etc.)</td>
+<td align="left">允许你输入可能值的列表。可以在ENUM列表中列出最大65535个值。如果列表中不存在插入的值，则插入空值。注释：这些值是按照你输入的顺序存储的。可以按照此格式输入可能的值：ENUM(&lsquo;X&rsquo;,&lsquo;Y&rsquo;,&lsquo;Z&rsquo;)</td>
+</tr>
+
+<tr>
+<td align="left">SET</td>
+<td align="left">与ENUM类似，SET最多只能包含64个列表项，不过SET可存储一个以上的值。</td>
+</tr>
+</tbody>
+</table>
+
+<p>Number 类型：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">TINYINT(size)</td>
+<td align="left">-128 到 127 常规。0 到 255 无符号*。在括号中规定最大位数。</td>
+</tr>
+
+<tr>
+<td align="left">SMALLINT(size)</td>
+<td align="left">-32768 到 32767 常规。0 到 65535 无符号*。在括号中规定最大位数。</td>
+</tr>
+
+<tr>
+<td align="left">MEDIUMINT(size)</td>
+<td align="left">-8388608 到 8388607 普通。0 to 16777215 无符号*。在括号中规定最大位数。</td>
+</tr>
+
+<tr>
+<td align="left">INT(size)</td>
+<td align="left">-2147483648 到 2147483647 常规。0 到 4294967295 无符号*。在括号中规定最大位数。</td>
+</tr>
+
+<tr>
+<td align="left">BIGINT(size)</td>
+<td align="left">-9223372036854775808 到 9223372036854775807 常规。0 到 18446744073709551615 无符号*。在括号中规定最大位数。</td>
+</tr>
+
+<tr>
+<td align="left">FLOAT(size,d)</td>
+<td align="left">带有浮动小数点的小数字。在括号中规定最大位数。在 d 参数中规定小数点右侧的最大位数。</td>
+</tr>
+
+<tr>
+<td align="left">DOUBLE(size,d)</td>
+<td align="left">带有浮动小数点的大数字。在括号中规定最大位数。在 d 参数中规定小数点右侧的最大位数。</td>
+</tr>
+
+<tr>
+<td align="left">DECIMAL(size,d)</td>
+<td align="left">作为字符串存储的 DOUBLE 类型，允许固定的小数点。</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>这些整数类型拥有额外的选项 UNSIGNED。通常，整数可以是负数或正数。如果添加 UNSIGNED 属性，那么范围将从 0 开始，而不是某个负数。</strong></p>
+
+<p>Date 类型：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">DATE()</td>
+<td align="left">日期。格式：YYYY-MM-DD 注释：支持的范围是从 &lsquo;1000-01-01&rsquo; 到 &lsquo;9999-12-31&rsquo;</td>
+</tr>
+
+<tr>
+<td align="left">DATETIME()</td>
+<td align="left">*日期和时间的组合。格式：YYYY-MM-DD HH:MM:SS 注释：支持的范围是从 &lsquo;1000-01-01 00:00:00&rsquo; 到 &lsquo;9999-12-31 23:59:59&rsquo;</td>
+</tr>
+
+<tr>
+<td align="left">TIMESTAMP()</td>
+<td align="left">*时间戳。TIMESTAMP 值使用 Unix 纪元(&lsquo;1970-01-01 00:00:00&rsquo; UTC) 至今的描述来存储。格式：YYYY-MM-DD HH:MM:SS 注释：支持的范围是从 &lsquo;1970-01-01 00:00:01&rsquo; UTC 到 &lsquo;2038-01-09 03:14:07&rsquo; UTC</td>
+</tr>
+
+<tr>
+<td align="left">TIME()</td>
+<td align="left">时间。格式：HH:MM:SS 注释：支持的范围是从 &lsquo;-838:59:59&rsquo; 到 &lsquo;838:59:59&rsquo;</td>
+</tr>
+
+<tr>
+<td align="left">YEAR()</td>
+<td align="left">2 位或 4 位格式的年。注释：4 位格式所允许的值：1901 到 2155。2 位格式所允许的值：70 到 69，表示从 1970 到 2069。</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>即便 DATETIME 和 TIMESTAMP 返回相同的格式，它们的工作方式很不同。在INSERT或UPDATE查询中，TIMESTAMP自动把自身设置为当前的日期和时间。TIMESTAMP也接受不同的格式，比如 YYYYMMDDHHMMSS、YYMMDDHHMMSS、YYYYMMDD 或 YYMMDD。</li>
+</ul>
+
+<h2 id="sql-server数据类型">SQL Server数据类型</h2>
+
+<p>Character 字符串：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th align="left">描述</th>
+<th align="left">存储</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">char(n)</td>
+<td align="left">固定长度的字符串。最多 8,000 个字符。</td>
+<td align="left">n</td>
+</tr>
+
+<tr>
+<td align="left">varchar(n)</td>
+<td align="left">可变长度的字符串。最多 8,000 个字符。</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">varchar(max)</td>
+<td align="left">可变长度的字符串。最多 1,073,741,824 个字符。</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">text</td>
+<td align="left">可变长度的字符串。最多 2GB 字符数据。</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<p>Unicode 字符串：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th align="left">描述</th>
+<th align="left">存储</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">nchar(n)</td>
+<td align="left">固定长度的 Unicode 数据。最多 4,000 个字符。</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">nvarchar(n)</td>
+<td align="left">可变长度的 Unicode 数据。最多 4,000 个字符。</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">nvarchar(max)</td>
+<td align="left">可变长度的 Unicode 数据。最多 536,870,912 个字符。</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">ntext</td>
+<td align="left">可变长度的 Unicode 数据。最多 2GB 字符数据。</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<p>Binary 类型：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th align="left">描述</th>
+<th align="left">存储</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">bit</td>
+<td align="left">允许 0、1 或 NULL</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">binary(n)</td>
+<td align="left">固定长度的二进制数据。最多 8,000 字节。</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">varbinary(n)</td>
+<td align="left">可变长度的二进制数据。最多 8,000 字节。</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">varbinary(max)</td>
+<td align="left">可变长度的二进制数据。最多 2GB 字节。</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">image</td>
+<td align="left">可变长度的二进制数据。最多 2GB。</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<p>Number 类型：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th align="left">描述</th>
+<th align="left">存储</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">tinyint</td>
+<td align="left">允许从 0 到 255 的所有数字。</td>
+<td align="left">1 字节</td>
+</tr>
+
+<tr>
+<td align="left">smallint</td>
+<td align="left">允许从 -32,768 到 32,767 的所有数字。</td>
+<td align="left">2 字节</td>
+</tr>
+
+<tr>
+<td align="left">int</td>
+<td align="left">允许从 -2,147,483,648 到 2,147,483,647 的所有数字。</td>
+<td align="left">4 字节</td>
+</tr>
+
+<tr>
+<td align="left">bigint</td>
+<td align="left">允许介于 -9,223,372,036,854,775,808 和 9,223,372,036,854,775,807 之间的所有数字。</td>
+<td align="left">8 字节</td>
+</tr>
+
+<tr>
+<td align="left">decimal(p,s)</td>
+<td align="left">固定精度和比例的数字。允许从 -10^38 +1 到 10^38 -1 之间的数字。p 参数指示可以存储的最大位数（小数点左侧和右侧）。p 必须是 1 到 38 之间的值。默认是 18。s 参数指示小数点右侧存储的最大位数。s 必须是 0 到 p 之间的值。默认是 0。</td>
+<td align="left">5-17 字节</td>
+</tr>
+
+<tr>
+<td align="left">numeric(p,s)</td>
+<td align="left">固定精度和比例的数字。允许从 -10^38 +1 到 10^38 -1 之间的数字。p 参数指示可以存储的最大位数（小数点左侧和右侧）。p 必须是 1 到 38 之间的值。默认是 18。s参数指示小数点右侧存储的最大位数。s 必须是 0 到 p 之间的值。默认是 0。</td>
+<td align="left">5-17 字节</td>
+</tr>
+
+<tr>
+<td align="left">smallmoney</td>
+<td align="left">介于 -214,748.3648 和 214,748.3647 之间的货币数据。</td>
+<td align="left">4 字节</td>
+</tr>
+
+<tr>
+<td align="left">money</td>
+<td align="left">介于 -922,337,203,685,477.5808 和 922,337,203,685,477.5807 之间的货币数据。</td>
+<td align="left">8 字节</td>
+</tr>
+
+<tr>
+<td align="left">float(n)</td>
+<td align="left">从 -1.79E + 308 到 1.79E + 308 的浮动精度数字数据。 参数 n 指示该字段保存 4 字节还是 8 字节。float(24) 保存 4 字节，而float(53)保存8字节。n的默认值是53。</td>
+<td align="left">4或8 字节</td>
+</tr>
+
+<tr>
+<td align="left">real</td>
+<td align="left">从-3.40E + 38 到 3.40E + 38 的浮动精度数字数据。</td>
+<td align="left">4 字节</td>
+</tr>
+</tbody>
+</table>
+
+<p>Date 类型：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th align="left">描述</th>
+<th align="left">存储</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">datetime</td>
+<td align="left">从1753 年 1 月 1 日 到 9999 年 12 月 31 日，精度为 3.33 毫秒。</td>
+<td align="left">8 bytes</td>
+</tr>
+
+<tr>
+<td align="left">datetime2</td>
+<td align="left">从 1753 年 1 月 1 日 到 9999 年 12 月 31 日，精度为 100 纳秒。</td>
+<td align="left">6-8 bytes</td>
+</tr>
+
+<tr>
+<td align="left">smalldatetime</td>
+<td align="left">从 1900 年 1 月 1 日 到 2079 年 6 月 6 日，精度为 1 分钟。</td>
+<td align="left">4 bytes</td>
+</tr>
+
+<tr>
+<td align="left">date</td>
+<td align="left">仅存储日期。从 0001 年 1 月 1 日 到 9999 年 12 月 31 日。</td>
+<td align="left">3 bytes</td>
+</tr>
+
+<tr>
+<td align="left">time</td>
+<td align="left">仅存储时间。精度为 100 纳秒。</td>
+<td align="left">3-5 bytes</td>
+</tr>
+
+<tr>
+<td align="left">datetimeoffset</td>
+<td align="left">与datetime2相同，外加时区偏移。</td>
+<td align="left">8-10 bytes</td>
+</tr>
+
+<tr>
+<td align="left">timestamp</td>
+<td align="left">存储唯一的数字，每当创建或修改某行时，该数字会更新。timestamp 基于内部时钟，不对应真实时间。每个表只能有一个 timestamp 变量。</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<p>其他数据类型：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">sql_variant</td>
+<td align="left">存储最多 8,000 字节不同数据类型的数据，除了 text、ntext 以及 timestamp。</td>
+</tr>
+
+<tr>
+<td align="left">uniqueidentifier</td>
+<td align="left">存储全局标识符 (GUID)。</td>
+</tr>
+
+<tr>
+<td align="left">xml</td>
+<td align="left">存储XML格式化数据。最多 2GB。</td>
+</tr>
+
+<tr>
+<td align="left">cursor</td>
+<td align="left">存储对用于数据库操作的指针的引用。</td>
+</tr>
+
+<tr>
+<td align="left">table</td>
+<td align="left">存储结果集，供稍后处理。</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="sql-服务器-rdbms">SQL 服务器-RDBMS</h1>
+
+<p>现代的SQL服务器构建在RDBMS之上。</p>
+
+<p>DBMS - 数据库管理系统（Database Management System）</p>
+
+<p>数据库管理系统是一种可以访问数据库中数据的计算机程序。DBMS使我们有能力在数据库中提取、修改或者存贮信息。不同的DBMS提供不同的函数供查询、提交以及修改数据。</p>
+
+<p>RDBMS - 关系数据库管理系统（Relational Database Management System）</p>
+
+<p>关系数据库管理系统(RDBMS)也是一种数据库管理系统，其数据库是根据数据间的关系来组织和访问数据的。20世纪70年代初，IBM公司发明了RDBMS。RDBMS是SQL的基础，也是所有现代数据库系统诸如 Oracle、SQL Server、IBM DB2、Sybase、MySQL 以及 Microsoft Access 的基础。</p>
+
+<h1 id="sql函数">SQL函数</h1>
+
+<p>SQL 拥有很多可用于计数和计算的内建函数。</p>
+
+<p><strong>函数的语法</strong></p>
+
+<p>内建SQL 函数的语法是：</p>
+
+<pre><code>SELECT function(列) FROM 表
+</code></pre>
+
+<p><strong>函数的类型</strong></p>
+
+<p>在 SQL 中，基本的函数类型和种类有若干种。函数的基本类型是：</p>
+
+<ul>
+<li>Aggregate 函数</li>
+<li>Scalar 函数</li>
+</ul>
+
+<h2 id="合计函数-aggregate-functions">合计函数（Aggregate functions）</h2>
+
+<p>Aggregate 函数的操作面向一系列的值，并返回一个单一的值。</p>
+
+<p>注释：如果在 SELECT 语句的项目列表中的众多其它表达式中使用 SELECT 语句，则这个 SELECT 必须使用 GROUP BY 语句！</p>
+
+<p>MS Access 中的合计函数</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">AVG(column)</td>
+<td align="left">返回某列的平均值</td>
+</tr>
+
+<tr>
+<td align="left">COUNT(column)</td>
+<td align="left">返回某列的行数（不包括 NULL 值）</td>
+</tr>
+
+<tr>
+<td align="left">COUNT(*)</td>
+<td align="left">返回被选行数</td>
+</tr>
+
+<tr>
+<td align="left">FIRST(column)</td>
+<td align="left">返回在指定的域中第一个记录的值</td>
+</tr>
+
+<tr>
+<td align="left">LAST(column)</td>
+<td align="left">返回在指定的域中最后一个记录的值</td>
+</tr>
+
+<tr>
+<td align="left">MAX(column)</td>
+<td align="left">返回某列的最高值</td>
+</tr>
+
+<tr>
+<td align="left">MIN(column)</td>
+<td align="left">返回某列的最低值</td>
+</tr>
+
+<tr>
+<td align="left">STDEV(column)</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">STDEVP(column)</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">SUM(column)</td>
+<td align="left">返回某列的总和</td>
+</tr>
+
+<tr>
+<td align="left">VAR(column)</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">VARP(column)</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<p>在SQLServer 中的合计函数在 SQL Server 中的合计函数</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">AVG(column)</td>
+<td align="left">返回某列的平均值</td>
+</tr>
+
+<tr>
+<td align="left">BINARY_CHECKSUM</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">CHECKSUM</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">CHECKSUM_AGG</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">COUNT(column)</td>
+<td align="left">返回某列的行数（不包括NULL值）</td>
+</tr>
+
+<tr>
+<td align="left">COUNT(*)</td>
+<td align="left">返回被选行数</td>
+</tr>
+
+<tr>
+<td align="left">COUNT(DISTINCT column)</td>
+<td align="left">返回相异结果的数目</td>
+</tr>
+
+<tr>
+<td align="left">FIRST(column)</td>
+<td align="left">返回在指定的域中第一个记录的值（SQLServer2000 不支持）</td>
+</tr>
+
+<tr>
+<td align="left">LAST(column)</td>
+<td align="left">返回在指定的域中最后一个记录的值（SQLServer2000 不支持）</td>
+</tr>
+
+<tr>
+<td align="left">MAX(column)</td>
+<td align="left">返回某列的最高值</td>
+</tr>
+
+<tr>
+<td align="left">MIN(column)</td>
+<td align="left">返回某列的最低值</td>
+</tr>
+
+<tr>
+<td align="left">STDEV(column)</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">STDEVP(column)</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">SUM(column)</td>
+<td align="left">返回某列的总和</td>
+</tr>
+
+<tr>
+<td align="left">VAR(column)</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">VARP(column)</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="scalar-函数">Scalar 函数</h2>
+
+<p>Scalar 函数的操作面向某个单一的值，并返回基于输入值的一个单一的值。</p>
+
+<p>MS Access中的Scalar函数</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">UCASE&copy;</td>
+<td align="left">将某个域转换为大写</td>
+</tr>
+
+<tr>
+<td align="left">LCASE&copy;</td>
+<td align="left">将某个域转换为小写</td>
+</tr>
+
+<tr>
+<td align="left">MID(c,start[,end])</td>
+<td align="left">从某个文本域提取字符</td>
+</tr>
+
+<tr>
+<td align="left">LEN&copy;</td>
+<td align="left">返回某个文本域的长度</td>
+</tr>
+
+<tr>
+<td align="left">INSTR(c,char)</td>
+<td align="left">返回在某个文本域中指定字符的数值位置</td>
+</tr>
+
+<tr>
+<td align="left">LEFT(c,number_of_char)</td>
+<td align="left">返回某个被请求的文本域的左侧部分</td>
+</tr>
+
+<tr>
+<td align="left">RIGHT(c,number_of_char)</td>
+<td align="left">返回某个被请求的文本域的右侧部分</td>
+</tr>
+
+<tr>
+<td align="left">ROUND(c,decimals)</td>
+<td align="left">对某个数值域进行指定小数位数的四舍五入</td>
+</tr>
+
+<tr>
+<td align="left">MOD(x,y)</td>
+<td align="left">返回除法操作的余数</td>
+</tr>
+
+<tr>
+<td align="left">NOW()</td>
+<td align="left">返回当前的系统日期</td>
+</tr>
+
+<tr>
+<td align="left">FORMAT(c,format)</td>
+<td align="left">改变某个域的显示方式</td>
+</tr>
+
+<tr>
+<td align="left">DATEDIFF(d,date1,date2)</td>
+<td align="left">用于执行日期计算</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="avg-函数">AVG 函数</h2>
+
+<p>AVG函数返回数值列的平均值。NULL值不包括在计算中。SQL AVG() 语法:
+SELECT AVG(column_name) FROM table_name</p>
+
+<h2 id="count-函数">COUNT() 函数</h2>
+
+<p>COUNT(column_name) 函数返回指定列的值的数目（NULL不计入）,语法：</p>
+
+<pre><code>SELECT COUNT(column_name) FROM table_name
+</code></pre>
+
+<p>COUNT(*) 函数返回表中的记录数：</p>
+
+<pre><code>SELECT COUNT(*) FROM table_name
+</code></pre>
+
+<p>COUNT(DISTINCT column_name)函数返回指定列的不同值的数目：</p>
+
+<pre><code>SELECT COUNT(DISTINCT column_name) FROM table_name
+</code></pre>
+
+<p>注释：COUNT(DISTINCT) 适用于 ORACLE 和 Microsoft SQL Server，但是无法用于 Microsoft Access。</p>
+
+<h2 id="first-和last-函数">FIRST()和LAST()函数</h2>
+
+<p>FIRST() 函数返回指定的字段中第一个记录的值，可使用 ORDER BY 语句对记录进行排序。语法：</p>
+
+<pre><code>SELECT FIRST(column_name) FROM table_name
+</code></pre>
+
+<p>LAST()函数与它类似。</p>
+
+<h2 id="having-子句">HAVING 子句</h2>
+
+<p>在SQL中增加HAVING子句原因是，WHERE关键字无法与合计函数一起使用。SQLHAVING语法：</p>
+
+<pre><code>SELECT column_name, aggregate_function(column_name)
+FROM table_name
+WHERE column_name operator value
+GROUP BY column_name
+HAVING aggregate_function(column_name) operator value
+</code></pre>
+
+<p><strong>SQL HAVING实例</strong>
+我们拥有下面这个 &ldquo;Orders&rdquo; 表：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">O_Id</th>
+<th align="left">OrderDate</th>
+<th align="left">OrderPrice</th>
+<th align="left">Customer</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">2008/12/29</td>
+<td align="left">1000</td>
+<td align="left">Bush</td>
+</tr>
+
+<tr>
+<td align="left">2</td>
+<td align="left">2008/11/23</td>
+<td align="left">1600</td>
+<td align="left">Carter</td>
+</tr>
+
+<tr>
+<td align="left">3</td>
+<td align="left">2008/10/05</td>
+<td align="left">700</td>
+<td align="left">Bush</td>
+</tr>
+
+<tr>
+<td align="left">4</td>
+<td align="left">2008/09/28</td>
+<td align="left">300</td>
+<td align="left">Bush</td>
+</tr>
+
+<tr>
+<td align="left">5</td>
+<td align="left">2008/08/06</td>
+<td align="left">2000</td>
+<td align="left">Adams</td>
+</tr>
+
+<tr>
+<td align="left">6</td>
+<td align="left">2008/07/21</td>
+<td align="left">100</td>
+<td align="left">Carter</td>
+</tr>
+</tbody>
+</table>
+
+<p>现在，我们希望查找订单总金额少于 2000 的客户。我们使用如下 SQL 语句：</p>
+
+<pre><code>SELECT Customer,SUM(OrderPrice) FROM Orders
+GROUP BY Customer
+HAVING SUM(OrderPrice)&lt;2000
+</code></pre>
+
+<p>结果集类似：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Customer</th>
+<th align="left">SUM(OrderPrice)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Carter</td>
+<td align="left">1700</td>
+</tr>
+</tbody>
+</table>
+
+<p>现在我们希望查找客户 &ldquo;Bush&rdquo; 或 &ldquo;Adams&rdquo; 拥有超过 1500 的订单总金额。我们在 SQL 语句中增加了一个普通的 WHERE 子句：</p>
+
+<pre><code>SELECT Customer,SUM(OrderPrice) FROM Orders
+WHERE Customer='Bush' OR Customer='Adams'
+GROUP BY Customer
+HAVING SUM(OrderPrice)&gt;1500
+</code></pre>
+
+<p>结果集：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Customer</th>
+<th align="left">SUM(OrderPrice)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Bush</td>
+<td align="left">2000</td>
+</tr>
+
+<tr>
+<td align="left">Adams</td>
+<td align="left">2000</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="ucase-和lcase-函数">UCASE()和LCASE()函数</h2>
+
+<p>UCASE 函数把字段的值转换为大写,语法:</p>
+
+<pre><code>SELECT UCASE(column_name) FROM table_name
+</code></pre>
+
+<p>LCASE 函数把字段的值转换为小写。语法：</p>
+
+<pre><code>SELECT LCASE(column_name) FROM table_name
+</code></pre>
+
+<h2 id="mid-函数">MID()函数</h2>
+
+<p>MID 函数用于从文本字段中提取字符。语法：</p>
+
+<pre><code>SELECT MID(column_name,start[,length]) FROM table_name
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">column_name</td>
+<td align="left">必需。要提取字符的字段。</td>
+</tr>
+
+<tr>
+<td align="left">start</td>
+<td align="left">必需。规定开始位置（起始值是 1）。</td>
+</tr>
+
+<tr>
+<td align="left">length</td>
+<td align="left">可选。要返回的字符数。<strong>如果省略，则 MID() 函数返回剩余文本。</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p>MID() 实例:</p>
+
+<p>现在，我们希望从 &ldquo;City&rdquo; 列中提取前 3 个字符。我们使用如下 SQL 语句：</p>
+
+<pre><code>SELECT MID(City,1,3) as SmallCity FROM Persons
+</code></pre>
+
+<h2 id="round-函数">ROUND()函数</h2>
+
+<p>ROUND 函数用于把数值字段舍入为指定的小数位数。语法:</p>
+
+<pre><code>SELECT ROUND(column_name,decimals) FROM table_name
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">column_name</td>
+<td align="left">必需。要舍入的字段。</td>
+</tr>
+
+<tr>
+<td align="left">decimals</td>
+<td align="left">必需。规定要返回的小数位数。</td>
+</tr>
+</tbody>
+</table>
+
+<p>ROUND() 实例</p>
+
+<p>我们希望把名称和价格舍入为最接近的整数。我们使用如下 SQL 语句：</p>
+
+<pre><code>SELECT ProductName, ROUND(UnitPrice,0) as UnitPrice FROM Products
+</code></pre>
+
+<h2 id="now-函数">NOW()函数</h2>
+
+<p>NOW 函数返回当前的日期和时间。如果您在使用 Sql Server 数据库，请使用 getdate() 函数来获得当前的日期时间。SQL NOW()语法:</p>
+
+<pre><code>SELECT NOW() FROM table_name
+</code></pre>
+
+<h2 id="format-函数">FORMAT()函数</h2>
+
+<p>FORMAT函数用于对字段的显示进行格式化。语法:</p>
+
+<pre><code>SELECT FORMAT(column_name,format) FROM table_name
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">column_name</td>
+<td align="left">必需。要格式化的字段。</td>
+</tr>
+
+<tr>
+<td align="left">format</td>
+<td align="left">必需。规定格式。</td>
+</tr>
+</tbody>
+</table>
+
+<p>FORMAT()实例</p>
+
+<p>我们希望显示每天日期所对应的名称和价格（日期的显示格式是 &ldquo;YYYY-MM-DD&rdquo;）。我们使用如下 SQL 语句：</p>
+
+<pre><code>SELECT ProductName, UnitPrice, FORMAT(Now(),'YYYY-MM-DD') as PerDate
+FROM Products
+</code></pre>
+	  </article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+        
+          <a class="ui label" href="https://sltaurusblog.gitee.io/tags/sqlservice" title="SqlService">SqlService</a>
+        
+      
+      <div
+        class="ui label"
+        style="float: right; background: #1b1c1d !important; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i> Save as image
+      </div>
+    </footer>
+
+    
+
+    
+      <footer class="ui bottom attached stacked segment post-disqus-area" data-html2canvas-ignore="true">
+        <div id="disqus_thread"></div>
+        <script>
+          
+
+
+          var disqus_config = function () {
+            this.page.url = 'https:\/\/sltaurusblog.gitee.io\/2019\/10\/sqlservice%E7%AC%94%E8%AE%B0\/';  
+            this.page.identifier = '\/2019\/10\/sqlservice%E7%AC%94%E8%AE%B0\/'; 
+          };
+
+          (function() { 
+            var d = document, s = d.createElement('script');
+            s.src = 'https://' + '...' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </footer>
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="https://sltaurusblog.gitee.io/images/head.jpg">
+      
+    </div>
+
+    <h1 class="ui medium header">SLTaurus的博客<div class="sub header" style="margin-top: 0.5rem;">合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。</div>
+    </h1>
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="https://sltaurusblog.gitee.io/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="https://sltaurusblog.gitee.io/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+  <section class="ui attached center aligned segment dream-tags">
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/ado.net" title="ado.net">ado.net</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/ef" title="ef">ef</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/hugo" title="hugo">hugo</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/javascript" title="javascript">javascript</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8" title="markdown快速入门">markdown快速入门</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E6%95%B4%E7%89%88" title="markdown语法完整版">markdown语法完整版</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/mvc" title="mvc">mvc</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/mysql" title="mysql">mysql</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/orm%E5%AF%B9%E6%AF%94" title="orm对比">orm对比</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/orm%E6%95%B4%E7%90%86" title="orm整理">orm整理</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/powershell" title="powershell">powershell</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/redis" title="redis">redis</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/ref%E5%92%8Cout" title="ref和out">ref和out</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/sqlservice" title="sqlservice">sqlservice</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98" title="内置泛型委托">内置泛型委托</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E5%8F%8D%E5%B0%84" title="反射">反射</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E7%B2%BE%E9%80%9Ac" title="精通c#">精通c#</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%88%9B%E5%BB%BA%E5%9E%8B" title="设计模式-创建型">设计模式-创建型</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8E%9F%E5%88%99" title="设计模式-原则">设计模式-原则</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%BB%93%E6%9E%84%E5%9E%8B" title="设计模式-结构型">设计模式-结构型</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E9%A1%B9%E7%9B%AE" title="项目">项目</a>
+    
+  </section>
+  
+
+  
+  <section class="ui attached segment dream-categories">
+    <div class="ui accordion">
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/c" class="item">c#</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/" class="item">内置泛型委托：Action、Func和Predicate</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/%E5%8F%8D%E5%B0%84%E6%95%B4%E7%90%86%E4%B9%8B%E6%97%A5%E5%B8%B8%E7%94%A8%E9%80%94/" class="item">反射整理之日常用途</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/ado.net/" class="item">ADO.NET</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/mvc%E6%95%B4%E7%90%86/" class="item">MVC整理</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/%E7%B2%BE%E9%80%9Acsharp%E7%AC%AC%E5%85%AD%E7%89%88/" class="item">精通CSharp(第六版)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/" class="item">ref和out使用时的区别</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/javascript" class="item">javascript</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/" class="item">JavaScript入门经典第6版笔记(下)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8A/" class="item">JavaScript入门经典第6版笔记(上)</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/markdown" class="item">markdown</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E6%95%B4%E7%89%88/" class="item">Markdown语法完整版</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="item">Markdown快速入门</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/orm" class="item">orm</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/" class="item">EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/entityframework/" class="item">EntityFramework</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/orm%E6%95%B4%E7%90%86/" class="item">ORM整理</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/redis" class="item">redis</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/06/redis%E5%9F%BA%E7%A1%80/" class="item">Redis基础</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E5%8D%9A%E5%AE%A2" class="item">博客</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/" class="item">windows10环境下搭建Hugo个人博客&#43;git分布式版本控制&#43;valine评论</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93" class="item">数据库</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/mysql%E6%8B%BE%E9%81%97/" class="item">MySql拾遗 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/" class="item">SqlService笔记</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E8%87%AA%E5%8A%A8%E5%8C%96" class="item">自动化</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/windows-powershell%E6%8C%87%E5%8D%97/" class="item">Windows PowerShell指南</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" class="item">设计模式</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%8E%9F%E5%88%99/" class="item">24种设计模式之设计模式原则 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A1%8C%E4%B8%BA%E5%9E%8B/" class="item">24种设计模式之行为型 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BB%93%E6%9E%84%E5%9E%8B/" class="item">24种设计模式之结构型 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%9E%8B/" class="item">24种设计模式之创建型 </a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E9%A1%B9%E7%9B%AE" class="item">项目</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/05/%E8%AE%A1%E4%BB%B6%E5%B7%A5%E8%B5%84%E9%A1%B9%E7%9B%AE/" class="item">计件工资项目</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+    </div>
+  </section>
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="mailto:1641061313@qq.com">
+        <i class=" mail icon" title="email"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://twitter.com/SLTaurus" target="_blank">
+        <i class=" twitter icon" title="twitter"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://facebook.com/SLTaurus" target="_blank">
+        <i class=" facebook icon" title="facebook"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://instagram.com/SLTaurus" target="_blank">
+        <i class=" instagram icon" title="instagram"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.linkedin.com/in/SLTaurus" target="_blank">
+        <i class=" linkedin icon" title="linkedin"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/SLTaurus" target="_blank">
+        <i class=" github icon" title="github"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.stackoverflow.com/users/SLTaurus" target="_blank">
+        <i class=" stack overflow icon" title="stackoverflow"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://codepen.io/SLTaurus" target="_blank">
+        <i class=" codepen icon" title="codepen"></i>
+      </a>
+    </div>
+  
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2019 - 2020 SLTaurus的博客</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/sltaurusblog.gitee.io'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交链接</h3>
+      </div>
+      <div class="ui attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="mailto:1641061313@qq.com">
+        <i class="large mail icon" title="email"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://twitter.com/SLTaurus" target="_blank">
+        <i class="large twitter icon" title="twitter"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://facebook.com/SLTaurus" target="_blank">
+        <i class="large facebook icon" title="facebook"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://instagram.com/SLTaurus" target="_blank">
+        <i class="large instagram icon" title="instagram"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.linkedin.com/in/SLTaurus" target="_blank">
+        <i class="large linkedin icon" title="linkedin"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/SLTaurus" target="_blank">
+        <i class="large github icon" title="github"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.stackoverflow.com/users/SLTaurus" target="_blank">
+        <i class="large stack overflow icon" title="stackoverflow"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://codepen.io/SLTaurus" target="_blank">
+        <i class="large codepen icon" title="codepen"></i>
+      </a>
+    </div>
+  
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+  
+    <section class="sixteen wide mobile eight wide tablet eight wide computer column dream-column">
+      <footer class="ui segment">
+        <div id="disqus_thread"></div>
+        <script>
+          
+
+
+          var disqus_config = function () {
+            this.page.url = 'https:\/\/sltaurusblog.gitee.io\/2019\/10\/sqlservice%E7%AC%94%E8%AE%B0\/about';  
+            this.page.identifier = '/about'; 
+          };
+
+          (function() { 
+            var d = document, s = d.createElement('script');
+            s.src = 'https://' + '...' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </footer>
+    </section>
+  
+
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script src="https://sltaurusblog.gitee.io/js/jquery.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/semantic.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/imagesloaded.pkgd.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/masonry.pkgd.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/nav.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/header.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/main.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/theme.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/html2canvas.min.js"></script>
+
+  
+    <script src="https://sltaurusblog.gitee.io/js/prism.js"></script>
+  
+
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', '...', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+  </body>
+</html>

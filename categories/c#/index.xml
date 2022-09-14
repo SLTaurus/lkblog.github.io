@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C# on SLTaurus的博客</title>
+    <link>https://sltaurusblog.gitee.io/categories/c#/</link>
+    <description>Recent content in C# on SLTaurus的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cmn-Hans</language>
+    <lastBuildDate>Thu, 14 Nov 2019 15:28:26 +0800</lastBuildDate>
+    
+	<atom:link href="https://sltaurusblog.gitee.io/categories/c#/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>内置泛型委托：Action、Func和Predicate</title>
+      <link>https://sltaurusblog.gitee.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/</link>
+      <pubDate>Thu, 14 Nov 2019 15:28:26 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/</guid>
+      <description>&lt;p&gt;通常都习惯用delegate来写委托的，看到很多其他程序猿写的源码都是用action和func方式，当时感觉对这很陌生所以看起源码也觉得陌生，而且重要的是写的代码很简洁。所以这边做下学习总结。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>反射整理之日常用途</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/%E5%8F%8D%E5%B0%84%E6%95%B4%E7%90%86%E4%B9%8B%E6%97%A5%E5%B8%B8%E7%94%A8%E9%80%94/</link>
+      <pubDate>Fri, 18 Oct 2019 16:30:26 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/%E5%8F%8D%E5%B0%84%E6%95%B4%E7%90%86%E4%B9%8B%E6%97%A5%E5%B8%B8%E7%94%A8%E9%80%94/</guid>
+      <description>&lt;p&gt;在.NET中，反射是重要的机制，它可以动态的分析程序集Assembly,模块Module,类型Type等等,我们在不需要使用new关键的情况下，就可以动态创建对象，使用对象。降低代码耦合性提高了程序的灵活性。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ADO.NET</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/ado.net/</link>
+      <pubDate>Thu, 17 Oct 2019 08:13:30 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/ado.net/</guid>
+      <description>&lt;p&gt;无论技术怎么发展其实都是从最基础的技能出发，掌握基础技能很重要。不忘初心,方得始终。这里重新学习下基础ADO.NET，做下笔记，方便复习、查阅。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MVC整理</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/mvc%E6%95%B4%E7%90%86/</link>
+      <pubDate>Tue, 15 Oct 2019 20:25:35 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/mvc%E6%95%B4%E7%90%86/</guid>
+      <description>&lt;p&gt;ASP.NETMVC开发模式和传统的WebForm开发模式相比，增加了很多&amp;rdquo;约定&amp;rdquo;。直接讲这些&amp;rdquo;约定&amp;rdquo;会让人困惑，而且东西太多容易忘记。这里重头学习别人的教程做Demo，抓重点记录下来，方便查阅、记忆。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>精通CSharp(第六版)</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/%E7%B2%BE%E9%80%9Acsharp%E7%AC%AC%E5%85%AD%E7%89%88/</link>
+      <pubDate>Sat, 12 Oct 2019 15:12:16 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/%E7%B2%BE%E9%80%9Acsharp%E7%AC%AC%E5%85%AD%E7%89%88/</guid>
+      <description>&lt;p&gt;工欲善其事必先利其器。C#需要记忆的基础汇总下，供时常翻阅查看。感觉暂时不需要的就只记录标题在，如果以后再需要则重新翻阅记录理解。
+#缩略显示的梗概，这里把注释删去，写成文章的简介或者梗概，在首页时候可以只显示梗概&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ref和out使用时的区别</title>
+      <link>https://sltaurusblog.gitee.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Wed, 21 Aug 2019 10:25:08 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+      <description>&lt;p&gt;在C#中通过使用方法来获取返回值时，通常只能得到一个返回值。因此，当一个方法需要返回多个值的时候，就需要用到ref和out，那么这两个方法区别在哪儿呢？&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

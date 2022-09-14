@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据库 on SLTaurus的博客</title>
+    <link>https://sltaurusblog.gitee.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content in 数据库 on SLTaurus的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cmn-Hans</language>
+    <lastBuildDate>Mon, 20 Apr 2020 22:22:11 +0800</lastBuildDate>
+    
+	<atom:link href="https://sltaurusblog.gitee.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MySql拾遗 </title>
+      <link>https://sltaurusblog.gitee.io/2020/04/mysql%E6%8B%BE%E9%81%97/</link>
+      <pubDate>Mon, 20 Apr 2020 22:22:11 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/04/mysql%E6%8B%BE%E9%81%97/</guid>
+      <description>&lt;p&gt;简略记录下MySql学习过程中的重要知识点和经常记不住的知识点。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SqlService笔记</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 13 Oct 2019 19:52:37 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;这里是sqlservice的一些知识的记录，方便随时查看，非常常用的就不再记录了。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

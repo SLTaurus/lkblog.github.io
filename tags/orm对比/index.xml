@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ORM对比 on SLTaurus的博客</title>
+    <link>https://sltaurusblog.gitee.io/tags/orm%E5%AF%B9%E6%AF%94/</link>
+    <description>Recent content in ORM对比 on SLTaurus的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cmn-Hans</language>
+    <lastBuildDate>Mon, 20 Apr 2020 21:21:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://sltaurusblog.gitee.io/tags/orm%E5%AF%B9%E6%AF%94/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比 </title>
+      <link>https://sltaurusblog.gitee.io/2020/04/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/</link>
+      <pubDate>Mon, 20 Apr 2020 21:21:47 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/04/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文地址：&lt;a href=&#34;https://blog.csdn.net/qq_40600379/article/details/101680870&#34;&gt;EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

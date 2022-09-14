@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>自动化 on SLTaurus的博客</title>
+    <link>https://sltaurusblog.gitee.io/categories/%E8%87%AA%E5%8A%A8%E5%8C%96/</link>
+    <description>Recent content in 自动化 on SLTaurus的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cmn-Hans</language>
+    <lastBuildDate>Mon, 27 Apr 2020 16:55:15 +0800</lastBuildDate>
+    
+	<atom:link href="https://sltaurusblog.gitee.io/categories/%E8%87%AA%E5%8A%A8%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Windows PowerShell指南</title>
+      <link>https://sltaurusblog.gitee.io/2020/04/windows-powershell%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Mon, 27 Apr 2020 16:55:15 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/04/windows-powershell%E6%8C%87%E5%8D%97/</guid>
+      <description>&lt;p&gt;Windows PowerShell 是专门为系统管理员设计的 Windows 命令行 Shell。 Windows PowerShell 包括可以单独或组合使用的交互提示和脚本编写环境。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

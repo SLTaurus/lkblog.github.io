@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比 
+</title>
+
+    
+  <link href="https://sltaurusblog.gitee.io/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+  
+  <meta name="author" content="SLTaurus" />
+  <meta name="description" content="SLTaurus的博客" />
+
+
+
+<meta name="generator" content="Hugo 0.57.2" />
+
+<link rel="canonical" href="https://sltaurusblog.gitee.io/2020/04/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/" />
+
+
+<meta property="og:title" content="EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比 " />
+<meta property="og:description" content="
+原文地址：EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sltaurusblog.gitee.io/2020/04/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/" />
+<meta property="article:published_time" content="2020-04-20T21:21:47+08:00" />
+<meta property="article:modified_time" content="2020-04-20T21:21:47+08:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比 "/>
+<meta name="twitter:description" content="
+原文地址：EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比
+"/>
+
+
+<link rel="stylesheet" href="https://sltaurusblog.gitee.io/css/github-markdown.css" />
+<link rel="stylesheet" href="https://sltaurusblog.gitee.io/css/semantic.min.css" />
+<link rel="stylesheet" href="https://sltaurusblog.gitee.io/css/site.css" />
+
+
+  
+    <link rel="stylesheet"  href="https://sltaurusblog.gitee.io/css/prism.css">
+  
+
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+  </head>
+
+  
+  <body style="background: black;">
+  
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/sltaurusblog.gitee.io'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h2 class="ui header">
+          EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比 
+          <div class="sub header">@ SLTaurus · Monday, Apr 20, 2020 · 23 分钟阅读 · 更新于 Apr 20, 2020</div>
+        </h2>
+      </header>
+      <article style="margin-top: 2rem;">
+		<blockquote>
+<p>原文地址：<a href="https://blog.csdn.net/qq_40600379/article/details/101680870">EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比</a></p>
+</blockquote>
+
+<h1 id="table-of-contents"></h1><nav id="TableOfContents">
+<ul>
+<li><a href="#什么是orm">什么是ORM？</a></li>
+<li><a href="#orm框架的优缺点">ORM框架的优缺点</a>
+<ul>
+<li><a href="#orm框架的优点">ORM框架的优点：</a></li>
+<li><a href="#orm框架的缺点">ORM框架的缺点：</a></li>
+</ul></li>
+<li><a href="#四种框架的基本信息对比如下表">四种框架的基本信息对比如下表</a></li>
+<li><a href="#四种框架的耗时情况">四种框架的耗时情况</a></li>
+<li><a href="#四种框架都支持哪些功能">四种框架都支持哪些功能？</a></li>
+<li><a href="#就个人使用而言-比较推荐哪个框架">就个人使用而言，比较推荐哪个框架?</a></li>
+<li><a href="#sqlsugar的简单使用">SqlSugar的简单使用</a>
+<ul>
+<li><a href="#实体类">实体类：</a></li>
+<li><a href="#实例代码">实例代码</a></li>
+</ul></li>
+<li><a href="#chloe的简单使用">Chloe的简单使用</a>
+<ul>
+<li><a href="#实体类-1">实体类：</a></li>
+<li><a href="#实例代码-1">实例代码</a></li>
+</ul></li>
+<li><a href="#dos-orm的简单使用">DOS.ORM的简单使用</a>
+<ul>
+<li><a href="#实体类-由代码生成器生成">实体类(由代码生成器生成)</a></li>
+<li><a href="#webconfig配置">WebConfig配置</a></li>
+<li><a href="#实例代码-2">实例代码</a></li>
+</ul></li>
+<li><a href="#ef的使用-code-first">EF的使用（Code First）</a>
+<ul>
+<li><a href="#实体类-2">实体类</a></li>
+<li><a href="#简单实例">简单实例</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="什么是orm">什么是ORM？</h1>
+
+<p>答：ORM(Object-relational mapping)即对象关系映射，是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。也就是说，ORM是通过使用描述对象和数据库之间映射的元数据（映射文件信息），将程序中的对象自动持久化到关系数据库中。说白了就是将相应的实体映射到相应的数据库表，然后使用orm框架封装好的api进行数据库访问，减少了自己写数据库访问类的步骤。
+<img src="https://sltaurusblog.gitee.io/images/ORMFramework/ORMPic.png" alt="" /></p>
+
+<h1 id="orm框架的优缺点">ORM框架的优缺点</h1>
+
+<h2 id="orm框架的优点">ORM框架的优点：</h2>
+
+<ul>
+<li>操作简单，提高开发效率。</li>
+<li>支持面向对象封装。</li>
+<li>可移植。</li>
+<li>减少重复性代码</li>
+</ul>
+
+<h2 id="orm框架的缺点">ORM框架的缺点：</h2>
+
+<ul>
+<li>处理多表联查之类的查询时，ORM的语法会变得很复杂。</li>
+<li>执行性能较低（但现在有一些轻型ORM框架，性能接近原生SQL）。</li>
+</ul>
+
+<h1 id="四种框架的基本信息对比如下表">四种框架的基本信息对比如下表</h1>
+
+<p><img src="https://sltaurusblog.gitee.io/images/ORMFramework/ORMCompare.jpg" alt="" /></p>
+
+<h1 id="四种框架的耗时情况">四种框架的耗时情况</h1>
+
+<p>如下表格，展示的是四种ORM框架Crud的性能，其中，（1）增查删改都是循环5次，每次增删改1万条数据，查询是每次查询10万条数据，取5次的平均值；（2）批量增删改都是循环5次，每次增删改10万条数据，取5次平均值：</p>
+
+<p><img src="https://sltaurusblog.gitee.io/images/ORMFramework/ORMTime.jpg" alt="" /></p>
+
+<p>由上表可知，各种框架CRUD的性能如下（由快到慢）：</p>
+
+<p>（1）循环CRUD操作的性能如下：</p>
+
+<ul>
+<li>新增：SqlSugar&gt;DOS.ORM&gt;Chloe&gt;EF</li>
+<li>删除：SqlSugar&gt;DOS.ORM&gt;Chloe&gt;EF</li>
+<li>修改：SqlSugar&gt;DOS.ORM&gt;Chloe&gt;EF</li>
+<li>查询：SqlSugar&gt;DOS.ORM&gt;EF&gt;Chloe</li>
+</ul>
+
+<p>综上可知：SqlSugar框架的CRUD性能是最高的，其中EF除了查询比较快之外，删改所花费的时间都是其他三种框架的4~5倍，而新增就是20倍左右！</p>
+
+<p>（2）循环批量CRUD的性能如下：</p>
+
+<ul>
+<li>批量新增：Chloe&gt;SqlSugar&gt;DOS.ORM&gt;EF</li>
+<li>批量修改：Chloe&gt;SqlSugar&gt;EF&gt;DOS.ORM</li>
+<li>批量删除：Chloe&gt;SqlSugar&gt;EF</li>
+</ul>
+
+<blockquote>
+<p>注解：Chloe是有批量新增的方法BulkInsert，故其批量新增操作与其他框架一样。但是，Chloe没有批量修改、删除的方法。DOS.ORM批量删除超过2009条数据时就会报错。综上，只有SqlSugar涵盖的方法比较多，而且速度也较快!</p>
+</blockquote>
+
+<h1 id="四种框架都支持哪些功能">四种框架都支持哪些功能？</h1>
+
+<p><img src="images/ORMFramework/ORMFuction.jpg" alt="" /></p>
+
+<p>答：四种框架都支持：</p>
+
+<p>基本查询、多表查询、分组查询、批量增删改操作、存储过程、事务、执行SQL、日志等功能。</p>
+
+<h1 id="就个人使用而言-比较推荐哪个框架">就个人使用而言，比较推荐哪个框架?</h1>
+
+<p>答：个人比较推荐SqlSugar，原因如下：</p>
+
+<ul>
+<li>只要下载了SqlSugar包后，就可以直接按照官网的例子进行编码，日志跟踪方面我认为是最简单已用的，且文档写得比较好、可由代码生成数据库，可以快速上手。</li>
+<li>Chloe与SqlSugar差不多，但是由于我觉得SqlSugar日志跟踪方面做得比较好且可以由代码生成数据库，且Chloe对批量操作的支持不是很好，只能批量新增（且没有返回值），不能批量删除、修改，所以我才选择SqlSugar。</li>
+<li>Dos.ORM是这三个框架里面最不好上手，不能直接自己创建类文件，而是需要下载官网推荐的代码生成器去生成相应的类，然后才能进行数据库的访问，否则插入删除等操作都会报错，所以就个人而言，不推荐用这个，认为学习成本比其他两个高。</li>
+<li>EF是重量级ORM框架，上面三种框架有的功能它都有，且有微软这个大厂在背后支撑，百度谷歌可以轻易搜索到大多数问题的解决方法，一开始，只要修改类结构，容易遇到与”dbo.Migrationary”相关的错误（这是需要了解codefirst数据库迁移方面的知识，可通过<a href="https://blog.csdn.net/xwnxwn/article/details/90171519">这篇文章了解</a>，如果想用的功能不多，且不想框架太大的话，就还是推荐上面三种。</li>
+<li>四种框架中，SqlSugar进行CRUD的性能最高，而EF最慢。</li>
+</ul>
+
+<h1 id="sqlsugar的简单使用">SqlSugar的简单使用</h1>
+
+<p>在nuget中输入Install-Package sqlSugar或nuget管理工具中搜索sqlSugar，下载sqlSugar包。</p>
+
+<h2 id="实体类">实体类：</h2>
+
+<pre><code>public class Student
+{
+    [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
+    public int Id { get; set; }
+    public string Name { get; set; }
+
+    public int Age { get; set; }
+    [SugarColumn(IsNullable = true)]
+    public int? ClassessId { get; set; }
+
+    public override string ToString()
+    {
+        return this.Name + &quot;的id为：&quot; + this.Id + &quot;，年龄为：&quot; + this.Age;
+    }
+}
+
+public class Classess
+{
+    [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+}
+
+public class ORMTest
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+}
+</code></pre>
+
+<h2 id="实例代码">实例代码</h2>
+
+<pre><code>//static string connStr = ConfigurationManager.ConnectionStrings[&quot;connStr&quot;].ConnectionString;
+static string connStr = &quot;server=DESKTOP-TROTQO7;uid=sa;pwd=123456;database=SqlSugarTest&quot;;
+static void SqlSugarDemo()
+{
+    var db = GetInstance();
+    #region 使用代码优先的方法创建数据库表
+    //使用Code first的方法，需要使用CreateDatabase方法创建数据库
+    db.DbMaintenance.CreateDatabase();//创建数据库
+    db.CodeFirst.SetStringDefaultLength(200).InitTables(typeof(Student));//根据实体类创建数据库表
+    db.CodeFirst.SetStringDefaultLength(200).InitTables(typeof(Classess));//根据实体类创建数据库表
+    #endregion
+
+    #region 使用数据库优先的方法，根据数据库表生成相应的类文件
+    //注意：使用DbFirst数据库账户要有系统表的权限,否则无法读取表的结构
+    //1.将库里面所有表都生成实体类文件
+    var modelStr = db.DbFirst.ToClassStringList();//根据数据库的表生成类字符串
+    //将数据库表生成相应的实体类，并存储到相应的路径中,SqlSugarTest表示生成的类的命名空间
+    db.DbFirst.CreateClassFile(&quot;d:\\Demo&quot;, &quot;SqlSugarTest&quot;);
+    #endregion
+    #region 插入（Insert）
+    //向student表中插入单条数据
+    int result = db.Insertable(new Student { Name = &quot;王五强&quot;, Age = 26 }).ExecuteCommand();
+
+    //向student表中批量插入数据
+    var insertList = new Student[]
+    {
+        new Student { Name = &quot;小明&quot;, Age = 16,ClassessId=1 },
+        new Student { Name = &quot;小红&quot;, Age = 18 ,ClassessId=1},
+        new Student { Name = &quot;小刚&quot;, Age = 20,ClassessId=2 },
+        new Student { Name = &quot;小刚&quot;, Age = 20,ClassessId=2 }
+    };
+    int result2 = db.Insertable(insertList).ExecuteCommand();//向student表中插入数据
+
+    var insertList2 = new Classess[]
+    {
+        new Classess { Name = &quot;一年一班&quot;,  },
+        new Classess { Name = &quot;二年一班&quot;},
+
+    };
+    int result3 = db.Insertable(insertList2).ExecuteCommand();//向student表中插入数据
+    #endregion
+
+    #region 查询（Select）
+    //InSingle中填的是数据的id，如果数据不存在，则返回null
+    var model = db.Queryable&lt;Student&gt;().InSingle(1);//查询单条数据
+
+    ////First返回当前数据库表的第一条数据
+    var model2 = db.Queryable&lt;Student&gt;().First();//获取第一条数据
+    var selectList = db.Queryable&lt;Student&gt;().ToList();//查询所有数据
+
+    ////分页查询
+    int totalCount = 0, totalPage = 0;
+    var pageList = db.Queryable&lt;Student&gt;().ToPageList(2, 2, ref totalCount, ref totalPage);
+    #endregion
+
+    #region 分组和多表查询
+    var group = db.Queryable&lt;Student&gt;().GroupBy(it =&gt; it.ClassessId).Select(it =&gt; new { id = SqlFunc.AggregateCount(it.Id) }).ToList();
+
+    var joinList = db.Queryable&lt;Student, Classess&gt;((st, cs) =&gt; new JoinQueryInfos(JoinType.Left, st.ClassessId == cs.Id))
+    .OrderBy((st, cs) =&gt; cs.Id, OrderByType.Desc)//通过班级id排序
+    .OrderBy(st =&gt; st.Id, OrderByType.Desc)//通过学生id排序
+    .Select((st, cs) =&gt; new { StuName = st.Name, ClassName = cs.Name })
+    .ToList();
+    #endregion
+
+    #region 修改（Update）
+    //修改单条数据
+    int updateResult = db.Updateable&lt;Student&gt;(new Student { Id = 1, Name = &quot;sdfjdskjflk&quot;, Age = 18 }).ExecuteCommand();
+
+    //查询出相应的实体再进行修改
+    //UpdateColumns执行修改某一列，IgnoreColumns忽略某一列不进行更新操作，具体操作请看官方文档
+    var updateModel = db.Queryable&lt;Student&gt;().InSingle(2);
+    updateModel.Name = &quot;我是修改的&quot; + DateTime.Now;
+    int updateResult32 = db.Updateable&lt;Student&gt;(updateModel).ExecuteCommand();
+
+    ////批量修改数据
+    var list = db.Queryable&lt;Student&gt;().Take(5).ToList();
+    foreach (var item in list)
+    {
+        item.Name += DateTime.Now;
+    }
+    var manyResult = db.Updateable(list).ExecuteCommand();
+
+    #endregion
+
+    #region 删除（Delete）
+    //根据实体删除数据
+    db.Deleteable&lt;Student&gt;(new Student() { Id = 1 }).ExecuteCommand();
+
+    //删除id=1的数据，返回删除成功的条数
+    db.Deleteable&lt;Student&gt;().In(1).ExecuteCommand();
+
+    //根据id批量删除数据
+    db.Deleteable&lt;Student&gt;().In(new int[] { 1, 2 }).ExecuteCommand();
+
+    //也可以先查询出来一些数据进行批量删除,并通过sql语句的方式获取前五的数据
+    var deleteList = db.SqlQueryable&lt;Student&gt;(&quot;select top 5 * from Student&quot;).ToList();
+    var deleteResult = db.Deleteable&lt;Student&gt;(deleteList).ExecuteCommand();
+    #endregion
+
+    #region 事务
+    //想体验事务的回滚，就去掉下面代码的注释
+    try
+    {
+        db.Ado.BeginTran();
+        var insertListTran = new Student[]
+        {
+            new Student { Name = &quot;小明&quot;, Age = 16 },
+            new Student { Name = &quot;小红&quot;, Age = 18 },
+            new Student { Name = &quot;小刚&quot;, Age = 20 }
+        };
+        int result2Tran = db.Insertable(insertListTran).ExecuteCommand();//向student表中插入数据
+
+        //创建一个班级类，并且不映射到数据库中，以此来造成插入抛异常，实现事务的回滚操作
+        var cModel = new Classess()
+        {
+            Id = 1,
+            Name = &quot;一年一班&quot;
+        };
+        db.Insertable(cModel).ExecuteCommand();//向classes表中插入数据
+        db.Ado.CommitTran();
+    }
+    catch (Exception ex)
+    {
+        db.Ado.RollbackTran();
+        throw ex;
+    }
+    #endregion
+
+    #region 性能测试
+
+    //测试新增10万条数据花的时间
+    //Stopwatch watch = new Stopwatch();
+    //watch.Start();
+    //int circleCount = Convert.ToInt32(ConfigurationManager.AppSettings[&quot;circleCount&quot;]);
+    //int count = 1;
+    //for (int i = 1; i &lt;= circleCount; i++)
+    //{
+    //    var insertList = new ORMTest[]
+    //    {
+    //        new ORMTest { Name = &quot;小明&quot;, Id=count++},
+    //         new ORMTest { Name = &quot;小红&quot;, Id=count++ },
+    //          new ORMTest { Name = &quot;小刚&quot;, Id=count++ },
+    //          new ORMTest { Name = &quot;小气&quot;, Id=count++ },
+    //         new ORMTest { Name = &quot;小兰&quot;, Id=count++},
+    //          new ORMTest { Name = &quot;小七&quot;, Id=count++},
+    //          new ORMTest { Name = &quot;小小&quot;, Id=count++ },
+    //         new ORMTest { Name = &quot;小五&quot;, Id=count++},
+    //          new ORMTest { Name = &quot;小六&quot;, Id=count++ },
+    //           new ORMTest { Name = &quot;零零七&quot;, Id=count++ }
+    //    };
+    //    int result2 = db.Insertable(insertList).ExecuteCommand();//向student表中插入数据
+    //}
+    //watch.Stop();
+    //Console.WriteLine(&quot;插入10万条数据花的时间为：&quot; + Convert.ToDouble(watch.ElapsedMilliseconds) / 1000 + &quot;秒&quot;);
+    //查询10完数据花费的时间，循环100次
+    //Stopwatch watch = new Stopwatch();
+    //int count = Convert.ToInt32(ConfigurationManager.AppSettings[&quot;circleCount&quot;]);
+    //watch.Start();
+    //for (int i = 0; i &lt; count; i++)
+    //{
+    //    var list = db.Queryable&lt;ORMTest&gt;().ToList();
+    //}
+    //watch.Stop();
+    //double useTime = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
+    //Console.WriteLine(&quot;SqlSugar查询10万条数据花的时间为：&quot; + useTime + &quot;秒&quot;);
+    //double sum = 0;
+    //int count = Convert.ToInt32(ConfigurationManager.AppSettings[&quot;circleCount&quot;]);
+    //for (int i = 1; i &lt;= count; i++)
+    //{
+    //        Stopwatch watch = new Stopwatch();
+    //        watch.Start();
+    //        var list = db.Queryable&lt;ORMTest&gt;().ToList();
+    //        watch.Stop();
+    //        double useTime = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
+    //        sum += useTime;
+    //    Console.WriteLine($&quot;SqlSugar第{i}次查询10万条数据花的时间为：&quot; + useTime + &quot;秒&quot;);
+    //}
+    //Console.WriteLine($&quot;SqlSugar循环{count}次查询十万条数据的平均耗时为：&quot; + sum/count+&quot;秒&quot;);
+    #endregion
+
+    Console.ReadKey();
+
+}
+/// &lt;summary&gt;
+/// 数据库实例化类
+/// &lt;/summary&gt;
+/// &lt;returns&gt;&lt;/returns&gt;
+private static SqlSugarClient GetInstance()
+{
+    SqlSugarClient db = new SqlSugarClient(new ConnectionConfig()
+    {
+        //ConnectionString = Config.ConnectionString,//数据库连接字符串
+        ConnectionString = connStr,
+        DbType = DbType.SqlServer,//数据库类型
+        IsAutoCloseConnection = true,////自动释放数据务，如果存在事务，在事务结束后释放
+        InitKeyType = InitKeyType.Attribute//从实体特性中读取主键自增列信息
+    });
+    //关闭日志打印
+    db.Aop.OnLogExecuting = (sql, pars) =&gt;
+    {
+        Console.WriteLine(sql + &quot;\r\n&quot; + db.Utilities.SerializeObject(pars.ToDictionary(it =&gt; it.ParameterName, it =&gt; it.Value)));
+        Console.WriteLine();
+    };
+    return db;
+}
+</code></pre>
+
+<h1 id="chloe的简单使用">Chloe的简单使用</h1>
+
+<p>在nuget中输入Install-Package Chloe.SqlServer或nuget管理工具中搜索Chloe.SqlServer，下载Chloe包。</p>
+
+<h2 id="实体类-1">实体类：</h2>
+
+<pre><code>public class City
+{
+    [Column(IsPrimaryKey = true)]
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int ProvinceId { get; set; }
+}
+
+public class Province
+{
+    [Column(IsPrimaryKey = true)]
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+public enum Gender
+{
+    Man = 1,
+    Woman
+}
+
+[Table(&quot;Users&quot;)]
+public class User
+{
+    //Chloe.ORM 亦支持 Fluent Mapping，自带有一些简单的，如下
+    [Column(IsPrimaryKey = true)]
+    //[AutoIncrement]
+    [NonAutoIncrementAttribute]//标记为非自动增长
+    public string Id { get; set; }
+    [Column(Size = 100)]//字符长度
+    public string Name { get; set; }
+    public Gender? Gender { get; set; }
+    public int? Age { get; set; }
+    public int? CityId { get; set; }
+    public DateTime? OpTime { get; set; }
+    [NotMappedAttribute]//设置remark列不映射到数据库
+    public string Remark { get; set; }
+}
+
+public class ChloeORMTest
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+}
+</code></pre>
+
+<h2 id="实例代码-1">实例代码</h2>
+
+<pre><code>private static string ConnectionString = @&quot;server=DESKTOP-TROTQO7;uid=sa;pwd=123456;database=ChloeTest2&quot;;
+static void ChloeDemo()
+{
+    var context = GetContext();
+
+    #region 插入（Insert）
+    //Insert可以使用委托，也可不用
+    //如果传递的是一个函数，即使用含委托的方法，则返回插入成功的数据的实体
+    //如果传递的是一个实体类，则返回插入成功的数据的id
+    var result = context.Insert&lt;User&gt;(() =&gt; new User() { Id = Guid.NewGuid().ToString(), Name = &quot;xiaoming2&quot;, Age = 20, Gender = Gender.Man, CityId = 1, OpTime = DateTime.Now });
+
+    var resultOne = context.Insert&lt;User&gt;(new User() { Id = Guid.NewGuid().ToString(), Name = &quot;xiaohong&quot;, Age = 20, Gender = Gender.Woman, CityId = 1, OpTime = DateTime.Now });
+    var resultTwo = context.Insert&lt;City&gt;(new City() { Id = 1, Name = &quot;广州&quot;, ProvinceId = 1 });//因数据库设置了自动增长，故设置了id=1是没用的
+    var resultThree = context.Insert&lt;Province&gt;(new Province() { Id = 1, Name = &quot;广东省&quot; });//同上
+
+    //批量插入
+    var insertList = new List&lt;User&gt;()
+    {
+        new User() { Id=Guid.NewGuid().ToString(),Name = &quot;小红&quot;+DateTime.Now, Age = 20, Gender = Gender.Man, CityId = 1, OpTime = DateTime.Now },
+        new User() { Id=Guid.NewGuid().ToString(),Name = &quot;xiging&quot;+DateTime.Now, Age = 20, Gender = Gender.Man, CityId = 1, OpTime = DateTime.Now },
+        new User() { Id=Guid.NewGuid().ToString(),Name = &quot;sdfds&quot;+DateTime.Now, Age = 20, Gender = Gender.Woman, CityId = 1, OpTime = DateTime.Now }
+
+    };
+    context.BulkInsert&lt;User&gt;(insertList);//向student表中插入数据,返回插入成功的数据
+    #endregion
+
+    #region 修改（Update）
+    var model = context.Query&lt;User&gt;().First();
+    model.Name = &quot;被修改的&quot;;
+    model.OpTime = DateTime.Now;
+    var updateResult = context.Update(model); //返回修改成功的条数
+    #endregion
+
+    #region 删除（Delete）
+    var deleteResult = context.Delete&lt;User&gt;(a =&gt; a.Name == &quot;lu&quot;);//删除名字为lu的用户，并返回删除成功的条数
+    //该框架没有批量删除的功能，故无法演示
+    #endregion
+
+    #region 查询（Select）
+    //什么是懒加载？懒加载就是只有在tolist()、count()等这些操作才会真正去与数据库进行交互
+    IQuery&lt;User&gt; userData = context.Query&lt;User&gt;();//懒加载city表的数据
+    var UserModel = userData.Where(a =&gt; a.CityId == 1).FirstOrDefault();//查询城市编码为1的数据列表中的第一条数据
+    var list = userData.Where(a =&gt; a.CityId == 1).ToList();
+    var orderList = userData.Where(a =&gt; a.CityId &gt; 0).OrderBy(a =&gt; a.CityId).ToList();//通过城市编号进行排序
+    var topList = userData.Where(a =&gt; a.CityId &gt; 0).Take(10).OrderBy(a =&gt; a.Age).ToList();//获取前10条数据，并通过年龄排序
+
+    var pageList = userData.Where(a =&gt; a.Age &gt; 0).OrderBy(a =&gt; a.Age).ThenByDesc(a =&gt; a.CityId).Select(a =&gt; new { a.Id, a.Name }).Skip(5).Take(10).ToList();//跳过前5条数据，获取后面10条数据
+    #endregion
+
+    #region 多表连接
+    //三表连接
+    var user_city_province = context.Query&lt;User&gt;()
+                .InnerJoin&lt;City&gt;((user, city) =&gt; user.CityId == city.Id)
+                .InnerJoin&lt;Province&gt;((user, city, province) =&gt; city.ProvinceId == province.Id);
+
+    var joinList = user_city_province.Select((user, city, province) =&gt; new { UserId = user.Id, UserName = user.Name, CityName = city.Name, ProvinceName = province.Name }).ToList();
+    foreach (var item in joinList)
+    {
+        Console.WriteLine($&quot;{item.UserId}=&gt;{item.UserName}=&gt;{item.CityName}=&gt;{item.ProvinceName}&quot;);
+    }
+    #endregion
+
+    #region 分组函数
+    var groupList2 = context.Query&lt;User&gt;().GroupBy(a =&gt; a.Age).Select(a =&gt; new { a.Age, Count = Sql.Count(), Sum = Sql.Sum(a.Age), Max = Sql.Max(a.Age), Min = Sql.Min(a.Age), Avg = Sql.Average(a.Age) }).ToList();
+    #endregion
+
+    #region 事务
+    try
+    {
+        context.Session.BeginTransaction();
+
+        /* do some things here */
+        var insertTranList = new List&lt;User&gt;()
+        {
+            new User() { Id=Guid.NewGuid().ToString(),Name = &quot;小红Tran&quot;+DateTime.Now, Age = 20, Gender = Gender.Man, CityId = 1, OpTime = DateTime.Now },
+            new User() { Id=Guid.NewGuid().ToString(),Name = &quot;小刚Tran&quot;+DateTime.Now, Age = 20, Gender = Gender.Man, CityId = 1, OpTime = DateTime.Now },
+            new User() { Id=Guid.NewGuid().ToString(),Name = &quot;小明Tran&quot;+DateTime.Now, Age = 20, Gender = Gender.Woman, CityId = 1, OpTime = DateTime.Now }
+        };
+        context.BulkInsert(insertTranList);//向student表中插入数据，没有返回参数
+
+        //创建一个班级类，并且不映射到数据库中，以此来造成插入抛异常，实现事务的回滚操作
+        var cModel = new Classess()
+        {
+            Id = 1,
+            Name = &quot;一年一班&quot;
+        };
+        context.Insert(cModel);
+        context.Session.CommitTransaction();
+    }
+    catch (Exception ex)
+    {
+        if (context.Session.IsInTransaction)
+            context.Session.RollbackTransaction();
+        throw;
+    }
+    #endregion
+
+    #region 性能测试
+    //double sum = 0;
+    //int count = Convert.ToInt32(ConfigurationManager.AppSettings[&quot;circleCount&quot;]);
+    //for (int i = 1; i &lt;= count; i++)
+    //{
+    //    Stopwatch watch = new Stopwatch();
+    //    watch.Start();
+    //    var list = context.Query&lt;ORMTest&gt;().ToList();
+    //    watch.Stop();
+    //    double useTime = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
+    //    sum += useTime;
+    //    Console.WriteLine($&quot;SqlSugar第{i}次查询10万条数据花的时间为：&quot; + useTime + &quot;秒&quot;);
+    //}
+    //Console.WriteLine($&quot;SqlSugar循环{count}次查询十万条数据的平均耗时为：&quot; + sum / count + &quot;秒&quot;);
+    #endregion
+    Console.ReadKey();
+}
+
+public static MsSqlContext GetContext()
+{
+    MsSqlContext context = new MsSqlContext(ConnectionString);
+    // context.PagingMode = PagingMode.OFFSET_FETCH;//分页模式
+    return context;
+}
+</code></pre>
+
+<h1 id="dos-orm的简单使用">DOS.ORM的简单使用</h1>
+
+<p>在nuget中输入Install-Package Dos.ORM或nuget管理工具中搜索Dos.ORM，下载Dos.ORM包。下载代码生成器GitHub：<a href="https://github.com/itdos/Dos.Tool创建相应的数据库，运行步骤2中的代码，通过代码生成器生成实体类的代码。将生成的实体类代码复制到自己创建的项目中（如果不通过官网提供的代码生成器生成代码，而是按照我们平时的做法自己创建的话，查询没问题，但是增删改就都会报错）。">https://github.com/itdos/Dos.Tool创建相应的数据库，运行步骤2中的代码，通过代码生成器生成实体类的代码。将生成的实体类代码复制到自己创建的项目中（如果不通过官网提供的代码生成器生成代码，而是按照我们平时的做法自己创建的话，查询没问题，但是增删改就都会报错）。</a></p>
+
+<h2 id="实体类-由代码生成器生成">实体类(由代码生成器生成)</h2>
+
+<pre><code>//------------------------------------------------------------------------------
+// &lt;auto-generated&gt;
+//     此代码由工具生成。
+//     运行时版本:4.0.30319.42000
+//     Website: http://ITdos.com/Dos/ORM/Index.html
+//     对此文件的更改可能会导致不正确的行为，并且如果
+//     重新生成代码，这些更改将会丢失。
+// &lt;/auto-generated&gt;
+//------------------------------------------------------------------------------
+
+using System;
+using Dos.ORM;
+
+namespace DOS.ORMTest
+{
+    /// &lt;summary&gt;
+    /// 实体类Student。(属性说明自动提取数据库字段的描述信息)
+    /// &lt;/summary&gt;
+    [Table(&quot;Student&quot;)]
+    [Serializable]
+    public partial class Student : Entity
+    {
+        #region Model
+        private string _Id;
+        private string _Name;
+        private int _Age;
+        private int _Classess;
+        private DateTime _CreateTime;
+
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;Id&quot;)]
+        public string Id
+        {
+            get { return _Id; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;Id&quot;);
+                this._Id = value;
+            }
+        }
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;Name&quot;)]
+        public string Name
+        {
+            get { return _Name; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;Name&quot;);
+                this._Name = value;
+            }
+        }
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;Age&quot;)]
+        public int Age
+        {
+            get { return _Age; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;Age&quot;);
+                this._Age = value;
+            }
+        }
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;Classess&quot;)]
+        public int Classess
+        {
+            get { return _Classess; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;Classess&quot;);
+                this._Classess = value;
+            }
+        }
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;CreateTime&quot;)]
+        public DateTime CreateTime
+        {
+            get { return _CreateTime; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;CreateTime&quot;);
+                this._CreateTime = value;
+            }
+        }
+        #endregion
+
+        #region Method
+        /// &lt;summary&gt;
+        /// 获取实体中的主键列
+        /// &lt;/summary&gt;
+        public override Field[] GetPrimaryKeyFields()
+        {
+            return new Field[] {
+                _.Id,
+            };
+        }
+        /// &lt;summary&gt;
+        /// 获取列信息
+        /// &lt;/summary&gt;
+        public override Field[] GetFields()
+        {
+            return new Field[] {
+                _.Id,
+                _.Name,
+                _.Age,
+                _.Classess,
+                _.CreateTime,
+            };
+        }
+        /// &lt;summary&gt;
+        /// 获取值信息
+        /// &lt;/summary&gt;
+        public override object[] GetValues()
+        {
+            return new object[] {
+                this._Id,
+                this._Name,
+                this._Age,
+                this._Classess,
+                this._CreateTime,
+            };
+        }
+        /// &lt;summary&gt;
+        /// 是否是v1.10.5.6及以上版本实体。
+        /// &lt;/summary&gt;
+        /// &lt;returns&gt;&lt;/returns&gt;
+        public override bool V1_10_5_6_Plus()
+        {
+            return true;
+        }
+        #endregion
+
+        #region _Field
+        /// &lt;summary&gt;
+        /// 字段信息
+        /// &lt;/summary&gt;
+        public class _
+        {
+            /// &lt;summary&gt;
+            /// * 
+            /// &lt;/summary&gt;
+            public readonly static Field All = new Field(&quot;*&quot;, &quot;Student&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field Id = new Field(&quot;Id&quot;, &quot;Student&quot;, &quot;&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field Name = new Field(&quot;Name&quot;, &quot;Student&quot;, &quot;&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field Age = new Field(&quot;Age&quot;, &quot;Student&quot;, &quot;&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field Classess = new Field(&quot;Classess&quot;, &quot;Student&quot;, &quot;&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field CreateTime = new Field(&quot;CreateTime&quot;, &quot;Student&quot;, &quot;&quot;);
+        }
+        #endregion
+    }
+}
+
+using Dos.ORM;
+using System;
+//------------------------------------------------------------------------------
+// &lt;auto-generated&gt;
+//     此代码由工具生成。
+//     运行时版本:4.0.30319.42000
+//     Website: http://ITdos.com/Dos/ORM/Index.html
+//     对此文件的更改可能会导致不正确的行为，并且如果
+//     重新生成代码，这些更改将会丢失。
+// &lt;/auto-generated&gt;
+//------------------------------------------------------------------------------
+namespace Dos.ORMTest
+{
+    /// &lt;summary&gt;
+    /// 实体类Classes。(属性说明自动提取数据库字段的描述信息)
+    /// &lt;/summary&gt;
+    [Table(&quot;Classes&quot;)]
+    [Serializable]
+    public partial class Classes : Entity
+    {
+        #region Model
+        private int _Id;
+        private string _Name;
+        private DateTime? _CreateTime;
+
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;Id&quot;)]
+        public int Id
+        {
+            get { return _Id; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;Id&quot;);
+                this._Id = value;
+            }
+        }
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;Name&quot;)]
+        public string Name
+        {
+            get { return _Name; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;Name&quot;);
+                this._Name = value;
+            }
+        }
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        [Field(&quot;CreateTime&quot;)]
+        public DateTime? CreateTime
+        {
+            get { return _CreateTime; }
+            set
+            {
+                this.OnPropertyValueChange(&quot;CreateTime&quot;);
+                this._CreateTime = value;
+            }
+        }
+        #endregion
+
+        #region Method
+        /// &lt;summary&gt;
+        /// 获取实体中的主键列
+        /// &lt;/summary&gt;
+        public override Field[] GetPrimaryKeyFields()
+        {
+            return new Field[] {
+                _.Id,
+            };
+        }
+        /// &lt;summary&gt;
+        /// 获取实体中的标识列
+        /// &lt;/summary&gt;
+        public override Field GetIdentityField()
+        {
+            return _.Id;
+        }
+        /// &lt;summary&gt;
+        /// 获取列信息
+        /// &lt;/summary&gt;
+        public override Field[] GetFields()
+        {
+            return new Field[] {
+                _.Id,
+                _.Name,
+                _.CreateTime,
+            };
+        }
+        /// &lt;summary&gt;
+        /// 获取值信息
+        /// &lt;/summary&gt;
+        public override object[] GetValues()
+        {
+            return new object[] {
+                this._Id,
+                this._Name,
+                this._CreateTime,
+            };
+        }
+        /// &lt;summary&gt;
+        /// 是否是v1.10.5.6及以上版本实体。
+        /// &lt;/summary&gt;
+        /// &lt;returns&gt;&lt;/returns&gt;
+        public override bool V1_10_5_6_Plus()
+        {
+            return true;
+        }
+        #endregion
+
+        #region _Field
+        /// &lt;summary&gt;
+        /// 字段信息
+        /// &lt;/summary&gt;
+        public class _
+        {
+            /// &lt;summary&gt;
+            /// * 
+            /// &lt;/summary&gt;
+            public readonly static Field All = new Field(&quot;*&quot;, &quot;Classes&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field Id = new Field(&quot;Id&quot;, &quot;Classes&quot;, &quot;&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field Name = new Field(&quot;Name&quot;, &quot;Classes&quot;, &quot;&quot;);
+            /// &lt;summary&gt;
+            /// 
+            /// &lt;/summary&gt;
+            public readonly static Field CreateTime = new Field(&quot;CreateTime&quot;, &quot;Classes&quot;, &quot;&quot;);
+        }
+        #endregion
+    }
+}
+</code></pre>
+
+<h2 id="webconfig配置">WebConfig配置</h2>
+
+<p><img src="images/ORMFramework/DOSConfig.png" alt="" /></p>
+
+<h2 id="实例代码-2">实例代码</h2>
+
+<pre><code>using Dos.ORM;
+using Dos.ORMTest;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics;
+
+namespace DOS.ORMTest
+{
+    class Program
+    {
+        public class DB { public static readonly DbSession Context = new DbSession(&quot;connStr&quot;); }//获取访问数据库的上下文
+        public static void Main(string[] args)
+        {
+            #region 查询（Select）
+            //var list = DB.Context.From&lt;Student&gt;()
+            //    .Where(d =&gt; d.Age &gt; 0)
+            //    .ToList();
+            ////取部分字段
+            //var list2 = DB.Context.From&lt;Student&gt;()
+            //    .Select(d =&gt; new { d.Name, Age = d.Age })
+            //    .ToList();
+
+            ////分页，获取前十条数据
+            //var pageList = DB.Context.From&lt;Student&gt;()
+            //    .Page(10, 1)
+            //    .OrderBy(m=&gt;m.Age)
+            //    .ToList();
+
+            #endregion
+
+            #region 新增（Insert）
+            //var stu = new Student()
+            //{
+            //    Id = Guid.NewGuid().ToString(),
+            //    Name = &quot;xiaohong&quot;,
+            //    Age = 25,
+            //    Classess=1,
+            //    CreateTime = DateTime.Now
+            //};
+            //int insertResult2 = DB.Context.Insert&lt;Student&gt;(stu);//返回成功条数，也可进行批量插入
+
+            ////批量插入信息
+            //var insertList = new List&lt;Student&gt;()
+            //{
+            //    new Student()
+            //    {
+            //        Id = Guid.NewGuid().ToString(),
+            //        Name = &quot;小刚&quot;+DateTime.Now,
+            //        Age = 25,
+            //         Classess=1,
+            //        CreateTime = DateTime.Now
+            //    },
+            //    new Student()
+            //    {
+            //        Id = Guid.NewGuid().ToString(),
+            //        Name = &quot;小明&quot; + DateTime.Now,
+            //        Age = 20,
+            //         Classess=2,
+            //        CreateTime = DateTime.Now
+            //    },
+            //    new Student()
+            //    {
+            //        Id = Guid.NewGuid().ToString(),
+            //        Name = &quot;小红&quot; + DateTime.Now,
+            //        Age = 22,
+            //         Classess=1,
+            //        CreateTime = DateTime.Now
+            //    },
+            //    new Student()
+            //    {
+            //        Id = Guid.NewGuid().ToString(),
+            //        Name = &quot;笑笑&quot; + DateTime.Now,
+            //        Age = 22,
+            //         Classess=2,
+            //        CreateTime = DateTime.Now
+            //    }
+            //};
+            ////批量插入方法，ORM内部存在事务，不用担心某些数据插入成功，某些数据插入失败。
+            //var insertResult = DB.Context.Insert&lt;Student&gt;(insertList);
+            #endregion
+
+            #region 删除（Delete）
+            //var model = DB.Context.From&lt;Student&gt;().First();
+            //int deleteResult = DB.Context.Delete(model);//返回成功条数，也可进行批量删除操作
+
+            //批量删除
+            //var deleteList = DB.Context.From&lt;Student&gt;().Top(5).ToList();//取前五条数据出来删除
+            ////批量删除方法内部有事务，会自动添加where条件：WHERE id IN(list主键数据)
+            //var deleteResult = DB.Context.Delete&lt;Student&gt;(deleteList);
+            #endregion
+
+            #region 修改（Update）
+            //var updateModel = DB.Context.From&lt;Student&gt;().First();
+            //updateModel.Name = &quot;赵六&quot;;
+            //int updateResult = DB.Context.Update(updateModel);//返回成功条数，也可进行批量修改操作
+
+            //var updateList = DB.Context.From&lt;Student&gt;().Top(5).ToList();//取前五条数据出来进行批量修改
+            //foreach (var item in updateList)
+            //{
+            //    item.Name = &quot;我是被修改的&quot;+DateTime.Now;
+            //}
+            //var updateResult = DB.Context.Update(updateList);//返回成功修改条数
+            #endregion
+
+            #region 分组和多表查询
+            //多表查询
+            //var joinList = DB.Context.From&lt;Student&gt;()
+            //    .InnerJoin&lt;Classes&gt;((a, c) =&gt; a.Classess == c.Id)//内连接
+            //    .ToDataTable();
+
+            ////分组
+            //var groupList = DB.Context.From&lt;Student&gt;()
+            //   .GroupBy(m=&gt;m.Classess)//根据班级id分组
+            //   .Select(m=&gt;m.Classess)//分组后的班级id
+            //   .OrderBy(m=&gt;m.Classess)//根据班级id排序
+            //   .Select(m=&gt; new { Name=m.Name,ClassId=m.Classess})
+            //   .ToList();
+            #endregion
+
+            #region 事务
+            //using (DbTrans trans = DbSession.Default.BeginTransaction())
+            //{
+            //    try
+            //    {
+
+            //        var stu = new Student()
+            //        {
+            //            Id = Guid.NewGuid().ToString(),
+            //            Name = &quot;xiaohsdfsdf&quot;,
+            //            Age = 25,
+            //            Classess = 1,
+            //            CreateTime = DateTime.Now
+            //        };
+            //        int tranResult = DB.Context.Insert&lt;Student&gt;(stu);//向student表中插入数据
+            //        //创建一个测试类，并且不映射到数据库中，以此来造成插入抛异常，实现事务的回滚操作
+            //        var cModel = new ORMTestCls()
+            //        {
+            //            Id = 1,
+            //            Name = &quot;测试&quot;
+            //        };
+            //        int tranResult2 = DB.Context.Insert&lt;Student&gt;(stu);//向student表中插入数据
+
+            //        trans.Commit();
+            //    }
+            //    catch(Exception ex)
+            //    {
+            //        trans.Rollback();
+            //        throw;
+            //    }
+            //}
+
+            #endregion
+
+            #region 性能测试
+            //double sum = 0;
+            //int count = Convert.ToInt32(ConfigurationManager.AppSettings[&quot;circleCount&quot;]);
+            //for (int i = 1; i &lt;= count; i++)
+            //{
+            //    Stopwatch watch = new Stopwatch();
+            //    watch.Start();
+            //    var efficeList = DB.Context.From&lt;ORMTestCls&gt;().ToList();
+            //    watch.Stop();
+            //    double useTime = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
+            //    sum += useTime;
+            //    Console.WriteLine($&quot;Dos.ORM第{i}次查询10万条数据花的时间为：&quot; + useTime + &quot;秒&quot;);
+            //}
+            //Console.WriteLine($&quot;Dos.ORM循环{count}次查询十万条数据的平均耗时为：&quot; + sum / count + &quot;秒&quot;);
+            #endregion
+
+            Console.ReadKey();
+        }
+    }
+}
+</code></pre>
+
+<h1 id="ef的使用-code-first">EF的使用（Code First）</h1>
+
+<p>在nuget中输入Install-EntityFramework或nuget管理工具中搜索EntityFramework，下载包。创建一个CodeFirstDBContext.cs文件，并继承DBContext如下图：</p>
+
+<p><img src="https://sltaurusblog.gitee.io/images/ORMFramework/EFInitSet.png" alt="" /></p>
+
+<h2 id="实体类-2">实体类</h2>
+
+<pre><code>using System.ComponentModel.DataAnnotations.Schema;
+namespace EFCodeFirstTest
+{
+    [Table(&quot;Student&quot;)]
+    public class Student
+    {
+        /// &lt;summary&gt;
+        /// 学生编号  默认自动增长
+        /// &lt;/summary&gt;
+        public int Id { get; set; }
+        /// &lt;summary&gt;
+        /// 学生名
+        /// &lt;/summary&gt;
+        public string StuName { get; set; }
+        /// &lt;summary&gt;
+        /// 学生年龄
+        /// &lt;/summary&gt;
+        public int Age { get; set; }
+        /// &lt;summary&gt;
+        /// 班级编号
+        /// &lt;/summary&gt;
+        public int ClassesId { get; set; }
+    }
+}
+
+namespace EFCodeFirstTest
+{
+    [Table(&quot;Classes&quot;)]
+    public class Classes
+    {
+        /// &lt;summary&gt;
+        /// 班级id
+        /// &lt;/summary&gt;
+        public int Id { get; set; }
+        /// &lt;summary&gt;
+        /// 班级名
+        /// &lt;/summary&gt;
+        public string ClassName { get; set; }
+    }
+}
+</code></pre>
+
+<h2 id="简单实例">简单实例</h2>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EFCodeFirstTest
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //使用using，可以访问数据库结束后自动关闭数据库连接
+            using (CodeFirstDbContext db = new CodeFirstDbContext())
+            {
+                //db.Database.Delete();//删除数据库
+                //db.Database.CreateIfNotExists();//如果不存在数据库，那么就创建 
+
+                #region 新增（Insert）
+                //Student stu = new Student()
+                //{
+                //    StuName = &quot;张三&quot;,
+                //    Age = 18,
+                //    ClassesId=1
+                //};
+                //var insertResult = db.Set&lt;Student&gt;().Add(stu);//通过DataSet新增
+                ////var inserResult2 = db.Students.Add(stu);//通过CodeFirstDbContext中定义的DataSet对象新增
+                ////批量插入数据
+                //var insertList = new List&lt;Student&gt;()
+                //{
+                //    new Student()
+                //    {
+                //        StuName = &quot;批量插入的小明&quot;,
+                //        Age = 18,
+                //        ClassesId=1
+                //    },
+                //    new Student()
+                //    {
+                //        StuName = &quot;批量插入的小红&quot;,
+                //        Age = 18,
+                //        ClassesId=1
+                //    },
+                //    new Student()
+                //    {
+                //        StuName = &quot;批量插入的王五&quot;,
+                //        Age = 18,
+                //        ClassesId=2
+                //    },
+                //    new Student()
+                //    {
+                //        StuName = &quot;批量插入的赵六&quot;,
+                //        Age = 18,
+                //        ClassesId=2
+                //    },
+                // };
+                //var insertResult3 = db.Set&lt;Student&gt;().AddRange(insertList);//返回成功插入的列表
+                ////var inserResult4 = db.Students.AddRange(insertList);
+
+                //var classList = new List&lt;Classes&gt;()
+                //{
+                //    new Classes{ ClassName=&quot;一年一班&quot;},
+                //    new Classes{ ClassName=&quot;一年二班&quot;},
+                //    new Classes{ ClassName=&quot;二年一班&quot;},
+                //    new Classes{ ClassName=&quot;三年一班&quot;},
+                //};
+                //var insertResult5 = db.Classess.AddRange(classList);//插入班级表
+                //db.SaveChanges();//执行操作后必须savechanges一下，不然不会去更新数据库
+                #endregion
+
+                #region 修改（Update）
+                var updateModel = db.Students.First();//获取第一条数据
+                updateModel.StuName = &quot;我是单条修改的数据&quot;;
+                //EF中没有update函数，通过修改查询出来的数据，然后saveChanges()，即可执行修改操作
+                var updateList = db.Students.OrderBy(m=&gt;m.Id).Skip(5).Take(5).ToList();//获取前6-10条数据,必须orderby之后才可以使用skip
+                foreach (var item in updateList)
+                {
+                    item.StuName = &quot;被修改的名字&quot; + DateTime.Now;
+                }
+                db.SaveChanges();//提交修改，只有执行了当前操作，updateModel、updateList中的数据才会修改
+                #endregion
+
+                #region 查询（Select）
+                //简单的查询
+                var selectList = db.Students.Where(m =&gt; m.ClassesId == 1).ToList();//查询班级为1的数据
+                //分页
+                int pageIndex = 1, pageSize = 10;
+                var selectList2 = db.Students.OrderBy(m=&gt;m.Id).Skip((pageIndex-1) * pageSize).Take(pageSize).ToList();//获取前十条数据
+                #endregion
+
+                #region 删除（Delete）
+                var deleteModel = db.Students.First();//获取第一条数据
+                db.Students.Remove(deleteModel);//删除一条数据
+
+                //批量删除
+                var deleteList = db.Students.OrderBy(m=&gt;m.Id).Skip(5).Take(3).ToList();//获取前6-10条数据
+                db.Students.RemoveRange(deleteList);
+                #endregion
+
+                #region 分组和子链接（group by and join）
+                var groupList = db.Students.GroupBy(m =&gt; m.ClassesId).Select(m=&gt;m.Count()).ToList();//通过班级id分组，并输出个数
+
+                //Join中的参数Join（左连接的表，左表的id，右表的id,输出的匿名类）
+                var joinList =db.Students.Join(db.Classess, stu =&gt; stu.ClassesId,
+                                        cls =&gt; cls.Id, (stu, cls) =&gt; new 
+                                        {
+                                            StuName=stu.StuName,
+                                            StuClassName=cls.ClassName
+                                        }).ToList();
+                #endregion
+            }
+
+            #region 事务
+                //using (var trans = db.Database.BeginTransaction())
+                //{
+                //    try
+                //    {
+                //        Student stu = new Student()
+                //        {
+                //            StuName = &quot;张三55&quot;,
+                //            Age = 18,
+                //            ClassesId = 1
+                //        };
+                //        var transResult = db.Students.Add(stu);//向student表中插入数据
+                //        db.SaveChanges();
+                //        //throw new Exception(&quot;抛异常让你回滚&quot;);//想要模拟事务回滚，就去掉这段代码的注释
+                //        trans.Commit();  
+                //    }
+                //    catch (Exception e)
+                //    {
+                //        trans.Rollback();
+
+                //    }
+                //}
+
+                #endregion
+
+
+            #region 性能测试
+            //using (CodeFirstDbContext db = new CodeFirstDbContext())
+            //{
+            //   // db.Database.CreateIfNotExists();
+            //    double sum = 0;
+            //    int count = Convert.ToInt32(ConfigurationManager.AppSettings[&quot;circleCount&quot;]);
+            //    for (int i = 1; i &lt;= count; i++)
+            //    {
+            //        Stopwatch watch = new Stopwatch();
+            //        watch.Start();
+            //        var efficeList = db.Set&lt;ORMTest&gt;().ToList();
+            //        watch.Stop();
+            //        double useTime = Convert.ToDouble(watch.ElapsedMilliseconds) / 1000;
+            //        sum += useTime;
+            //        Console.WriteLine($&quot;EFCodeFirst第{i}次查询10万条数据花的时间为：&quot; + useTime + &quot;秒&quot;);
+            //    }
+            //    Console.WriteLine($&quot;EFCodeFirst循环{count}次查询十万条数据的平均耗时为：&quot; + sum / count + &quot;秒&quot;);
+            //}          
+            #endregion
+            Console.ReadKey();
+        }
+    }
+}
+</code></pre>
+	  </article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+        
+          <a class="ui label" href="https://sltaurusblog.gitee.io/tags/orm%E5%AF%B9%E6%AF%94" title="ORM对比">ORM对比</a>
+        
+      
+      <div
+        class="ui label"
+        style="float: right; background: #1b1c1d !important; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i> Save as image
+      </div>
+    </footer>
+
+    
+
+    
+      <footer class="ui bottom attached stacked segment post-disqus-area" data-html2canvas-ignore="true">
+        <div id="disqus_thread"></div>
+        <script>
+          
+
+
+          var disqus_config = function () {
+            this.page.url = 'https:\/\/sltaurusblog.gitee.io\/2020\/04\/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94\/';  
+            this.page.identifier = '\/2020\/04\/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94\/'; 
+          };
+
+          (function() { 
+            var d = document, s = d.createElement('script');
+            s.src = 'https://' + '...' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </footer>
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="https://sltaurusblog.gitee.io/images/head.jpg">
+      
+    </div>
+
+    <h1 class="ui medium header">SLTaurus的博客<div class="sub header" style="margin-top: 0.5rem;">合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。</div>
+    </h1>
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="https://sltaurusblog.gitee.io/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="https://sltaurusblog.gitee.io/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+  <section class="ui attached center aligned segment dream-tags">
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/ado.net" title="ado.net">ado.net</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/ef" title="ef">ef</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/hugo" title="hugo">hugo</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/javascript" title="javascript">javascript</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8" title="markdown快速入门">markdown快速入门</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E6%95%B4%E7%89%88" title="markdown语法完整版">markdown语法完整版</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/mvc" title="mvc">mvc</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/mysql" title="mysql">mysql</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/orm%E5%AF%B9%E6%AF%94" title="orm对比">orm对比</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/orm%E6%95%B4%E7%90%86" title="orm整理">orm整理</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/powershell" title="powershell">powershell</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/redis" title="redis">redis</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/ref%E5%92%8Cout" title="ref和out">ref和out</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/sqlservice" title="sqlservice">sqlservice</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98" title="内置泛型委托">内置泛型委托</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E5%8F%8D%E5%B0%84" title="反射">反射</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E7%B2%BE%E9%80%9Ac" title="精通c#">精通c#</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%88%9B%E5%BB%BA%E5%9E%8B" title="设计模式-创建型">设计模式-创建型</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8E%9F%E5%88%99" title="设计模式-原则">设计模式-原则</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%BB%93%E6%9E%84%E5%9E%8B" title="设计模式-结构型">设计模式-结构型</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E9%A1%B9%E7%9B%AE" title="项目">项目</a>
+    
+  </section>
+  
+
+  
+  <section class="ui attached segment dream-categories">
+    <div class="ui accordion">
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/c" class="item">c#</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/" class="item">内置泛型委托：Action、Func和Predicate</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/%E5%8F%8D%E5%B0%84%E6%95%B4%E7%90%86%E4%B9%8B%E6%97%A5%E5%B8%B8%E7%94%A8%E9%80%94/" class="item">反射整理之日常用途</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/ado.net/" class="item">ADO.NET</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/mvc%E6%95%B4%E7%90%86/" class="item">MVC整理</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/%E7%B2%BE%E9%80%9Acsharp%E7%AC%AC%E5%85%AD%E7%89%88/" class="item">精通CSharp(第六版)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/" class="item">ref和out使用时的区别</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/javascript" class="item">javascript</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/" class="item">JavaScript入门经典第6版笔记(下)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8A/" class="item">JavaScript入门经典第6版笔记(上)</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/markdown" class="item">markdown</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E6%95%B4%E7%89%88/" class="item">Markdown语法完整版</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="item">Markdown快速入门</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/orm" class="item">orm</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/" class="item">EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/entityframework/" class="item">EntityFramework</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/orm%E6%95%B4%E7%90%86/" class="item">ORM整理</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/redis" class="item">redis</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/06/redis%E5%9F%BA%E7%A1%80/" class="item">Redis基础</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E5%8D%9A%E5%AE%A2" class="item">博客</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/" class="item">windows10环境下搭建Hugo个人博客&#43;git分布式版本控制&#43;valine评论</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93" class="item">数据库</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/mysql%E6%8B%BE%E9%81%97/" class="item">MySql拾遗 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/" class="item">SqlService笔记</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E8%87%AA%E5%8A%A8%E5%8C%96" class="item">自动化</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/windows-powershell%E6%8C%87%E5%8D%97/" class="item">Windows PowerShell指南</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" class="item">设计模式</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%8E%9F%E5%88%99/" class="item">24种设计模式之设计模式原则 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A1%8C%E4%B8%BA%E5%9E%8B/" class="item">24种设计模式之行为型 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BB%93%E6%9E%84%E5%9E%8B/" class="item">24种设计模式之结构型 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%9E%8B/" class="item">24种设计模式之创建型 </a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E9%A1%B9%E7%9B%AE" class="item">项目</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/05/%E8%AE%A1%E4%BB%B6%E5%B7%A5%E8%B5%84%E9%A1%B9%E7%9B%AE/" class="item">计件工资项目</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+    </div>
+  </section>
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="mailto:1641061313@qq.com">
+        <i class=" mail icon" title="email"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://twitter.com/SLTaurus" target="_blank">
+        <i class=" twitter icon" title="twitter"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://facebook.com/SLTaurus" target="_blank">
+        <i class=" facebook icon" title="facebook"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://instagram.com/SLTaurus" target="_blank">
+        <i class=" instagram icon" title="instagram"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.linkedin.com/in/SLTaurus" target="_blank">
+        <i class=" linkedin icon" title="linkedin"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/SLTaurus" target="_blank">
+        <i class=" github icon" title="github"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.stackoverflow.com/users/SLTaurus" target="_blank">
+        <i class=" stack overflow icon" title="stackoverflow"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://codepen.io/SLTaurus" target="_blank">
+        <i class=" codepen icon" title="codepen"></i>
+      </a>
+    </div>
+  
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2019 - 2020 SLTaurus的博客</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/sltaurusblog.gitee.io'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交链接</h3>
+      </div>
+      <div class="ui attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="mailto:1641061313@qq.com">
+        <i class="large mail icon" title="email"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://twitter.com/SLTaurus" target="_blank">
+        <i class="large twitter icon" title="twitter"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://facebook.com/SLTaurus" target="_blank">
+        <i class="large facebook icon" title="facebook"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://instagram.com/SLTaurus" target="_blank">
+        <i class="large instagram icon" title="instagram"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.linkedin.com/in/SLTaurus" target="_blank">
+        <i class="large linkedin icon" title="linkedin"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/SLTaurus" target="_blank">
+        <i class="large github icon" title="github"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.stackoverflow.com/users/SLTaurus" target="_blank">
+        <i class="large stack overflow icon" title="stackoverflow"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://codepen.io/SLTaurus" target="_blank">
+        <i class="large codepen icon" title="codepen"></i>
+      </a>
+    </div>
+  
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+  
+    <section class="sixteen wide mobile eight wide tablet eight wide computer column dream-column">
+      <footer class="ui segment">
+        <div id="disqus_thread"></div>
+        <script>
+          
+
+
+          var disqus_config = function () {
+            this.page.url = 'https:\/\/sltaurusblog.gitee.io\/2020\/04\/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94\/about';  
+            this.page.identifier = '/about'; 
+          };
+
+          (function() { 
+            var d = document, s = d.createElement('script');
+            s.src = 'https://' + '...' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </footer>
+    </section>
+  
+
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script src="https://sltaurusblog.gitee.io/js/jquery.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/semantic.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/imagesloaded.pkgd.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/masonry.pkgd.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/nav.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/header.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/main.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/theme.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/html2canvas.min.js"></script>
+
+  
+    <script src="https://sltaurusblog.gitee.io/js/prism.js"></script>
+  
+
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', '...', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+  </body>
+</html>

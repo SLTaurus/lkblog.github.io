@@ -1,0 +1,3978 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+JavaScript入门经典第6版笔记(下)
+</title>
+
+    
+  <link href="https://sltaurusblog.gitee.io/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+
+  
+  <meta name="author" content="SLTaurus" />
+  <meta name="description" content="SLTaurus的博客" />
+
+
+
+<meta name="generator" content="Hugo 0.57.2" />
+
+<link rel="canonical" href="https://sltaurusblog.gitee.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/" />
+
+
+<meta property="og:title" content="JavaScript入门经典第6版笔记(下)" />
+<meta property="og:description" content="这里较为记录下JavaScript入门经典第6版的看书笔记，用来大家入门需要和自己温故知新。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sltaurusblog.gitee.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/" />
+<meta property="article:published_time" content="2019-09-23T14:46:39+08:00" />
+<meta property="article:modified_time" content="2019-09-23T14:46:39+08:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript入门经典第6版笔记(下)"/>
+<meta name="twitter:description" content="这里较为记录下JavaScript入门经典第6版的看书笔记，用来大家入门需要和自己温故知新。"/>
+
+
+<link rel="stylesheet" href="https://sltaurusblog.gitee.io/css/github-markdown.css" />
+<link rel="stylesheet" href="https://sltaurusblog.gitee.io/css/semantic.min.css" />
+<link rel="stylesheet" href="https://sltaurusblog.gitee.io/css/site.css" />
+
+
+  
+    <link rel="stylesheet"  href="https://sltaurusblog.gitee.io/css/prism.css">
+  
+
+
+
+<style>
+  a {
+    color: seagreen !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: darkseagreen !important;
+  }
+</style>
+
+
+  </head>
+
+  
+  <body style="background: black;">
+  
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/sltaurusblog.gitee.io'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h2 class="ui header">
+          JavaScript入门经典第6版笔记(下)
+          <div class="sub header">@ SLTaurus · Monday, Sep 23, 2019 · 85 分钟阅读 · 更新于 Sep 23, 2019</div>
+        </h2>
+      </header>
+      <article style="margin-top: 2rem;">
+		<p>这里较为记录下JavaScript入门经典第6版的看书笔记，用来大家入门需要和自己温故知新。</p>
+
+<h1 id="table-of-contents"></h1><nav id="TableOfContents">
+<ul>
+<li><a href="#使用javascript库">使用JavaScript库</a>
+<ul>
+<li><a href="#库">库</a>
+<ul>
+<li><a href="#为什么要使用库">为什么要使用库</a>
+<ul>
+<li><a href="#库能做什么">库能做什么</a></li>
+</ul></li>
+<li><a href="#常见的库">常见的库</a>
+<ul>
+<li><a href="#property框架">property框架</a></li>
+<li><a href="#dojo">Dojo</a></li>
+<li><a href="#yahoo-ui">Yahoo！UI</a></li>
+<li><a href="#mootools">MooTools</a></li>
+<li><a href="#jquery">jQuery</a></li>
+</ul></li>
+<li><a href="#prototype-js介绍">prototype.js介绍</a>
+<ul>
+<li><a href="#函数">$()函数</a></li>
+<li><a href="#f-函数">#F()函数</a></li>
+<li><a href="#form对象">Form对象</a></li>
+<li><a href="#示例">示例</a></li>
+</ul></li>
+<li><a href="#小结">小结</a></li>
+</ul></li>
+<li><a href="#jquery入门">jQuery入门</a>
+<ul>
+<li><a href="#在页面里使用jquery">在页面里使用jQuery</a></li>
+<li><a href="#jquer的-document-ready处理器">jQuer的$(document).ready处理器</a></li>
+<li><a href="#选择页面元素">选择页面元素</a></li>
+<li><a href="#操作html内容">操作HTML内容</a></li>
+<li><a href="#显示和隐藏元素">显示和隐藏元素</a></li>
+<li><a href="#元素动画">元素动画</a>
+<ul>
+<li><a href="#淡入淡出">淡入淡出</a></li>
+<li><a href="#滑动">滑动</a></li>
+<li><a href="#动画">动画</a></li>
+</ul></li>
+<li><a href="#命令链">命令链</a></li>
+<li><a href="#处理事件">处理事件</a></li>
+<li><a href="#小结-1">小结</a></li>
+</ul></li>
+<li><a href="#jquery-ui">jQuery UI</a>
+<ul>
+<li><a href="#jquery-ui-是什么">jQuery UI 是什么</a></li>
+<li><a href="#如何在页面里引用jquery-ui">如何在页面里引用jQuery UI</a>
+<ul>
+<li><a href="#使用-themeroller">使用 ThemeRoller</a></li>
+</ul></li>
+<li><a href="#交互">交互</a>
+<ul>
+<li><a href="#拖和放">拖和放</a></li>
+<li><a href="#调整大小">调整大小</a></li>
+<li><a href="#排序">排序</a></li>
+</ul></li>
+<li><a href="#使用微件">使用微件</a>
+<ul>
+<li><a href="#可折叠控件">可折叠控件</a></li>
+<li><a href="#日期拾取器">日期拾取器</a></li>
+<li><a href="#选项卡">选项卡</a></li>
+</ul></li>
+<li><a href="#小结-2">小结</a></li>
+</ul></li>
+<li><a href="#ajax-和-jquery">Ajax 和 jQuery</a>
+<ul>
+<li><a href="#ajax解析">Ajax解析</a>
+<ul>
+<li><a href="#ajax-入门">Ajax 入门</a></li>
+<li><a href="#xmlhttprequest对象">XMLHttpRequest对象</a></li>
+<li><a href="#不同浏览器的不同规则">不同浏览器的不同规则</a></li>
+<li><a href="#方法和属性">方法和属性</a></li>
+<li><a href="#与服务器通信">与服务器通信</a></li>
+<li><a href="#在服务器端发生了什么">在服务器端发生了什么</a></li>
+<li><a href="#处理服务器响应">处理服务器响应</a></li>
+</ul></li>
+<li><a href="#使用jquery实现ajax">使用jQuery实现Ajax</a></li>
+<li><a href="#篇外之一get对比post">篇外之一GET对比POST</a></li>
+<li><a href="#篇外之二w3school上面的jquery-ajax-get-和-post-方法诠释">篇外之二W3school上面的jQuery - AJAX get() 和 post() 方法诠释</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#高级注题">高级注题</a>
+<ul>
+<li><a href="#读取和写入cookie">读取和写入cookie</a>
+<ul>
+<li><a href="#什么是-cookie">什么是 cookie</a>
+<ul>
+<li><a href="#cookie的局限">cookie的局限</a></li>
+</ul></li>
+<li><a href="#document-cookie-属性">document.cookie 属性</a>
+<ul>
+<li><a href="#数据的编码和解码">数据的编码和解码</a></li>
+</ul></li>
+<li><a href="#cookie-组成">cookie 组成</a></li>
+<li><a href="#编写-cookie">编写 cookie</a></li>
+<li><a href="#编写cookie的函数">编写cookie的函数</a></li>
+<li><a href="#读取cookie">读取cookie</a></li>
+<li><a href="#删除-cookie">删除 cookie</a></li>
+<li><a href="#在一个cookie里设置多个值">在一个cookie里设置多个值</a></li>
+</ul></li>
+<li><a href="#javascript新功能">JavaScript新功能</a>
+<ul>
+<li><a href="#类">类</a></li>
+<li><a href="#箭头函数">箭头函数</a></li>
+<li><a href="#模块">模块</a></li>
+<li><a href="#使用let和const">使用let和const</a></li>
+<li><a href="#模板字符串">模板字符串</a></li>
+<li><a href="#使用for-of访问数组">使用for-of访问数组</a></li>
+<li><a href="#小结-3">小结</a></li>
+</ul></li>
+<li><a href="#使用框架">使用框架</a>
+<ul>
+<li><a href="#软件框架">软件框架</a>
+<ul>
+<li><a href="#为何要使用框架">为何要使用框架</a></li>
+<li><a href="#框架和库不同">框架和库不同</a></li>
+</ul></li>
+<li><a href="#模型-视图-控制器-mvc-架构">模型-视图-控制器（MVC）架构</a>
+<ul>
+<li><a href="#模型">模型</a></li>
+<li><a href="#视图">视图</a></li>
+<li><a href="#控制器">控制器</a></li>
+</ul></li>
+<li><a href="#针对webapp使用mvc框架">针对WebAPP使用MVC框架</a></li>
+<li><a href="#angularjs-框架">AngularJS 框架</a>
+<ul>
+<li><a href="#angularjs-概览">AngularJS 概览</a></li>
+<li><a href="#在页面中包含angularjs">在页面中包含AngularJS</a></li>
+<li><a href="#用ng-指令扩展html">用ng-指令扩展HTML</a></li>
+<li><a href="#作用域">作用域</a></li>
+<li><a href="#指令">指令</a></li>
+<li><a href="#表达式">表达式</a></li>
+<li><a href="#过滤器">过滤器</a></li>
+</ul></li>
+<li><a href="#构建一个angularjs应用程序">构建一个AngularJS应用程序</a></li>
+<li><a href="#小结-4">小结</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#专业技能">专业技能</a>
+<ul>
+<li><a href="#良好的编程习惯">良好的编程习惯</a>
+<ul>
+<li><a href="#避免过度使用javascript">避免过度使用JavaScript</a></li>
+<li><a href="#编写易读和易维护的代码">编写易读和易维护的代码</a>
+<ul>
+<li><a href="#明智地使用注释">明智地使用注释</a></li>
+<li><a href="#使用适当的文件名称-属性名称和方法名称">使用适当的文件名称、属性名称和方法名称</a></li>
+<li><a href="#尽量复用代码">尽量复用代码</a></li>
+<li><a href="#不要假设">不要假设</a></li>
+</ul></li>
+<li><a href="#平稳退化">平稳退化</a></li>
+<li><a href="#渐进增强">渐进增强</a>
+<ul>
+<li><a href="#分离样式-内容和代码">分离样式、内容和代码</a></li>
+</ul></li>
+<li><a href="#代码分离的javascript">代码分离的JavaScript</a>
+<ul>
+<li><a href="#脱离html">脱离HTML</a></li>
+<li><a href="#仅把javascript作为性能增强手段">仅把JavaScript作为性能增强手段</a></li>
+</ul></li>
+<li><a href="#功能检测">功能检测</a></li>
+<li><a href="#妥善处理错误">妥善处理错误</a>
+<ul>
+<li><a href="#使用try和catch">使用try和catch</a></li>
+</ul></li>
+<li><a href="#把代码调整为-代码分离-状态程序清单">把代码调整为“代码分离”状态程序清单</a></li>
+<li><a href="#小结-5">小结</a></li>
+</ul></li>
+<li><a href="#调试代码">调试代码</a>
+<ul>
+<li><a href="#调试简介">调试简介</a>
+<ul>
+<li><a href="#错误类型">错误类型</a></li>
+<li><a href="#选择程序员的编辑器">选择程序员的编辑器</a></li>
+<li><a href="#使用alert-进行简单调试">使用alert()进行简单调试</a></li>
+</ul></li>
+<li><a href="#更高级的调试">更高级的调试</a>
+<ul>
+<li><a href="#控制台">控制台</a></li>
+<li><a href="#分组消息">分组消息</a></li>
+<li><a href="#使用断点停止代码执行">使用断点停止代码执行</a></li>
+<li><a href="#条件性断点">条件性断点</a></li>
+<li><a href="#从代码中启动调试器">从代码中启动调试器</a></li>
+<li><a href="#监视表达式">监视表达式</a></li>
+</ul></li>
+<li><a href="#验证javascript">验证JavaScript</a></li>
+<li><a href="#小结-6">小结</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="使用javascript库">使用JavaScript库</h1>
+
+<h2 id="库">库</h2>
+
+<p>库就是可重用的JavaScript代码的集合，让我们只需要在代码中添加几行代码就可以实现复杂的操作。</p>
+
+<h3 id="为什么要使用库">为什么要使用库</h3>
+
+<p>一些JavaScript开发人员强烈建议编写自己的代码而不是使用库，原因如下：</p>
+
+<ul>
+<li>使用库时只是调用其他人编写的算法和函数，所以我们不能确切了解库里的代码是如何运作的。</li>
+<li>JavaScript库中有很多我们不会用到的代码，但是用户仍然需要下载它。</li>
+</ul>
+
+<p>使用库的好处：</p>
+
+<ul>
+<li>不需要编写别人已经写过的代码，常用的库包含了程序猿经常要用到的函数。这些库得到了很多人的使用和评价，经过了更完整的测试和调试，比我们的代码会更完善点。</li>
+<li>吸取其他程序猿的思路，我们可以用这些优秀的乐于分享的程序猿的代码成果来完善改进自己的代码。</li>
+<li>利用编写细致的库可以避免跨浏览器时JavaScript可能产生的问题。编写库的程序猿和他的用户会测试各种常见的浏览器。</li>
+<li>大部分的库的文件不是很大，下载不会造成明显的影响。对于需要缩短下载时间的场合，大多数库都提供了压缩的版本，我们还可以查看库的代码，只保留需要使用的部分。</li>
+</ul>
+
+<h4 id="库能做什么">库能做什么</h4>
+
+<p>库的功能是多种多样的，取决于它应用的领域、创建者的目的和需求。但一些功能是大多库都包括的：</p>
+
+<ul>
+<li>封装DOM方法。JavaScript库可以提供方便的方式来选择和管理页面的元素或元素组，prototype.js就是如此。</li>
+<li>动画。我们只需要很少的代码就可以实现滑动、淡出、晃动、变形、折叠、跳动等页面效果，而且在很多浏览器上面都是可以正常运行的。</li>
+<li>拖放。真正跨浏览器拖放是很复杂的，使用库可以大大简化这个工作。</li>
+<li>Ajax。不必考虑XMLHttpRequest实例化问题，不必关心回调函数和状态代码，就能动态更新页面内容。</li>
+</ul>
+
+<h3 id="常见的库">常见的库</h3>
+
+<h4 id="property框架">property框架</h4>
+
+<p>property框架(<a href="http://www.propertyjs.org">http://www.propertyjs.org</a>)的优势在于DOM扩展和Ajax处理，在JSON支持与创建和继承类方面也做得不错。property框架作为单独的库进行发布，但也会作为更大项目的组件，比如Ruby on Rails和Script.aculo.us库。</p>
+
+<h4 id="dojo">Dojo</h4>
+
+<p>Dojo(<a href="http://www.dojotoolkit.org">http://www.dojotoolkit.org</a>)是一个开源工具集，能够简化创建程序和用户界面的工作，功能包括扩展的字符串和数学函数，还由动画和Ajax。最新版不仅支持全部的支流浏览器，还支持手机环境（Dojo Mobile），包括苹果的IOS、Android和Blackberry等平台。</p>
+
+<h4 id="yahoo-ui">Yahoo！UI</h4>
+
+<p>Yahoo！UI库（<a href="http://developer.yaoo.com/yui/">http://developer.yaoo.com/yui/</a>）是由Yahoo！开发的开源程序，功能包括动画、DOM、事件管理及一些方便的用户界面元素，比如日历和滑块。</p>
+
+<h4 id="mootools">MooTools</h4>
+
+<p>MooTools（<a href="http://mootool.net/">http://mootool.net/</a>）是一个小型模块化JavaScript框架，提供易于理解的、文档清晰的API（应用程序接口），能够帮我们创建功能强大的、灵活的跨浏览器程序。</p>
+
+<h4 id="jquery">jQuery</h4>
+
+<p>jQuery（<a href="http://jquery.com">http://jquery.com</a>）是一个小型高效的JavaScript库，简化了多种开发工作，比如HTML文档转换、事件处理、动画和Ajax调用，适合快速开发交互站点。</p>
+
+<h3 id="prototype-js介绍">prototype.js介绍</h3>
+
+<p>这里是展示prototype.js库对DOM操作、HTML表单和XMLHttpRequest对象的强大支持，可以如何简化Javascript代码。备注：作为对后世很多库产生过重大影响的库，Prototype 对前端技术进步做出的贡献不可磨灭，但是鉴于其主要功能都能被更好用的 jQuery（或者其它同类型的库）甚至是标准取代了，Prototype 早就已经事实上退出历史舞台了。</p>
+
+<h4 id="函数">$()函数</h4>
+
+<p>$()基本就是getElementById()方法的快捷方式，getElementById(&ldquo;div1&rdquo;)被简化为$(&ldquo;div1&rdquo;)。$()可以接收多个元素的Id作为参数返回元素所组成的数组。</p>
+
+<pre><code>mydataArray = $(&quot;div1&quot;,&quot;div2&quot;,&quot;div3&quot;);
+</code></pre>
+
+<p>mydataArray[0]包含元素ID为div1的值，依次类推。</p>
+
+<h4 id="f-函数">#F()函数</h4>
+
+<p>#F()函数以表单的输入元素或它的ID作为参数，返回它包含的值。比如下面的HTML脚本：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;script src=&quot;Resources/prototype.js&quot;&gt;&lt;/script&gt;    
+    &lt;script&gt;
+    function ShowInput(id) {
+        var mydata = $F(id);
+        alert(mydata);
+    }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input type=&quot;text&quot; id=&quot;input1&quot; /&gt;
+    &lt;input type=&quot;button&quot; value=&quot;查询&quot; onclick=&quot;ShowInput('input1')&quot; /&gt;   &lt;br /&gt;&lt;br /&gt;
+    &lt;select id=&quot;input2&quot; name=&quot;input2&quot;&gt;
+        &lt;option value=&quot;0&quot;&gt;选项A&lt;/option&gt;
+        &lt;option value=&quot;1&quot;&gt;选项B&lt;/option&gt;
+        &lt;option value=&quot;2&quot;&gt;选项C&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;input type=&quot;button&quot; value=&quot;查询&quot; onclick =&quot;ShowInput('input2')&quot; /&gt;   
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>$F(&lsquo;input1&rsquo;)返回的是文本框的值，$F(&lsquo;input2&rsquo;)返回的是选择框当前选中的值。我们可以用同样的方式对文本框和选择框使用#F()函数，不必考虑输入元素的类型，从而非常方便的返回相应的值。</p>
+
+<h4 id="form对象">Form对象</h4>
+
+<p>prototype.js定义了一个Form对象，它包含的一些方法能够简化HTML表单操作。比如调用getElementById()方法可以返回一个数组，其中包含表单的输入字段：</p>
+
+<pre><code>inputs = From.getElementById(&quot;thisform&quot;);
+</code></pre>
+
+<p>serialize（）方法可以把输入名称和值转换为URL兼容的序列：</p>
+
+<pre><code>inputslist = From.serialize(&quot;thisform&quot;);
+</code></pre>
+
+<p>在前面的这行代码里，变量inputslist会包含序列化的&rdquo;参数/值&rdquo;对：</p>
+
+<pre><code>file11=value1&amp;file12=value2&amp;file13=value3...
+</code></pre>
+
+<p>Form.disable(&ldquo;thisform&rdquo;)和Form.enable(&ldquo;thisform&rdquo;)从名称就可以看出它们的功能。</p>
+
+<h4 id="示例">示例</h4>
+
+<p>用getElementById()方法收集HTML表单的一些相关信息。</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;script src=&quot;Resources/prototype.js&quot;&gt;&lt;/script&gt;    
+    &lt;script&gt;
+    function ShowFormFileds() {
+        var form = $('exampleForm');
+        var message = '';
+        var fileds = form.getElements();
+        for (var i = 0; i &lt; fileds.length; i++) {
+            message += &quot;Filed Name：&quot; + fileds[i].name + &quot; Value：&quot; + fileds[i].value + &quot;\n&quot;;            
+        }
+        alert(message);
+    }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form id=&quot;exampleForm&quot; action=&quot;#&quot; onsubmit=&quot;return false&quot;&gt;
+        UserName：&lt;input type=&quot;text&quot; name=&quot;username&quot; /&gt;&lt;br /&gt;
+        Telephone：&lt;input type=&quot;text&quot; name=&quot;telephone&quot; /&gt;&lt;br /&gt;
+        Message：&lt;input type=&quot;text&quot; name=&quot;message&quot; /&gt;&lt;br /&gt;
+    &lt;/form&gt;
+    &lt;input type=&quot;button&quot; value=&quot;结果&quot; onclick=&quot;ShowFormFileds()&quot; /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="小结">小结</h3>
+
+<p>在很多情况下，利用库都可以简化JavaScript的编写过程。这些库把众多常用的对象和方法包装为便于使用的形式，让程序猿在添加或删除事件监听器或是访问表单元素是不必再担心跨浏览器的问题，这里只是简单介绍了几个最常用的JavaScript库。</p>
+
+<h2 id="jquery入门">jQuery入门</h2>
+
+<p>虽然存在着很多JavaScript库，但jQuery显然是最常用的，而且几乎是最容易拓展的一个。大量开发人员给jQuery提供了开源的插件，让我们几乎可以为任何应用找到适当的插件。这些范围广泛的插件和易于使用的简单语法让jQuery成为一个伟大的库。</p>
+
+<h3 id="在页面里使用jquery">在页面里使用jQuery</h3>
+
+<p>在页面里引用jQuery主要有两种方式：</p>
+
+<ul>
+<li>一种是将jQuery下载下来然后在页面的<code>&lt;head&gt;</code>部分用<code>&lt;script&gt;</code>标签来包含jQuery库，示例：<code>&lt;script src=&quot;Resources/jquery-3.4.1.js&quot;&gt;&lt;/script&gt;</code>。</li>
+<li>第二种是使用远程方式，用“内容分发网络”，也就是CDN的方式引用它。除了不用下载jQuery之外，这种方式还有一些优点：当浏览器需要使用JQuery时，它很有可能已经存在缓存里了，另外CDN通常能够保证从最近的地理位置的服务器提供文件，从而减少加载时间。jQuery站的CDN可以在网络上找到很多，这里的范例如下：<code>&lt;script src=&quot;https://cdn.bootcss.com/jquery/3.4.1/jquery.js&quot;&gt;&lt;/script&gt;</code>。</li>
+</ul>
+
+<p>除非有特定的理由需要在自己的服务器上加载jQuery，一般情况下CDN方式是更好的选择。</p>
+
+<h3 id="jquer的-document-ready处理器">jQuer的$(document).ready处理器</h3>
+
+<p>本书多次使用了window.onload处理器，而jQuery具有自己的相应方法：</p>
+
+<pre><code>$(document).ready(function () {
+//jQuery代码
+        });
+</code></pre>
+
+<p>与window.onload一样，它完成两件事情：</p>
+
+<ul>
+<li>确保在DOM可用之后，也就是代码中可能访问的元素都已经存在了，再执行代码，从而避免产生错误。</li>
+<li>把语义层（HTML）和表现层（CSS）分离开，让代码更清晰。</li>
+</ul>
+
+<p>jQuery相比window.onload还有一个优点：不是一定等到页面加载完成才运行代码。在使用JQuery的$(document).ready时候，只要DOM树构造完成，代码就开始运行，而不会等到图像和其他资源都加载完，这对性能改善略有帮助。</p>
+
+<h3 id="选择页面元素">选择页面元素</h3>
+
+<p>在jQuery里，利用操作符$(&ldquo;&rdquo;)就可以选择HTML元素。下面是一些使用范例：</p>
+
+<pre><code>$(&quot;span&quot;);                  //全部span元素
+$(&quot;#elem&quot;);                 //id 为&quot;elem&quot;的HTML元素
+$(&quot;.classname&quot;);            //类为&quot;classname&quot;的HTML元素
+$(&quot;div#elem&quot;);              //id为&quot;elem&quot;的＜div＞元素
+$(&quot;ul li a.menu&quot;);          //类为&quot;menu&quot;且嵌套在列表项里的锚点
+$(&quot;p ＞ span&quot;);              //p的直接子元素 span
+$(&quot;input[type=password]&quot;);  //具有指定类型的输入元素
+$(&quot;p:first&quot;);               //页面上第一个段落
+$(&quot;p:even&quot;);                //全部偶数段落
+</code></pre>
+
+<p>关于DOM和CSS的选择符就是上述这些，但jQuery还有一些自己定制的选择符，比如：</p>
+
+<pre><code>$(&quot;:header&quot;);       //标题元素(hl 到 h6)
+$(&quot;：button&quot;);       //全部按钮元素(输入框或按钮)
+$(&quot;：radio&quot;);        //单选钮
+$(&quot;:check box&quot;);    //选择框
+$(&quot;:checked&quot;);      //选中状态的选择框或单选钮
+</code></pre>
+
+<p>前面这几条jQuery语句都会返回一个对象，其中包括由指定DOM元素组成的数组。这些 语句并没有实际操作，而只是从DOM获取相应的元素。</p>
+
+<h3 id="操作html内容">操作HTML内容</h3>
+
+<p>操作页面元素内容是最能体现jQuery高效工作的方面之一。html()和text()方法能够获取和设置使用前面的语句所选中的元素的内容，而attr()可以获取和设置单个元素的属性。</p>
+
+<p>html()这个方法能够获取元素或一组元素的HTML内容，它类似于JavaScript的innerHTML：</p>
+
+<pre><code>var htmlContent = $(&quot;#elem&quot;).html(); //变量htmlContent就会包含id为&quot;elem&quot;的页面元素内部的全部HTML (包括文本)。
+</code></pre>
+
+<p>使用类似的语法，就可以设置元素或一组元素的HTML内容：</p>
+
+<pre><code>$(&quot;#elem&quot;).html(&quot;&lt;p&gt;Here is some new content.&lt;/p&gt;n); //这样就会修改id为“elem”的页面元素的HTML内容
+</code></pre>
+
+<p>text()如果只是想获得一个元素或一组元素的文本内容，除了使用html()外，还可以使用text()：</p>
+
+<pre><code>var textcontent = $(&quot;#teim&quot;)*text(); //变量textcontent就会包含id为&quot;elem&quot;的页面元素内部的全部文本(不包括HTML)。
+</code></pre>
+
+<p>同样地，它也可以设置元素的文本内容：</p>
+
+<pre><code>$(&quot;#elem&quot;).text (&quot;Here is some new content.&quot;)； //这样就会修改id为&quot;elem&quot;的页面元素的文本内容。
+</code></pre>
+
+<p>如果想给元素添加文本内容而不是替换其中的内容，可以这样做：</p>
+
+<pre><code>$(&quot;#elem&quot;).append(&quot;&lt;p&gt;Here is some new content.&lt;/p&gt;&quot;); //这样会在保持原有内容的基础上，添加新的内容。
+</code></pre>
+
+<p>类似地：
+    $(&ldquo;div&rdquo;).append(&rdquo;<p>Here is some new content.</p>&rdquo;); //会给页面上全部<div>元素添加一些内容.</p>
+
+<p>attr()当应用于一个元素时，这个方法返回特定属性的值。</p>
+
+<pre><code>var titie = $(&quot;#elem&quot;).attr(&quot;title&quot;);
+</code></pre>
+
+<p>如果应用于一组元素，它只返回第一个元素的值,利用这个方法还可以设置属性的值：</p>
+
+<pre><code>$(&quot;#elem&quot;).attr(&quot;title&quot;,&quot;This is the new title&quot;);
+</code></pre>
+
+<p><strong>附加：</strong></p>
+
+<p>val() 方法返回或设置被选元素的值。元素的值是通过 value 属性设置的。其中有部分元素没有value，该方法大多用于 input 元素。如果该方法未设置参数，则返回被选元素的当前值。</p>
+
+<pre><code>$(&quot;#name&quot;).val()     //获取id=&quot;name&quot;的value值
+$(&quot;#name&quot;).val(value)  //为id=&quot;name&quot;的元素的value赋值，value表示你赋予的值
+</code></pre>
+
+<p>html()方法返回或设置被选元素的内容(innerHTML)。如果该方法未设置参数，则返回被选元素的当前内容。当使用该方法返回一个值时，它会返回第一个匹配元素的内容。当使用该方法设置一个值时，它会覆盖所有匹配元素的内容。</p>
+
+<pre><code>$(&quot;#name&quot;).html() //获取第一个id=name的内容
+$(&quot;#name&quot;).html(&quot;需要赋予的值&quot;) 
+</code></pre>
+
+<p>attr() 方法设置或返回被选元素的属性值。根据该方法不同的参数，其工作方式也有所差异。</p>
+
+<pre><code>$(&quot;name&quot;).attr(&quot;attribute&quot;); //返回被选元素的属性值。
+$(&quot;name&quot;).attr(attribute,value)； //设置被选元素的属性和值。
+</code></pre>
+
+<p>区别：
++ val()一般用在input上，val主要运用于表单元素上，而不用在其他元素，用来获取input或者是select的值（但我用val给select赋值时无法显示，不知道为什么）。
++ html()和text()、attr()可用在多种元素上，但是html()相当于依据源代码返回，也就是在返回的内容中会包含各种tag，而text()则相当于是依据页面显示返回，返回的内容是出去各种tag之间的内容。</p>
+
+<h3 id="显示和隐藏元素">显示和隐藏元素</h3>
+
+<p>对于传统的JavaScript来说，显示和隐藏页面元素通常是利用元素style对象的display或visibility属性来实现的。这种方法没有什么问题，但通常会导致比较长的代码：</p>
+
+<pre><code>document.getElementByTd(&quot;elem”).style.visibility = 'visible';
+</code></pre>
+
+<p>利用jQuery的show()和hide()方法就可以只用较短的代码实现相同的功能，而且还具有额外一些功能。</p>
+
+<p>show()方法可以让单个元素或一组元素显示在页面上：</p>
+
+<pre><code>$(&quot;div&quot;).show();    //显示全部&lt;div&gt;元素
+</code></pre>
+
+<p>另外，还可以添加一些参数来调整显示的过程。在下面的范例里，第一个参数&rdquo;fast&rdquo;决定了显示元素的速度。这个参数除了可以设置为fast或slow外，还可以用数字表示特定时间(单位是毫秒)。如果不设置这个参数，元素就会立即显示，没有任何动画。slow对应的数值大约是600毫秒，fast对应的数值大约是200毫秒。</p>
+
+<p>hide()方法的用途显然与show()是相反的，用于隐藏页面元素。它也有一些和show()一样的可选参数：</p>
+
+<pre><code>$ (&quot;#elem&quot;) .hide (&quot;slow&quot;, function () {
+//在元素隐藏之后进行某些操作
+});
+</code></pre>
+
+<p>toggle()方法会改变一个元素或一组元素的当前显示状态，也就是说把处于显示状态 的元素隐藏起来，把处于隐藏状态的元素显示出来。它也具有关于变化速度及回调函数的参数。</p>
+
+<pre><code>$(&quot;#elemn&quot;).toggle(1000, function() {
+/ / 在元素显示或隐藏之后进行某些操作
+})；
+</code></pre>
+
+<p>show()、hide()和 toggle()方法都可以应用于一组元素，这些元素会同时显示或隐藏。</p>
+
+<h3 id="元素动画">元素动画</h3>
+
+<h4 id="淡入淡出">淡入淡出</h4>
+
+<p>在实现元素淡入淡出的同时，还可以设置持续时间和回调函数。淡出的操作是这样的：</p>
+
+<pre><code>$ (&quot;#elem&quot;).fadeOut(&quot;slow&quot;,function() {
+/ / 在淡出之后进行一些操作
+})；
+</code></pre>
+
+<p>淡入的操作是这样的：</p>
+
+<pre><code>$(&quot;#elem&quot;).fadein(500,function() {
+/ / 在淡入之后进行一些操作
+})；
+</code></pre>
+
+<p>还可以让元素只进行部分淡入或淡出：</p>
+
+<pre><code>$ (&quot;#elemn&quot;).fadeTo(3000, 0.5, function() {
+/ / 在淡入或淡出之后进行一些操作
+});
+</code></pre>
+
+<p>其中第二个参数(本例是0.5)表示最终的不透明度，类似于CSS里设置的不透明度。不管元素曾经的不透明度是多少，在执行上述语句之后，它都会变成第二个参数所指定的值。</p>
+
+<h4 id="滑动">滑动</h4>
+
+<p>jQuery实现元素滑动的方法与实现淡入淡出的方法如出一辙，它们的参数具有同样的规 则，可以实现单个或一组元素的向上或向下滑动。</p>
+
+<pre><code>$(&quot;#elem&quot;).slideDown(150, function(){
+/ / 向下滑动之后进行一些操作
+})；
+</code></pre>
+
+<p>向上滑动是这样的：</p>
+
+<pre><code>$(&quot;#elem&quot;).slideUp(&quot;slow&quot;,function() {
+//向上滑动之后进行一些操作
+})；
+</code></pre>
+
+<p>为了实现根据元素目前位置自动决定是向上滑动还是向下滑动，jQuery还提供了slideToggle()方法。</p>
+
+<pre><code>$(&quot;#elem&quot;).slideToggle(1000, function () {
+/ / 向上或向下滑动之后进行一些操作
+})；
+</code></pre>
+
+<h4 id="动画">动画</h4>
+
+<p>实现动画的方法很简单，利用jQuery指定元素要使用CSS样式表。jQuery就以渐变方式应用新的CSS样式(而不是像普通的CSS或 JavaScript那样直接应用)，从而实现动画的效果。animate()方法可以应用于很多CSS属性。下面的范例中把元素的宽度和高度动画到400 像素x500像素，并且在动画完成之后，利用回调函数把元素淡出为隐藏:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        #div1{
+            width: 200px;
+            height: 200px;
+            border:5px solid red;
+        }
+    &lt;/style&gt;
+    &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.4.1/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        function demo() {
+            $(&quot;#div1&quot;).animate(
+                    {
+                        width: &quot;400px&quot;,
+                        height: &quot;500px&quot;
+                    }, 1500, function () {
+                        $(this).fadeOut(&quot;slow&quot;);
+                    }
+                );
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;div1&quot;&gt;&lt;/div&gt;
+&lt;input id=&quot;input1&quot; type=&quot;button&quot; value=&quot;测试&quot; onclick=&quot;demo()&quot; /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="命令链">命令链</h3>
+
+<p>jQuery的大多数方法都返回一个jQuery对象，它可以用于再调用其他方法，这是jQuery 的另一个方便之处。比如可以像这样组合前面的范例：</p>
+
+<pre><code>$(&quot;#elem&quot;).fadeOut().fadein();
+</code></pre>
+
+<p>上面这行代码会先淡岀指定的元素，然后淡入显示它们。命令链的长度没有什么限制, 从而可以对同一组元素连续进行很多操作：</p>
+
+<pre><code>$(&quot;#elem&quot;).text(&quot;Hello from jQuery&quot;).fadeOut().fade1n();
+</code></pre>
+
+<p>页面加载之后应该显示一个红色<div>元素，具有黑色边框，其中内容是“改变形状&hellip;.”，在动画变化为新的宽度和高度之后，其中的内容会变为&rdquo;褪色&hellip;”，并且整个元素淡出消失。示例：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;style&gt;
+        #animateMe {
+            position: absolute;
+            width: 100px;
+            height: 400px;
+            top: 100px;
+            Left: 100px;
+            border: 2px solid black;
+            background-color: red;
+            padding: 20px;
+        }
+    &lt;/style&gt;
+    &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.4.1/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        $(document).ready(function () {
+            $(&quot;#animateMe&quot;).text(&quot;改变形状...&quot;).animate(
+            {
+                width: &quot;400px&quot;,
+                height: &quot;200px&quot;
+            }, 5000, function () {
+                $(this).text(&quot;褪色...&quot;).fadeOut(4000);
+            }
+        );
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id =&quot;animateMe&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="处理事件">处理事件</h3>
+
+<p>在jQuery里可以用多种方式给单个元素或一组元素添加事件处理器。首先，最直接的方法是这样的：</p>
+
+<pre><code>$(&quot;a&quot;).click(function() {
+/ / 当锚点元素被单击时要执行的代码
+})；
+</code></pre>
+
+<p>或者像下面这样使用命名的函数：</p>
+
+<pre><code>function hello(){
+    alert(n Hello from jQuery&quot;);
+}
+$(&quot;a&quot;).click(hello);
+</code></pre>
+
+<p>在上面这两个范例里，当锚点被单击时，就会执行指定的函数。jQuery里其他常见的事件包括</p>
+
+<ul>
+<li>blur：当元素失去焦点时发生。</li>
+<li>focus：当元素获得焦点时发生。</li>
+<li>hover：当鼠标指针悬停在被选元素上时发生。</li>
+<li>keypress：键被按下时发生。</li>
+<li>keydown：键按下的过程。</li>
+<li>keyup：键被松开。</li>
+<li>change：当元素的值发生改变时触发事件,该事件仅适用于文本域(text field)，以及textarea和select 元素。</li>
+<li>mousemove：当鼠标指针在指定的元素中移动时,<code>$(document).mousemove(function(e){$(&quot;span&quot;).text(e.pageX + &quot;, &quot; + e.pageY);});)</code>。</li>
+<li>resize：当调整浏览器窗口大小时发生。</li>
+<li>scroll：当用户滚动指定的元素时会发生，scroll 事件适用于所有可滚动的元素和 window 对象（浏览器窗口）。</li>
+<li>submit：当提交表单时，会发生的事件。该事件只适用于表单元素。</li>
+<li>select：当 textarea 或文本类型的 input 元素中的文本被选择（标记）时，会发生 select 事件。</li>
+</ul>
+
+<p>jQuery以跨浏览器的方式包装了attachEvent和 addEventListener方法，从而便于添加多个事件处理器：</p>
+
+<pre><code>$(&quot;a&quot;).on ('click',hello);
+</code></pre>
+
+<p>on()方法是在jQuery 1.7引入的，用于取代以前一些事件处理方法，包括 bind()、delegate()和 live()。on()方法可以给原本存在于HTML页面的元素或者动态添加DOM的元素添加处理器。</p>
+
+<h3 id="小结-1">小结</h3>
+
+<p>jQuery是功能强大且非常流行的JavaScript库，它具有很容易使用的API,可以在广大的主流的浏览器中工作。jQuery由JohnResig编写，发布于2006年。目前有多个jQuery项目，包括jQuery Core(上面的介绍)和jQuery UI(后面有所介绍)。这些项目都处于活跃的开发状态，由John和一个志愿者小组进行维护。关于这些项目及开发小组的情况可以参考jquery.orgo。jQuery可以与其他库同时使用。它提供了 jQuery.noConflict()方法来避免冲突, 详情请见 <a href="http://docs.jquery.com/Using_jQuery_with_Other_Libraries">http://docs.jquery.com/Using_jQuery_with_Other_Libraries</a>。</p>
+
+<h2 id="jquery-ui">jQuery UI</h2>
+
+<p>jQuery UI提供了很多高级效果和主题微件，可以帮助我们建立互动的Web应用。</p>
+
+<h3 id="jquery-ui-是什么">jQuery UI 是什么</h3>
+
+<p>jQuery开发小组决定提供一个”官方“的jQuery插件集合，集中大量流行的用户界面组 件，并且赋予它们统一的界面风格。利用这些组件，只用少量的代码就可以建立高度交互且
+样式迷人的Web应用。
+jQuery U I为我们提供了：</p>
+
+<ul>
+<li>交互性。jQuery UI支持对页面元素进行拖放、调整尺寸、选择和排序。</li>
+<li>微件。这些功能丰富的控件包括可折叠控件、自动完成、按钮、日期拾取器、对话框、进度条、滑动条和选项卡。</li>
+<li>主题。让站点在全部用户界面组件都具有一致的观感。从<a href="http://jqueryui.com/themeroller">http://jqueryui.com/themeroller</a>上下载ThemeRoller工具，它可以从预先设置的很多设计中选择主题，也可以根据现有主题创建定制的主题。</li>
+</ul>
+
+<p>由于jQuery U I具有出色的用户界面一致性，利 用jQuery文档，可以轻松地查看很多其他可用的插件。</p>
+
+<h3 id="如何在页面里引用jquery-ui">如何在页面里引用jQuery UI</h3>
+
+<p>第一步是访问<a href="http://jqueryui.com/themeroller/">http://jqueryui.com/themeroller/</a>的jQuery ThemeRoller在线应用。</p>
+
+<h4 id="使用-themeroller">使用 ThemeRoller</h4>
+
+<p>jQuery UI CSS框架是一组类，满足了相当大范围的用户界面需求。利用ThemeRoller 工具，我们就可以从无到有建立自己的样式，或是基于<a href="http://jqueryui.com/themeroller/Jl供的大">http://jqueryui.com/themeroller/Jl供的大</a>
+量范例来实现自己的样式。</p>
+
+<p>在确定了样式之后，jQuery UI会提供一个可下载的构造器，其中包含了我们所需要的组件。它还会处理关于文件依赖的问题，避免下载的微件或交互缺少支持文件。我们需要做的只是下载和解压这个压缩文件。文件解压缩之后，会得到如下的目录结构：</p>
+
+<pre><code>/css/
+/development-bundle/
+/js/
+</code></pre>
+
+<p>development-bundle目录保存了 jQuery UI源代码、范例和文档。如果不需要修改jQuery UI代码，把这个目录删除就可以了，不会有什么问题。一般来说，我们需要在使用jQuery UI微件和交互的页面里从剩余的其他文件中引用主题以及jQuery和jQuery UI：</p>
+
+<pre><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;jquery-ui-min.css&quot; /&gt;
+&lt;script src=&quot;http://code.jquery.com/jquery-latest.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;http://codeorigin.jquery.com/ui/1.10.3/jquery-ui.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>如果是使用标准范例的主题，就可以利用CDN链接全部这些文件：</p>
+
+<p><link rel="tylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css"/>
+<script src="http://code.jquery.com/jquery-latest.min.j sMx</script>
+<script src="http://codeorigin.jquery.com/ui/1.10.3/jquery-ui.min.js"></script></p>
+
+<p>个人从官网示例找到的是：</p>
+
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+</code></pre>
+
+<h3 id="交互">交互</h3>
+
+<p>jQuery UI能做一些事情来改善页面元素与用户的交互。</p>
+
+<h4 id="拖和放">拖和放</h4>
+
+<p>使用jQuery UI让一个元素成为能够拖放得再简单不过了,示例：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+        #dragdiv {
+            width: 100px;
+            height: 100px;
+            background-color: #eeffee;
+            border: 1px solid black;
+            padding: 5px;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        $(function () {
+            $(&quot;#dragdiv&quot;).draggable(); //设置元素可以拖放
+        });
+    &lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;dragdiv&quot;&gt; 这个元素可以在页面上拖放！!&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>利用jQuery UI实现元素的拖和放 为了让某个元素能够接受拖放到它的另一个元素，需要使用droppable()方法。这个方法可以指定用于多个事件，比如可拖动元素被放下、经过可拖动区域或离开可拖动区域。除了要让拖动元素成为可拖动的，还需要把这个新的<code>&lt;div&gt;</code>元素指定为可放置区域,另外，我们给drop和 out事件处理器添加方法，让拖动元素里的文本在它被放下或离开 放置区域时有相应的变化。示例：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+        div {
+            font: 12px normal arial, helvetica;
+        }
+        #dragdiv {
+            width: 150px;
+            height: 50px;
+            background-color: #eeffee;
+            border: 1px solid black;
+            padding: 5px;
+        }
+        #dropdiv {
+            position: absolute;
+            top: 80px;
+            left: 100px;
+            width: 300px;
+            height: 200px;
+            border: 1px solid black;
+            padding: 5px;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        $(function () {
+            $('#dragdiv').draggable();
+            $('#dropdiv').droppable({
+                drop: function() { $ ('#dragdiv') .text (&quot;已放下！&quot;);},
+                out: function () { $(&quot;#dragdiv&quot;).text(&quot;再次拿起来！&quot;); }
+            });
+        });
+    &lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;dropdiv&quot;&gt; 这里是放下来的区域！&lt;/div&gt;
+    &lt;div id=&quot;dragdiv&quot;&gt;在页面内拖动此元素！&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h4 id="调整大小">调整大小</h4>
+
+<p>使用jQueryUI给矩形元素添加调整大小的手柄也是很容易的:</p>
+
+<pre><code>$('#resizable').resizable();
+</code></pre>
+
+<p>作为一个示范，我们可以把上面的放置区域以命令链的形式添加resizable()方法:</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+        div {
+            font: 12px normal arial, helvetica;
+        }
+        #dragdiv {
+            width: 150px;
+            height: 50px;
+            background-color: #eeffee;
+            border: 1px solid black;
+            padding: 5px;
+        }
+        #dropdiv {
+            position: absolute;
+            top: 80px;
+            left: 100px;
+            width: 300px;
+            height: 200px;
+            border: 1px solid black;
+            padding: 5px;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        $(function () {
+            $('#dragdiv').draggable();
+            $('#dropdiv').droppable({
+                drop: function() { $ ('#dragdiv') .text (&quot;已放下！&quot;);},
+                out: function () { $(&quot;#dragdiv&quot;).text(&quot;再次拿起来！&quot;); }
+            }).resizable();
+        });
+    &lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;dropdiv&quot;&gt; 这里是放下来的区域！&lt;/div&gt;
+    &lt;div id=&quot;dragdiv&quot;&gt;在页面内拖动此元素！&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h4 id="排序">排序</h4>
+
+<p>使用sortable()方法可以把元素添加到列表，并且让列表可以进行排序:</p>
+
+<pre><code>$(&quot;#sortMe&quot;).sortable();
+</code></pre>
+
+<p>下面的示例展示了如何对一个无序列表元素使用这个方法：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        $(function () {
+            $(&quot;#sortMe&quot;).sortable();
+        });
+    &lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;ul id=&quot;sortMe&quot;&gt;
+        &lt;li&gt;我是一&lt;/li&gt;
+        &lt;li&gt;我是二&lt;/li&gt;
+        &lt;li&gt;我是三&lt;/li&gt;
+        &lt;li&gt;我是四&lt;/li&gt;
+        &lt;li&gt;我是五&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;span&gt;列表元素可拖动！&lt;/span&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="使用微件">使用微件</h3>
+
+<p>微件是一种界面元素，在提供方便功能的同时，对于程序的影响保持在最小程度。</p>
+
+<h4 id="可折叠控件">可折叠控件</h4>
+
+<p>可折叠控件让用户在一组div元素里可以一次只展开一个，而其他的保持在只显示标题的状态。首先需要在语义层添加数据，方法是使用多个标题和内容窗格：</p>
+
+<pre><code>&lt;div id='accordion'&gt;
+&lt;h3&gt;&lt;a href=&quot;&quot;&gt;First header&lt;/a&gt;&lt;/h3&gt; 
+&lt;div&gt; First content&lt;/div&gt;
+&lt;h3&gt;&lt;a href=&quot;#&quot;&gt;Second header&lt;/a&gt;&lt;/h3&gt; 
+&lt;div&gt;Second content&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>然后在外层容器元素上调用accordionO方法来激活折叠控件：</p>
+
+<pre><code>&lt;script&gt;
+    $(function () {
+        $(&quot;#accordion&quot;).accordion();
+    });
+&lt;/script&gt;
+</code></pre>
+
+<p>下面是个示例，展示一家餐馆的午餐菜品在折叠控件的不同部分展示：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        $(function () {
+            $(&quot;#accordion&quot;).accordion();
+        });
+    &lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;从下列菜单选项中选择：&lt;/h2&gt;
+    &lt;div id=&quot;accordion&quot;&gt;
+        &lt;h3&gt;&lt;a href=&quot;#&quot;&gt;开胃小吃&lt;/a&gt;&lt;/h3&gt; 
+        &lt;div&gt;
+            &lt;ul&gt;
+                &lt;li&gt;蛤蜊浓汤&lt;/li&gt;
+                &lt;li&gt;火腿鳄梨沙拉&lt;/li&gt;
+                &lt;li&gt;填馅蘑菇&lt;/li&gt;
+                &lt;li&gt;鸡肝酱&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt; 
+        &lt;h3&gt;&lt;a href=&quot;#&quot;&gt;主食&lt;/a&gt;&lt;/h3&gt; 
+        &lt;div&gt;
+            &lt;ul&gt;
+                &lt;li&gt;苏格兰鲑鱼&lt;/li&gt;
+                &lt;li&gt;蔬菜千层面&lt;/li&gt;
+                &lt;li&gt;牛肉肾馅饼&lt;/li&gt;
+                &lt;li&gt;烤鸡&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt; 
+        &lt;h3&gt;&lt;a href=&quot;#&quot;&gt;饭后甜点&lt;/a&gt;&lt;/h3&gt; 
+        &lt;div&gt;
+            &lt;ul&gt;
+                &lt;li&gt;巧克力圣代&lt;/li&gt;
+                &lt;li&gt;柠檬冰沙&lt;/li&gt;
+                &lt;li&gt;水果沙拉&lt;/li&gt;
+                &lt;li&gt;草莓芝士蛋糕&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h4 id="日期拾取器">日期拾取器</h4>
+
+<p>假设下面这个字段是要输入日期的：</p>
+
+<pre><code>&lt;input type=&quot;text&quot; id=&quot; datepicker&quot; /&gt;
+</code></pre>
+
+<p>只需一行代码就可以给这个字段添加日期拾取器：</p>
+
+<pre><code>$(function () {
+        $(&quot;#datepicker&quot;).datepicker();
+    });
+</code></pre>
+
+<h4 id="选项卡">选项卡</h4>
+
+<p>要达到这种节省空间的目的除了可折叠控件，还有另一种方法，就是使用选项卡界面。示例：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        $(function () {
+            $(&quot;#tabs&quot;).tabs();
+        });
+    &lt;/script&gt;    
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;tabs&quot;&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href=&quot;#tabs-1&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#tabs-2&quot;&gt;About Us&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#tabs-3&quot;&gt;Products&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt; 
+        &lt;div id=&quot;tabs-1&quot;&gt;
+            &lt;p&gt;Welcome to our online store....&lt;/p&gt;
+        &lt;/div&gt; 
+        &lt;div id=&quot;tabs-2&quot;&gt;
+        &lt;p&gt;We've been selling widgets for 5 years ...&lt;/p&gt;
+        &lt;/div&gt; 
+        &lt;div id=&quot;tabs-3&quot;&gt;
+            &lt;p&gt;We sell all kinds of widgets ...&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="小结-2">小结</h3>
+
+<p>本章介绍了如何利用jQuery UI配合jQuery建立灵活的用户界面，如何利用ThemeRoller应用设置界面元素的整体风格，可以看到给页面添加交互和微件是多么地轻松。我们还能对界面元素进一步定制，这里介绍的界面和微件都使用了它们的默认设置，而它们实际上有大量的定制选项，可以根据我们的需要进行设置。<a href="http://docs.jquery.com/UI/提供了大量的文档和范例。">http://docs.jquery.com/UI/提供了大量的文档和范例。</a></p>
+
+<p>让页面上的其他元素与jQuery UI生成的元素具有同样的样式：当jQuery U I生成装饰效果时，它会把很多的类应用于新创建的元素。这些类对应 于jQuery UI CSS框架里的CSS声明。每一个微件的详细说明请见jQuery UI文档。</p>
+
+<h2 id="ajax-和-jquery">Ajax 和 jQuery</h2>
+
+<p>Ajax是什么，它如何提高用户体验：</p>
+
+<p>Ajax是 Asynchronous JavaScript And XML的缩写。实际上，Ajax并不仅限于只是返回XML数据。JavaScript是客户端脚本语言，本书前面介绍的全部范例都是客户端编程。Ajax允许与后台的服务器通信，并且不需要执行页面刷新就能够将结果显示到页面上。这就使得你能够创建与用户平滑交互的页面。在本章中，我们将学习支持Ajax的底层技 术，以及如何使用jQuery使得整个过程漂亮而简单。</p>
+
+<h3 id="ajax解析">Ajax解析</h3>
+
+<p>到目前为止，我们介绍的都是关于站点用户界面的传统页面模型。在用户与这种站点互动时，每个页面包含文本、图像、数据输入表单等，依次展现。每个页面都得单独处理，才能跳转到下一个页面。举例来说，在填写表单的字段时，我们会根据需要进行编辑，因为知道在最终提交之前，数据不会被发送到服务器。</p>
+
+<p><img src="https://sltaurusblog.gitee.io/images/JavaScript/JavaScript25.jpg" alt="JavaScript25" /></p>
+
+<p>上面的图展示了这种互动过程。在提交表单或单击链接之后，浏览器要进行屏幕刷新,才能显示由服务器发送的新页面或修改后的页面。符合这种模型的交互具有一些缺点。首先，每个新页面或修改页面的加载都会有明显延时，这会影响用户对于应用程序“流畅”运行的感觉。而且，即使新页面与前一个页面的内容几乎是相同的，每次也都需要加载“整个”页面。站点里很多页面的共同元素，比如标题、面脚、导航栏，可能会在页面数据里占据很大的比例。这种不必要的数据下载会浪费带宽，而且会使每个新页面的加载延时恶化。</p>
+
+<p>我们希望耗时的计算过程在后台安静地运行，而显示内容仍然保留在屏幕上，界面元素依旧能对用户的指令产生响应。</p>
+
+<h4 id="ajax-入门">Ajax 入门</h4>
+
+<p>Ajax能够实现上述在桌面应用程序中很常见的功能，它在Web页面与服务器之间建立了 一个额外的“处理层”。</p>
+
+<p>这个“处理层”通常称为Ajax引擎或Ajax框架。它解释来自用户的请求，在后台以异步方式“安静”地处理服务器通信。这意味着对于用户操作,服务器请求与响应不再需要同步一致了，而只是在便于用户使用或程序正确操作需要时才发生；浏览器不会停止响应来等服务器完成对最后一个请求的处理，而是会允许用户在当前页面浏览、单击和输入数据。页面上需要根据服务器响应进行修改的元素也由Ajax 处理，这是在页面保持可用状态过程中动态进行的。下图这种交互方式的示意。
+<img src="https://sltaurusblog.gitee.io/images/JavaScript/JavaScript26.jpg" alt="JavaScript26" /></p>
+
+<h4 id="xmlhttprequest对象">XMLHttpRequest对象</h4>
+
+<p>当用户单击页面上的链接或是提交一个表单时，就向服务器发送了一个HTML请求，得到的响应是一个新页面或修改过的页面。然而，为了能让Web程序实现异步工作，必须使用一种方式给服务器发送HTTP请求而不必显示新页面。</p>
+
+<p>利用XMLHttpRequest对象就可以实现这种方式。它能够建立与服务器的连接，发送HTTP请求而不需要加载相应的页面。出于安全的考虑，XMLHttpRequest对象一般只能调用与当前页面同一个域里的URL,而不能直接调用远程服务器。</p>
+
+<h4 id="不同浏览器的不同规则">不同浏览器的不同规则</h4>
+
+<p>对于大多数本身支持XMLHttpRequest对象的浏览器(比如Firefox、Opera以及较新版本的IE)来说，创建它的实例是很直接的，比如下面这条语句就会创建名为request的实例：</p>
+
+<pre><code>var request = new XMLHttpRequest();
+</code></pre>
+
+<p>在一些早期版本的IE里，为了达到同样的目的，需要创建一个ActiveX对象，如下所示:</p>
+
+<pre><code>var request = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+</code></pre>
+
+<p>与前面一样，这也是把新对象的名称设置为requesto更复杂的是，有些IE版本安装了不同版本的XML解析器，这时就要使用如下的指令：</p>
+
+<pre><code>var request = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);
+</code></pre>
+
+<h4 id="方法和属性">方法和属性</h4>
+
+<p>在创建了 XMLHttpRequest对象之后，现在来看看它的属性和方法，如下表所示：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">onreadystatechange</td>
+<td align="left">当对象的readyState属性改变时，调用哪个事件处理器</td>
+</tr>
+
+<tr>
+<td align="center">readyState</td>
+<td align="left">以整数形式反映请求的状态，0=未初始化，1=正在加载，2=加载完成，3=交互，4=完成。</td>
+</tr>
+
+<tr>
+<td align="center">responseText</td>
+<td align="left">以字符串形式从服务器返回的数据</td>
+</tr>
+
+<tr>
+<td align="center">responseXML</td>
+<td align="left">以文档对象形式从服务器返回的数据</td>
+</tr>
+
+<tr>
+<td align="center">status</td>
+<td align="left">服务器返回的HTTP状态代码</td>
+</tr>
+
+<tr>
+<td align="center">statusText</td>
+<td align="left">服务器返回的解释短语</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">abort()</td>
+<td align="left">停止当前请求</td>
+</tr>
+
+<tr>
+<td align="center">getAllResponseHeaders()</td>
+<td align="left">以字符串形式返回全部标题</td>
+</tr>
+
+<tr>
+<td align="center">getResponseHeader(x)</td>
+<td align="left">以字符串形式返回标题X的值</td>
+</tr>
+
+<tr>
+<td align="center">open(&lsquo;method&rsquo;,&lsquo;URL&rsquo;, &lsquo;a&rsquo;)</td>
+<td align="left">指定HTTP方法（GET或POST）、目标URL和处理请求的方式（a=true, 默认，表示异步；a=false，表示同步）</td>
+</tr>
+
+<tr>
+<td align="center">send(content)</td>
+<td align="left">发送请求。对于POST数据是可选的</td>
+</tr>
+
+<tr>
+<td align="center">setRequestHeader(&lsquo;x&rsquo;,&lsquo;y&rsquo;)</td>
+<td align="left">设置“参数=值”对（x=y）, 把它赋予与请求一起发送的标题</td>
+</tr>
+</tbody>
+</table>
+
+<p>使用这些方法和属性建立函数，最终构成我们的Ajax程序。</p>
+
+<h4 id="与服务器通信">与服务器通信</h4>
+
+<p>在传统的Web页面中，当你通过一个超链接或一次表单提交发送了一个服务器请求，服务器接受该请求，执行所需的任何服务器端过程，并且随后为你提供一个新的页面，其中带有与你所执行的操作相对应的内容。当这个过程发生的时候，用户界面实际上是冻结的。当服务器完成其任务的时候，你会看到浏览器中好像有了一个全新的或重新访问的页面。</p>
+
+<p>然而，对于异步的服务器请求，这样的通信实际上是在后台发生的，请求的完成并不一定要和屏幕刷新或新页面的加载同步进行。因此，必须想其他办法才能搞清楚服务器如何处理你的请求。XMLHttpRequest对象有一个方便的属性，能够报告服务器请求的进程。你可以使用JavaScript程序来查看这个属性，以判定服务器完成其任务到了哪一步了，并且结果也是可供你使用的。因此，Ajax应用必须包含一个程序来监控请求的状态并执行相应的操作。</p>
+
+<h4 id="在服务器端发生了什么">在服务器端发生了什么</h4>
+
+<p>对于服务器端脚本来说，来自XMLHttpRequest对象的通信只不过是另一个HTTP请求而已。街ax应用程序对于服务器端是何种语言或操作环境知之甚少。只要客户端Ajax层接受到来自服务器的及时的、格式正确的HTTP请求，就可以了。</p>
+
+<h4 id="处理服务器响应">处理服务器响应</h4>
+
+<p>一旦注意到一个异步请求已经成功地完成了，你就可以使用服务器所返回的信息了。Ajax允许这些信息以多种格式返回给你，包括ASCII文本和XML数据。根据应用程序的特性，你可以随后在当前页面之中转换、显示或处理这些信息。还有更容易的方法，不是吗？好在，有很多的JavaScript库做了很好的工作，将这些相当复杂的过程包装到易于使用的函数和方法之中。在下面我们将看到jQuery库是如何使得编写Ajax脚本 变得很轻松容易的。</p>
+
+<h3 id="使用jquery实现ajax">使用jQuery实现Ajax</h3>
+
+<p>由于不同浏览器以不同方式实现XMLHttpRequest对象，Ajax编程显得有些复杂。好在jQuery解决了这些问题，让我们可以用很少的代码就可以编写Ajax程序。jQuery包含不少执行Ajax对服务器调用的方法，这里介绍其中最常用的一些。</p>
+
+<p>如果只是需要从服务器获取一个文档并在页面元素里显示它，那么只需要使用load()方法就可以了。比如下面的代码段会获取newContent.html,并且把它的内容添加到id为&rdquo;elem&rdquo;的元素：</p>
+
+<pre><code>$(function () {
+        $(&quot;#elem&quot;).load(&quot;newContent.html&quot;);
+    });
+</code></pre>
+
+<p>在使用load()方法时，除了指定URL外，还可以传递一个选择符，从而只返回相应的页面内容：</p>
+
+<pre><code>$(function () {
+        $(&quot;#elem&quot;).load(&quot;newContent.html #info&quot;);
+    });
+</code></pre>
+
+<p>上面的范例在URL之后添加了一个jQuety选择符，中间以空格分隔。这样就会返回选择符指定的容器里的内容，本例中，就是id为&rdquo;info&rdquo;的元素。后面的可选的callback参数规定当load()方法完成后所要允许的回调函数。回调函数可以设置不同的参数：</p>
+
+<ul>
+<li>responseTxt - 包含调用成功时的结果内容</li>
+<li>statusTXT - 包含调用的状态</li>
+<li>xhr - 包含 XMLHttpRequest 对象</li>
+</ul>
+
+<p>下面的例子会在 load() 方法完成后显示一个提示框。如果 load() 方法已成功，则显示“外部内容加载成功！”，而如果失败，则显示错误消息：</p>
+
+<pre><code>$(&quot;button&quot;).click(function(){
+$(&quot;#div1&quot;).load(&quot;demo_test.txt&quot;,function(responseTxt,statusTxt,xhr){
+    if(statusTxt==&quot;success&quot;)
+    alert(&quot;外部内容加载成功！&quot;);
+    if(statusTxt==&quot;error&quot;)
+    alert(&quot;Error: &quot;+xhr.status+&quot;: &quot;+xhr.statusText);
+});
+});
+</code></pre>
+
+<p>如果是从表单字段获取数据,jQuery还提供了serialize()方法，能够对表单 数据进行序列化：</p>
+
+<pre><code>var formdata = $('#forml').serialize(); 
+</code></pre>
+
+<p>为了弥补load()方法的简单功能，jQuery还提供了发送GET和POST请求的方法。这两个方法很类似，只是调用不同的请求类型而已。调用这两个方法时，不需要选择某个jQuery对象(比如某个或一组页面元素)，而是直接调用：$.get()或$.post()在最简单的形式中，它们只需要一个参数，就是目标URL。通常情况下，我们还需要发送一些数据，它们是以&rdquo;参数/值&rdquo;对的形式出现的，以JSON风格的字符串作为数据格式。</p>
+
+<p>大多数情况下，我们会对返回的数据进行一些处理，为此还需要把回调函数作为参数:</p>
+
+<pre><code>$.get(&quot;serverScript.php&quot;,
+        { paraml: &quot;valuel&quot;, param2: &quot;nvalue2&quot; },
+        function (data) {
+            alert(&quot;Server responded: &quot; + data);
+        });
+</code></pre>
+
+<p>post()方法的语法基本上是相同的：</p>
+
+<pre><code> $.post(&quot;serverScript.php&quot;,
+        { paraml: &quot;valuel&quot;, param2: &quot;nvalue2&quot; },
+        function (data) {
+            alert(&quot;Server responded: &quot; + data);
+        });
+</code></pre>
+
+<p>ajax()方法具有很大的灵活性，几乎可以设置关于Ajax调用及如何处理响应的各个方面。详细的介绍请见 <a href="http://api.jquery.com/jQuery.ajax/的文档。">http://api.jquery.com/jQuery.ajax/的文档。</a></p>
+
+<p>用jQuery实现简单的Ajax表单提交,并实现如下操作：</p>
+
+<ul>
+<li>检查并确保两个输入字段都有内容。</li>
+<li>利用HTTP POST通过Ajax提交表单。</li>
+<li>使服务器返回的数据显示在页面的<div>元素里。</li>
+</ul>
+
+<p>为了检查两个输入字段都有内容，只需要使用如下的函数：</p>
+
+<pre><code>function checkFields(){ 
+            return ($(&quot;#name&quot;).val() &amp;&amp; $ (&quot;#email&quot;).val());
+        }
+</code></pre>
+
+<p>当两个输入字段的value属性都包含一些文本时，这个函数才会返回true,只要有任何一 个字段是空的，空字段就会解释为false,而 false的逻辑“与”操作的结果一定是false。</p>
+
+<p>接下来，利用jQuery的submit()事件处理器检测表单提交动作。如果函数checkFields()返回false,默认操作是取消提交：如果返回true,jQuery会对数据进行序列化，并且向服务器脚本发送一个post()请求。jQuery的serialize()方法可以获取表单信息，进行序列化，满足Ajax调用的需要。在这个范例中，服务器脚本test.php并没有什么实际操作，只是把它收到的信息调整下格式，以HTML形式返回：</p>
+
+<pre><code>&lt;?php
+echo &quot;Name:&quot; . $_REQUEST['name'] . &quot;&lt;br /&gt;Email: &quot; . $_REQUEST['email'];
+?&gt;
+</code></pre>
+
+<p>程序清单如下：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        $ (document).ready(function(){ 
+            function checkFields(){ 
+                return ($(&quot;#name&quot;).val() &amp;&amp; $ (&quot;#email&quot;).val());
+            }
+
+            $ (&quot;#forml&quot;).submit(function(){ 
+                if(checkFields()){ 
+                    $.post( 'test.php', $ (&quot;#forml&quot;).serialize(), 
+                        function(data){
+                        //最后，回调函数在页面上显示返回的内容：
+                            $ (&quot;#divl&quot;).html(data);
+                        });
+                }
+                else alert (&quot;Please fill in name and email fields !&quot;); 
+                return false;
+            });
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form id=&quot;form1&quot;&gt;
+        Name：&lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot;&gt;&lt;br /&gt; 
+        Email ：&lt;input type=&quot;text&quot; name=&quot;email&quot; id=&quot;email&quot;&gt;&lt;br /&gt; 
+        &lt;input type=&quot;submit&quot; name=&quot;submit&quot; id=&quot;submit&quot; value=&quot;提交表单&quot; 〉&gt;
+    &lt;/form&gt; 
+    &lt;div id=&quot;div1&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>额外示例，通过 AJAX 加载一段文本，test.txt的HTML 代码：</p>
+
+<pre><code>&lt;div id=&quot;myDiv&quot;&gt;&lt;h2&gt;Let AJAX change this text&lt;/h2&gt;&lt;/div&gt;
+&lt;button id=&quot;b01&quot; type=&quot;button&quot;&gt;Change Content&lt;/button&gt;
+</code></pre>
+
+<p>全部程序清单：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        $(document).ready(function () {
+            $(&quot;#b01&quot;).click(function () {
+                htmlobj = $.ajax({ url: &quot;/Resources/test.txt&quot;, async: false });
+                $(&quot;#myDiv&quot;).html(htmlobj.responseText);
+            });
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;myDiv&quot;&gt;&lt;h2&gt;通过 AJAX 改变文本&lt;/h2&gt;&lt;/div&gt;
+    &lt;button id=&quot;b01&quot; type=&quot;button&quot;&gt;改变内容&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="篇外之一get对比post">篇外之一GET对比POST</h3>
+
+<p>什么是HTTP？超文本传输协议（HTTP）的设计目的是保证客户机与服务器之间的通信。HTTP的工作方式是客户机与服务器之间的请求-应答协议。web浏览器可能是客户端，而计算机上的网络应用程序也可能作为服务器端。举例：客户端（浏览器）向服务器提交 HTTP 请求；服务器向客户端返回响应。响应包含关于请求的状态信息以及可能被请求的内容。</p>
+
+<p>两种最常用的HTTP方法是：GET和POST。GET基本上用于从服务器获得（取回）数据。注释：GET方法可能返回缓存数据。POST也可用于从服务器获取数据。不过，POST方法不会缓存数据，并且常用于连同请求一起发送数据。</p>
+
+<ul>
+<li>GET - 从指定的资源请求数据</li>
+<li>POST - 向指定的资源提交要处理的数据</li>
+</ul>
+
+<p>GET方法，请注意，查询字符串（名称/值对）是在 GET 请求的 URL 中发送的：</p>
+
+<pre><code>/test/demo_form.asp?name1=value1&amp;name2=value2
+</code></pre>
+
+<p>有关 GET 请求的其他一些注释：</p>
+
+<ul>
+<li>GET 请求可被缓存</li>
+<li>GET 请求保留在浏览器历史记录中</li>
+<li>GET 请求可被收藏为书签</li>
+<li>GET 请求不应在处理敏感数据时使用</li>
+<li>GET 请求有长度限制</li>
+<li>GET 请求只应当用于取回数据</li>
+</ul>
+
+<p>POST方法,请注意，查询字符串（名称/值对）是在 POST 请求的 HTTP 消息主体中发送的：</p>
+
+<pre><code>POST /test/demo_form.asp HTTP/1.1
+Host: w3schools.com
+name1=value1&amp;name2=value2
+</code></pre>
+
+<p>有关 POST 请求的其他一些注释：</p>
+
+<ul>
+<li>POST 请求不会被缓存</li>
+<li>POST 请求不会保留在浏览器历史记录中</li>
+<li>POST 不能被收藏为书签</li>
+<li>POST 请求对数据长度没有要求</li>
+</ul>
+
+<p>比较 GET 与 POST：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">GET</th>
+<th align="left">POST</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">后退按钮/刷新</td>
+<td align="left">无害</td>
+<td align="left">数据会被重新提交（浏览器应该告知用户数据会被重新提交）。</td>
+</tr>
+
+<tr>
+<td align="left">书签</td>
+<td align="left">可收藏为书签</td>
+<td align="left">不可收藏为书签</td>
+</tr>
+
+<tr>
+<td align="left">缓存</td>
+<td align="left">能被缓存</td>
+<td align="left">不能缓存</td>
+</tr>
+
+<tr>
+<td align="left">编码类型</td>
+<td align="left">application/x-www-form-urlencoded</td>
+<td align="left">application/x-www-form-urlencoded 或 multipart/form-data。为二进制数据使用多重编码。</td>
+</tr>
+
+<tr>
+<td align="left">历史</td>
+<td align="left">参数保留在浏览器历史中。</td>
+<td align="left">参数不会保存在浏览器历史中。</td>
+</tr>
+
+<tr>
+<td align="left">对数据长度的限制</td>
+<td align="left">是的。当发送数据时，GET 方法向 URL 添加数据；URL 的长度是受限制的（URL 的最大长度是 2048 个字符）。</td>
+<td align="left">无限制。</td>
+</tr>
+
+<tr>
+<td align="left">对数据类型的限制</td>
+<td align="left">只允许 ASCII 字符。</td>
+<td align="left">没有限制。也允许二进制数据。</td>
+</tr>
+
+<tr>
+<td align="left">安全性</td>
+<td align="left">与 POST 相比，GET 的安全性较差，因为所发送的数据是 URL 的一部分。在发送密码或其他敏感信息时绝不要使用 GET ！</td>
+<td align="left">POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web 服务器日志中。</td>
+</tr>
+
+<tr>
+<td align="left">可见性</td>
+<td align="left">数据在 URL 中对所有人都是可见的。</td>
+<td align="left">数据不会显示在 URL 中。</td>
+</tr>
+</tbody>
+</table>
+
+<p>其他 HTTP 请求方法:
+下面的表格列出了其他一些 HTTP 请求方法：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">HEAD</td>
+<td align="left">与 GET 相同，但只返回 HTTP 报头，不返回文档主体。</td>
+</tr>
+
+<tr>
+<td align="left">PUT</td>
+<td align="left">上传指定的 URI 表示。</td>
+</tr>
+
+<tr>
+<td align="left">DELETE</td>
+<td align="left">删除指定资源。</td>
+</tr>
+
+<tr>
+<td align="left">OPTIONS</td>
+<td align="left">返回服务器支持的 HTTP 方法。</td>
+</tr>
+
+<tr>
+<td align="left">CONNECT</td>
+<td align="left">把请求连接转换到透明的 TCP/IP 通道。</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="篇外之二w3school上面的jquery-ajax-get-和-post-方法诠释">篇外之二W3school上面的jQuery - AJAX get() 和 post() 方法诠释</h3>
+
+<p>jQuery get() 和 post() 方法用于通过 HTTP GET 或 POST 请求从服务器请求数据。两种在客户端和服务器端进行请求-响应的常用方法是：GET 和 POST。</p>
+
+<pre><code>GET - 从指定的资源请求数据
+POST - 向指定的资源提交要处理的数据
+</code></pre>
+
+<p>GET 基本上用于从服务器获得（取回）数据。注释：GET 方法可能返回缓存数据。POST 也可用于从服务器获取数据。不过，POST 方法不会缓存数据，并且常用于连同请求一起发送数据。</p>
+
+<p>jQuery $.get() 方法通过 HTTP GET 请求从服务器上请求数据。语法：</p>
+
+<pre><code>$.get(URL,callback);
+</code></pre>
+
+<p>必需的 URL 参数规定您希望请求的 URL。可选的 callback 参数是请求成功后所执行的函数名。下面的例子使用 $.get() 方法从服务器上的一个文件中取回数据：</p>
+
+<pre><code>$(&quot;button&quot;).click(function(){
+$.get(&quot;demo_test.asp&quot;,function(data,status){
+    alert(&quot;Data: &quot; + data + &quot;\nStatus: &quot; + status);
+});
+});
+</code></pre>
+
+<p>$.get() 的第一个参数是我们希望请求的 URL（&rdquo;demo_test.asp&rdquo;）。第二个参数是回调函数。第一个回调参数存有被请求页面的内容，第二个回调参数存有请求的状态。提示：这个 ASP 文件 (&ldquo;demo_test.asp&rdquo;) 类似这样：</p>
+
+<pre><code>&lt;%
+response.write(&quot;This is some text from an external ASP file.&quot;)
+%&gt;
+</code></pre>
+
+<p>jQuery $.post() 方法
+$.post() 方法通过 HTTP POST 请求从服务器上请求数据。语法：</p>
+
+<pre><code>$.post(URL,data,callback);
+</code></pre>
+
+<p>必需的URL参数规定您希望请求的URL。可选的data参数规定连同请求发送的数据。可选的callback参数是请求成功后所执行的函数名。下面的例子使用$.post() 连同请求一起发送数据：</p>
+
+<pre><code>$(&quot;button&quot;).click(function(){
+$.post(&quot;demo_test_post.asp&quot;,
+{
+    name:&quot;Donald Duck&quot;,
+    city:&quot;Duckburg&quot;
+},
+function(data,status){
+    alert(&quot;Data: &quot; + data + &quot;\nStatus: &quot; + status);
+});
+});
+</code></pre>
+
+<p>$.post()的第一个参数是我们希望请求的URL(&ldquo;demo_test_post.asp&rdquo;)。然后我们连同请求（name和city）一起发送数据。&rdquo;demo_test_post.asp&rdquo;中的ASP脚本读取这些参数，对它们进行处理，然后返回结果。第三个参数是回调函数。第一个回调参数存有被请求页面的内容，而第二个参数存有请求的状态。</p>
+
+<p>提示：这个 ASP 文件 (&ldquo;demo_test_post.asp&rdquo;) 类似这样：</p>
+
+<pre><code>&lt;%
+dim fname,city
+fname=Request.Form(&quot;name&quot;)
+city=Request.Form(&quot;city&quot;)
+Response.Write(&quot;Dear &quot; &amp; fname &amp; &quot;. &quot;)
+Response.Write(&quot;Hope you live well in &quot; &amp; city &amp; &quot;.&quot;)
+%&gt;
+</code></pre>
+
+<h1 id="高级注题">高级注题</h1>
+
+<h2 id="读取和写入cookie">读取和写入cookie</h2>
+
+<p>前面介绍的JavaScript技术还不能把信息从一个页面传递给另一个页面，而cookie提供了一种便捷的方式，能够在用户的计算机上保存少量数据并且远程获得它们，从而让网站可以保存一些细节信息，比如用户的习惯设置或是上一次访问网站的时间。这里将介绍如何使用JavaScript创建、保存、获取和删除cookie。</p>
+
+<h3 id="什么是-cookie">什么是 cookie</h3>
+
+<p>把Web页面加载到浏览器所使用的HTTP是一种“无状态”协议，也就是说，当服务器把页面发送给浏览器之后，它就认为事务完成了，并不保存任何信息。这给在浏览器会话期间（或是在会话之间）维持某种连续性带来了困难，比如记录用户已经访问或下载过哪些内容，或是记录用户在私有区域的登录状态。</p>
+
+<p>cookie就是解决这个问题的一个途径。举例来说，cookie可以记录用户的最后一次访问，保存用户偏好设置的列表，或是当用户继续购物时保存购物车里的物品。在正确使用的情况下，cookie能够改善站点的用户体验。cookie本身是一些短小的信息串，能够由页面保存在用户的计算机上，然后可以被其他 页面读取。cookie 一般都设置为在一定时间后失效。</p>
+
+<p><strong>注意：很多用户不允许站点在自己的计算机上保存cookie,所以在编程时注意不要让站点完全依赖于它们。有人不喜欢cookie,通常的原因是有些站点把cookie作为一种广告手 段，利用它们追踪用户的在线行为，从而进行有针对性的广告。但这也是一 个范例，说明了为什么要使用cookie以及将它用于什么领域。</strong></p>
+
+<h4 id="cookie的局限">cookie的局限</h4>
+
+<p>浏览器对于能够保存的cookie数量有所限制，通常是几百个或多一点。一般情况下，每个域名20个cookies是允许的，而每个域最多能保存4KB的cookie。</p>
+
+<p>除了大小限制可能导致的问题，有很多原因都可能导致硬盘上的cookie消失，比如到达有效期限了，或是用户清理cookie信息了，或是换用其他浏览器了。因此，永远都不应该使用cookie保存重要数据，而且在编写代码时一定要考虑到不能获取所期望cookie时的情况。</p>
+
+<h3 id="document-cookie-属性">document.cookie 属性</h3>
+
+<p>JavaScript使用document对象的cookie属性存储和获取cookie。每个cookie基本上就是一个由成对的名称和值组成的字符串，像下面这样：</p>
+
+<pre><code>username=sam
+</code></pre>
+
+<p>当页面加载到浏览器里时，浏览器会收集与页面相关的全部cookie,放到类似字符串的document.cookie属性里。在这个属性里，每个cookie是以分号分隔的：</p>
+
+<pre><code>username=sam;location=USA;status=ful丄member;
+</code></pre>
+
+<p><strong>将document.cookie称作&rdquo;类似字符串&rdquo;的属性，因为它并不是真正的字符串，只是在提取cookie信息时，这个属性的表现像个字符串而已。</strong></p>
+
+<h4 id="数据的编码和解码">数据的编码和解码</h4>
+
+<p>某些字符不能在cookie里使用，包括分号、逗号及空白符号（比如空格和制表符）。在把数据存储到cookie之前，需要对数据进行编码，以便实现正确的存储。</p>
+
+<p>在存储信息之前，使用JavaScript的escape()函数进行编码，而获得原始的cookie数据时就使用相应的unescape()函数进行解码。escape()函数把字符串里任何非ASCII字符都转换为相应的2位或4位十六进制格式，比如空格转换为％20, &amp;转换为％26。举例来说，下面的代码会输出变量str里保存的原始字符串及escape()编码以后的结果：</p>
+
+<pre><code>var str = 'Here is a (short) piece of text.'; 
+document.write(str + '&lt;br/&gt;' + escape(str));
+</code></pre>
+
+<p>其中空格被表示为％20 ,左括号是％28 ,右括号是％29。除了*、@ 、-、_、+、.、/之外的特殊符号都会被编码。</p>
+
+<h3 id="cookie-组成">cookie 组成</h3>
+
+<p>document.cookie里的信息看上去就像是由成对的名称和值组成的字符串，每一对数据的形式是：</p>
+
+<pre><code>name = value;
+</code></pre>
+
+<p>但实际上，每个cookie还包含其他一些相关信息，下面来分别介绍。</p>
+
+<p>cookieName和cookieValue就是在cookie字符串里看到的name=value里的名称与值。</p>
+
+<p>domain属性向浏览器指明cookie属于哪个域。这个属性是可选的，在没有指定时，默认值是设置cookie的页面所在的域。这个属性的作用在于控制子域对cookie的操作。举例来说，如果其设置为www.example.com,那么子域code.example.com里的页面就不能读取这个cookie。但如果domain属性设置为example.com,那么code.example.com里的页面就能访问这个cookie了。但是，不能把domain属性设置为页面所在域之外的域。</p>
+
+<p>path属性指定可以使用cookie的目录。如果只想让目录documents里的页面设置cookie的值，就把path设置为/documentso 这个属性是可选的，常用的默认路径是/,表示cookie可 以在整个域里使用。</p>
+
+<p>secure属性是可选的，而且几乎很少使用。它表示浏览器在把cookie发送给服务器时， 是否应该使用SLL安全标准。</p>
+
+<p>expires：每个cookie都有个失效日期，过期就自动删除了。expires属性要以UTC时间表示。如果没有设置这个属性，cookie的生命期就和当前浏览器会话一样长，会在浏览器关闭时自动删除。</p>
+
+<h3 id="编写-cookie">编写 cookie</h3>
+
+<p>要编写新的cookie,只要把包含所需属性的值赋予document.cookie就可以了:</p>
+
+<pre><code>document.cookie = &quot;username=sam;expires=15/06/2013 00:00:00&quot;;
+</code></pre>
+
+<p>使用JavaScript的 Date对象可以避免手工输入日期和时间格式：</p>
+
+<pre><code>var cookieDate = new Date ( 2013, 05, 15 ); 
+document.cookie = &quot;username=sam;expires=&quot; + cookieDate.toUTCString();
+</code></pre>
+
+<p>注意到这里使用了 cookieDate.toUTCString();而不是 cookieDate.toString();, 这是因为cookie的时间要以UTC格式设置。</p>
+
+<p>在实际编写代码时，应该用escape()函数来确保在给cookie赋值时不会有非法字符：</p>
+
+<pre><code>var cookieDate = new Date ( 2013, 05, 15 );         
+var user = &quot;Sam Jones&quot;;
+document.cookie = &quot;username=&quot; + escape(user) +&quot;; expires=&quot; + cookieDate.toUTCString();
+</code></pre>
+
+<h3 id="编写cookie的函数">编写cookie的函数</h3>
+
+<p>很自然就会想到编写一个函数专门用于生成cookie,完成编码和可选属性的组合操作。程序清单如下：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        function createCookie(name, value, days, path, domain, secure) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                var expires = date.toGMTString();
+            }
+            else
+                var expires = &quot;&quot;;
+            cookieString = name + &quot;=&quot; + escape(value);
+            if (expires)
+                cookieString += &quot;; expires=&quot; + expires;
+            if (path)
+                cookieString += &quot;;path =&quot; + escape(path);
+            if (domain)
+                cookieString += &quot;; domain=&quot; + escape(domain);
+            if (secure)
+                cookieString += &quot; secure&quot;;
+            document.cookie = cookieString;
+        }
+
+        createCookie(&quot;username&quot;, &quot;tom&quot;, 5);
+        createCookie(&quot;location&quot;, &quot;USA&quot;, 5);
+        createCookie(&quot;status&quot;, &quot;fullmember&quot;, 5);
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    Check the cookies for this domain using your browser tools・
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>这个函数执行的操作是相当直观的，name和value参数组合得到&rdquo;name=value&rdquo;,其中的value还经过编码以避免非法字符。在处理有效期时，使用的参数不是具体日期，而是cookie有效的天数。函数根据这个天 数生成有效的日期字符串。其他属性都是可选的，如果设置了，就会附加到组成cookie的字符串里。</p>
+
+<p><strong>这个函数每次被调用时，就会给document.cookie设置新值，但新值不会覆盖现有的值，而是把新值附加到原有值。正如前面所说的，document.cookie有时显得像个字符串，但又的确不是字符串。</strong></p>
+
+<h3 id="读取cookie">读取cookie</h3>
+
+<p>读取cookie值的过程在很大程度上是依赖于split()这个函数。split()函数以参数指定的字符作为分隔符，把分解的结果保存到数组里：</p>
+
+<pre><code>myString = &quot;John#Paul#George#Ringo&quot;; 
+var myArray = myString.split('#');
+</code></pre>
+
+<p>上述语句会把字符串myString在每个&rdquo;#&ldquo;位置进行切割，分解为一系列单独的部分。myArray[0]会保存&rdquo;John&rdquo;，myArray[l]保存&rdquo;Paul&rdquo;，以此类推。在document.cookie里，每个cookie都是以&rdquo;;&ldquo;分隔的，显然我们就应该使用这个符号来分解document.cookie返回的字符串：</p>
+
+<pre><code>var crumbs = document.cookie.split(';');
+</code></pre>
+
+<p>我们要获得特定名称的cookie,所以接下来要对数组crumbs进行搜索，得到特定的name=部分。然后使用indexOf()和substring()返回cookie值的部分，再通过unescape()函数进行解码，得到cookie值：</p>
+
+<pre><code> function getCookie(name) {
+        var nameEquals =  name + &quot;=&quot;;
+        var crumbs = document.cookie.split('; ');
+        for (var i = 0; i &lt; crumbs.length; i++) {
+            var crumb = crumbs[i];
+            if (crumb.indexOf(nameEquals) == 0) {
+                return unescape(crumb.substring(nameEquals.length, crumb.length));
+            }
+        }
+        return null;
+    }
+</code></pre>
+
+<p><strong>注意是<code>var crumbs = document.cookie.split('; ');</code>split()函数的参数是&rsquo;; &lsquo;,在;号之后有个空格。</strong>
+测试用程序清单如下：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;jQuery UI测试&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        function createCookie(name, value, days, path, domain, secure) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                var expires = date.toGMTString();
+            }
+            else
+                var expires = &quot;&quot;;
+            var cookieString = name + &quot;=&quot; + escape(value);
+            if (expires)
+                cookieString += &quot;; expires=&quot; + expires;
+            if (path)
+                cookieString += &quot;;path =&quot; + escape(path);
+            if (domain)
+                cookieString += &quot;; domain=&quot; + escape(domain);
+            if (secure)
+                cookieString += &quot; secure&quot;;
+            document.cookie = cookieString;
+        }
+
+        createCookie('username', &quot;tom&quot;, 5);
+        createCookie('location', &quot;USA&quot;, 5);
+        createCookie('status', &quot;fullmember&quot;, 5);
+
+        function getCookie(name) {
+            var nameEquals =  name + &quot;=&quot;;
+            var crumbs = document.cookie.split('; ');
+            for (var i = 0; i &lt; crumbs.length; i++) {
+                var crumb = crumbs[i];
+                if (crumb.indexOf(nameEquals) == 0) {
+                    return unescape(crumb.substring(nameEquals.length, crumb.length));
+                }
+            }
+            return null;
+        }
+
+        function btnClick() {
+            $(&quot;span&quot;).html(document.cookie);
+            var name = $('#input1').val();
+            alert(getCookie(name));
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;span&gt;测试用例&lt;/span&gt;&lt;br /&gt;
+    &lt;input type=&quot;text&quot; id=&quot;input1&quot; /&gt;
+    &lt;input type=&quot;button&quot; id=&quot;btn1&quot; onclick=&quot;btnClick()&quot; value=&quot;获取cookie&quot;/&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="删除-cookie">删除 cookie</h3>
+
+<p>要想删除一个cookies,只需要把它的失效日期设置为今天以前的日期，浏览器就会认为它已经失效了，从而删除它。即使在脚本里删除了cookie,某些浏览器的有些版本也会把cookie维持到重新启动浏览器。如果cookie是否被删除是程序运行的条件，就应该使 用 getCookie来测试被删除的cookie,确保它的确不存在了。</p>
+
+<pre><code>function deleteCookie(name) {
+        createCookie(name, &quot;&quot;, -1);
+    }
+</code></pre>
+
+<p>利用前面介绍的知识，我们来建立一些页面体验cookie操作。首先，把createCookie()、getCookie()和deleteCookie()函数集中到一个JavaScript文件里,保存为cookies.js。
+cookies.js程序清单如下：</p>
+
+<pre><code>function createCookie(name, value, days, path, domain, secure) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        var expires = date.toGMTString();
+    }
+    else
+        var expires = &quot;&quot;;
+    var cookieString = name + &quot;=&quot; + escape(value);
+    if (expires)
+        cookieString += &quot;; expires=&quot; + expires;
+    if (path)
+        cookieString += &quot;;path =&quot; + escape(path);
+    if (domain)
+        cookieString += &quot;; domain=&quot; + escape(domain);
+    if (secure)
+        cookieString += &quot; secure&quot;;
+    document.cookie = cookieString;
+}
+
+function getCookie(name) {
+    var nameEquals = name + &quot;=&quot;;
+    var crumbs = document.cookie.split('; ');
+    for (var i = 0; i &lt; crumbs.length; i++) {
+        var crumb = crumbs[i];
+        if (crumb.indexOf(nameEquals) == 0) {
+            return unescape(crumb.substring(nameEquals.length, crumb.length));
+        }
+    }
+    return null;
+}
+
+function deleteCookie(name) {
+    createCookie(name, &quot;&quot;, -1);
+}
+</code></pre>
+
+<p>第一个页面cookietest.html程序清单如下：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;测试用例&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+    &lt;/style&gt;
+    &lt;script src=&quot;Resources/cookies.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        window.onload = function() { 
+            var cookievalue = prompt(&quot;Cookie Value:&quot; ); 
+                createCookie(&quot;myCookieData&quot;, cookievalue);
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;a href=&quot;cookietest2.html&quot;&gt;Go to Cookie Test Page 2&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>第二个页面cookietest2.html程序清单如下：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;测试用例&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;style&gt;
+    &lt;/style&gt;
+    &lt;script src=&quot;Resources/cookies.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        window.onload = function() { 
+            var cookievalue = prompt(&quot;Cookie Value:&quot; ); 
+                createCookie(&quot;myCookieData&quot;, cookievalue);
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;a href=&quot;cookietest2.html&quot;&gt;Go to Cookie Test Page 2&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>cookietest.htm1页面输入cookie值，用链接跳转到页面二，页面二在载入的时候将输入的cookie的值显示在页面。</p>
+
+<h3 id="在一个cookie里设置多个值">在一个cookie里设置多个值</h3>
+
+<p>每个cookie包含一对&rdquo;name=value&rdquo;,如果需要保存多个数据，比如用户的姓名、年龄和会员号，就需要三个不同的cookies。然而稍微动一点脑筋，就可以用一个cookie保存这三个值。方法是把需要的值组成一个字符串，让它成为要保存在cookie里的值。通过这种方式，可以避免使用三个单独的cookies,而是只用一个就保存这三部分数据。为了以后分解其中的信息，要在这个字符串里放置特殊字符(所谓的“定界符”)来分隔不同的数据：</p>
+
+<pre><code>var userdata = &quot;Sandy | 26 | A23679&quot;;
+createCookie (&quot;user&quot;,userdata);
+</code></pre>
+
+<p>这里使用作为定界符。稍后需要读取cookie值时，可以依据它来分割并得到各部分数据：</p>
+
+<pre><code>var myUser = getCookie(&quot;user&quot;); 
+var myUserArray = myUser.split('I'); 
+var name = myUserArray[0]; 
+var age = myUserArray[1]; 
+var memNo = myUserArray[2];
+</code></pre>
+
+<p>有些浏览器要求cookies的数量不能超过20 ,如果用一个cookie保存多个数值，可以在一定程度上打破这种限制。但是cookies信息总体不能超过4KB是不能改变的。</p>
+
+<p>在使用一个cookie保存多个值时，能否使用任意字符作为定界符？</p>
+
+<p>不能使用可能出现在编码数据里的字符(除非那个字符也当作定界符)，也不能使用等号(=)或分号(;).因为它们用于组成&rdquo;name=value&rdquo;和分隔多对数据。另外，cookies一般不能包含空白和逗号，所以它们也不能当作分界符。</p>
+
+<p>cookies安全吗？</p>
+
+<p>cookies的安全问题经常会被提及，但这种担心大多是没有根据的。cookies能够帮助站长和广告商追踪用户的浏览习惯，他们可以(也的确)利用这些信息在用户访问的页面上有目的地投放广告和提示信息。但是，只使用cookies,他们不能获得用户的个人信息，也不能访问用户计算机硬盘上的其他内容。</p>
+
+<h2 id="javascript新功能">JavaScript新功能</h2>
+
+<h3 id="类">类</h3>
+
+<p>在我们介绍了 OOP,并且介绍了如何创建和操作对象的例子，包括如下这个例子：</p>
+
+<pre><code>function Car(Color, Year, Make, Miles) {
+        this.color = Color;
+        this.year = Year;
+        this.make = Make;
+        this.odometerReading = Miles;
+        this.setOdometer = function (newMiles) {
+            this.odometerReading = newMiles;
+        }
+    }
+</code></pre>
+
+<p>如果你是从其他语言转而学习JavaScript的，你可能已经熟悉了类这个概念了。类是对象的一种表示：</p>
+
+<pre><code>class Car {
+        constructor(Color, Year, Make, Miles) { 
+            this.color = Color; 
+            this.year = Year; 
+            this.make = Make; 
+            this.odometerReading = Miles;
+        }
+        setOdometer(newMiles) {
+            this.odometerReading = newMiles;
+        }
+    }
+</code></pre>
+
+<p>这一语法也允许你扩展类，从而创建一个新的类以继承其父类的属性。如下面的示例所示：</p>
+
+<pre><code>class Sportscar extends Car { 
+        constructor(Color, Year, Make, Miles) { 
+            super(Color, Year, Make, Miles); 
+            this.doors = 2;
+        }
+    }
+</code></pre>
+
+<p>这里，我们在构造方法中使用了关键字super,以允许调用一个父类的构造方法并继承其所有的属性。实际上，这只是语法糖，就像你在前面所学到的，使用了类的所有内容都可以在函数或原型中覆盖。然而，这种方法使得代码更容易和其他的流行语言兼容，并且也更容易阅读。</p>
+
+<h3 id="箭头函数">箭头函数</h3>
+
+<p>箭头函数(=&gt;)是一个匿名函数的一种简写式的语法</p>
+
+<pre><code>param =&gt; statements or expression
+</code></pre>
+
+<p>让我们来进一步说明：</p>
+
+<ul>
+<li>param—一个或多个参数的名称。如果该函数没有参数，需要使用()表明。对于只有一个参数的情况，则不需要使用括号。</li>
+
+<li><p>语句或表达式—需要用花括号括起来的多条语句。然而，单个的表达式并不需要花括号。这个表达式也就是该函数的返回值。</p>
+
+<p>var overTen = x=&gt; x &gt; 10 ? 10 : x;
+overTen (8) ; // 返回 8
+overTen (12) ; // 返回 10</p></li>
+</ul>
+
+<p>注意，关键字function并不是必须的，圆括号也可以省略，因为这里只有一个参数。如下的示例有两个参数：</p>
+
+<pre><code>var higher = (x, y) =&gt; { 
+         if (x &gt; y) { 
+            return x;
+         } else { 
+            return y;
+        }
+    }
+</code></pre>
+
+<p>也是为了更容易编写，箭头函数还有一项功能，即它们从包含者中继承了this的值。当使用对象的时候，这真的是很方便。而在此之前，我们需要将this赋值给一个变量，从而将其传递到一个函数中，如下所示：</p>
+
+<pre><code>function myObject() {
+        this.height = 13;
+        var self = this;
+        setTimeout(function(){
+            console.log(self.height);
+        }, 5000)
+    }
+var o = new myObject ();       
+</code></pre>
+
+<p>在前面的例子中，我们不可以直接这样使用：</p>
+
+<pre><code>console.log(this.height);
+</code></pre>
+
+<p>因为this将会引用其直接包含者，在这里，就是fiveSecondsLater()函数。然而，通过使 用箭头函数，就可以避免使用self这样的变量：</p>
+
+<pre><code>function myObject() {
+        this.height = 13;
+
+        setTimeout(() =&gt; {
+            console.log(this.height);
+        }, 5000)
+    }
+var o = new myObject ();      
+</code></pre>
+
+<h3 id="模块">模块</h3>
+
+<p>随着JavaScript应用程序变得越来越复杂，需要有一种方法使得在一个文件中声明的对象能够在其他文件中可用。通过这种方法，可以以模块的方式来编写较大的对象。默认情况下，在一个文件中声明的任何内容，在该文件之外都是不可用的。然而在ECMAScript 6 中, 可以使用export关键字使其变得可用。如下是导出一个类的示例：</p>
+
+<pre><code>//这段代码位于filel.js中
+export default function Car(Color, Year, Make, Miles) {
+    this.color = Color;
+    this.year = Year;
+    this.make = Make;
+    this.odometerReading = Miles;
+    this.setOdometer = function (newMiles) {
+        this.odometerReading = newMiles;
+    }
+}
+// 这个对象可以由其他的文件导入
+</code></pre>
+
+<p>在接收的文件中：</p>
+
+<pre><code>import Car from './file1';
+var ferrari = new Car('red', 1981, 'dino', 75500);
+</code></pre>
+
+<h3 id="使用let和const">使用let和const</h3>
+
+<p>在ECMAScript6之前，JavaScript只有两类作用域，即函数作用域和全局作用域(我们前面学习过，作用域取决于在代码中的何处使用var关键字来声明变量)。当从其他的语言转而使用JavaScript语言的时候，令众多的开发者沮丧的是，JavaScript缺乏所谓的块作用域，该作用域决定了一个变量只能够在其定义所在的语句块之中访问(块是指一对花括号之中的所有内容)。</p>
+
+<p>新的关键字let允许你声明一个变量，并将其作用域限定为声明它的块、语句或表达式。相反，var关键字定义了一个变量，它要么是全局变量，要么是整个函数中的局部变量， 而不考虑块作用域：</p>
+
+<pre><code>function myFunc() {
+    {
+        let x;
+        if (y == 0) {
+            //这没问题，x拥有块作用域
+            let x = &quot;inner&quot;;
+        }
+        //这是个错误，x已经在块中声明过了
+        let x = &quot;outer&quot;;
+    }
+}
+</code></pre>
+
+<p>const声明创建一个常量，这是一个只读的、命名的变量。不能使用重新赋值的方式修改一个常量的值，随后也不能重新声明一个常量。使用const关键字声明的值不能够重新初始化、重新声明或重新 赋值。</p>
+
+<pre><code>function myFunc() {
+    {
+        const x = &quot;foo&quot;;
+        //这是个错误，X是一个常量，不能重新定义
+        x = &quot;bar&quot;;
+    }
+}
+</code></pre>
+
+<h3 id="模板字符串">模板字符串</h3>
+
+<p>模板字符串帮助构建字符串，它类似于Perl或Python等其他语言中的字符串插值的功能。</p>
+
+<pre><code>var name = &quot;John&quot;;
+var course = &quot;Mathematics III&quot;;
+var myString = `Hello ${name}, welcome to ${course}.`;
+alert(myString);
+</code></pre>
+
+<p>也可以替换较为复杂一些的表达式：</p>
+
+<pre><code>var total = 20;
+var tax = 4;
+msg = 'Total is ${totai} (or ${total + tax}, including tax)';
+alert(msg) ; // &quot;Total is 20 (or 24, including tax)&quot;
+</code></pre>
+
+<blockquote>
+<p>参考<a href="https://blog.csdn.net/zwt_guiji/article/details/81979299">
+模板字符串（）的用途</a></p>
+
+<p>模板字符串是在ES6中兴起，个人感觉非常有用：用反引号(`)标识，它可以当作普通字符串使用，也可以用来定义多行字符串，或者在字符串中嵌入变量。请看下方截图代码从而可知其模板字符串的强大：
+<img src="https://sltaurusblog.gitee.io/images/JavaScript/JavaScript27.jpg" alt="JavaScript27" /></p>
+
+<p>下面代码中，模板字符串都是用反引号表示，如果在模板字符串中需要使用反引号，则前面需要用反斜杠转义。</p>
+
+<pre><code>// 普通字符串
+var stringDemo = `In JavaScript '\n' is a line-feed.`
+alert(stringDemo);
+
+// 多行字符串
+var stringDemo =`In JavaScript this is
+not legal.`
+alert(stringDemo);
+
+// 字符串中嵌入变量
+var name = &quot;Bob&quot;, time = &quot;today&quot;;
+var stringDemo = `Hello ${name}, how are you ${time}?`   // Hello Bob, how are you today?
+alert(stringDemo);
+
+var greeting = `\`Yo\` World!`; // `Yo` World! 需要用到`的时候需要用反斜杠转义
+alert(stringDemo);
+</code></pre>
+
+<p>如果使用模板字符串表示多行字符串，则所有的空格、缩进和换行都会被保留在输出中。</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;测试用例&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;script&gt;
+        function btnClick() {
+            $('#list').html(`
+            &lt;ul&gt;
+            &lt;li&gt;first&lt;/li&gt;
+            &lt;li&gt;second&lt;/li&gt;
+            &lt;/ul&gt;
+            `);
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;list&quot;&gt;&lt;/div&gt;
+    &lt;button type=&quot;button&quot; onclick=&quot;btnClick()&quot;&gt;测试用例&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>模板字符串中嵌入变量，要将变量名写在${}之中。大括号内可以放入任意的JavaScript表达式，可以进行运算，以及引入对象属性。</p>
+
+<pre><code>var x = 1, y = 2;
+`${x} + ${y} = ${x + y}`;// &quot;1 + 2 = 3&quot;       
+`${x} + ${y * 2} = ${x + y * 2}`;// &quot;1 + 4 = 5&quot;
+var obj = { x: 1, y: 2 };
+`${obj.x + obj.y}`// &quot;3&quot;
+</code></pre>
+
+<p>模板字符串之中还可以调用函数。</p>
+
+<pre><code>function func() {
+    return 'Hello';
+}
+alert(`${func()} World`);// &quot;Hello World&quot;
+</code></pre>
+
+<p>如果大括号中的值不是字符串，则将按照一般的规则转换为字符串。如，若大括号中是一个对象，则将默认调用对象的toString方法，把对象转换为字符串。如果模板字符串中的变量没有声明，则会报错。</p>
+
+<pre><code>// 变量place没有声明
+var msg = `Hello, ${place}`;
+// ReferenceError: place is not defined
+</code></pre>
+
+<p>模板字符串之间还可以进行嵌套。</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;测试用例&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;script&gt;
+        function btnClick() {
+            var tmpl = addrs =&gt; `
+            &lt;table&gt;
+            ${addrs.map(addr =&gt; `
+            &lt;tr&gt;&lt;td&gt;${addr.first}&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;${addr.last}&lt;/td&gt;&lt;/tr&gt;
+            `).join('')}
+            &lt;/table&gt;
+            `;
+            alert(tmpl([{ first: 'a', last: 'b' }]));
+            $('#list').html(tmpl([{ first: 'a', last: 'b' }]));
+        }
+        // output:
+        /*&quot;
+        &lt;table&gt;
+        &lt;tr&gt;&lt;td&gt;a&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;b&lt;/td&gt;&lt;/tr&gt;
+        &lt;/table&gt;
+        &quot;*/
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;list&quot;&gt;&lt;/div&gt;
+    &lt;button type=&quot;button&quot; onclick=&quot;btnClick()&quot;&gt;测试用例&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>如果需要引用模板字符串本身，在需要时执行，可以像下面这样写。</p>
+
+<pre><code>// 写法一
+var str = 'return ' + '`Hello ${name}!`';
+var func = new Function('name', str);
+func('Amy');    // &quot;Hello Amy!&quot;
+
+// 写法二
+var str = '(name) =&gt; `Hello ${name}!`';
+var func = eval.call(null, str);
+func('Amy');    // &quot;Hello Amy!&quot;
+</code></pre>
+
+<p>String对象的raw方法:</p>
+
+<p>String.raw方法用来充当模板字符串的处理函数，返回一个除表达式和变量会被替换，其它都保持原样的字符串。String.raw方法可以作为处理模板字符串的基本方法，它会将所有变量替换，而且对斜杠进行转义，方便下一步作为字符串来使用。</p>
+
+<pre><code>String.raw`Hi\n${2+3}!`;
+// &quot;Hi\n5!&quot;
+String.raw`Hi\u000A!`;
+// &quot;Hi\u000A!&quot;
+String.rwa`Hi\\n`;
+// &quot;Hi\\n&quot;
+</code></pre>
+
+<p><strong>标签模板</strong></p>
+
+<p>模板字符串的功能，不仅是上面那些，它还可以紧跟在一个函数后面，该函数将被调用来处理这个模板字符串，这种称为“标签模板”功能(Tagged template)。标签模板函数第一个参数是字符串模板的常量数组，后面的每一个参数为表达式的计算结果，函数名称可以任意指定。下面是一个例子：</p>
+
+<pre><code>var a = 5, b = 10;
+function tag(strings, ...values) {
+    console.log(strings[0]);    // &quot;Hello &quot;
+    console.log(strings[1]);    // &quot; world&quot;
+    console.log(strings[2]);    // &quot;&quot;
+    console.log(values[0]);     // 15
+    console.log(values[1]);     // 50
+    return &quot;Anything&quot;;
+}
+tag`Hello ${a + b} world ${a * b}`;
+// Anything
+</code></pre>
+
+<p>标签模板其它是一种特殊的函数调用形式，“标签”指的就是函数，紧跟在后面的模板字符串就是它的参数。上面代码中，模板字符串前面有一个标识名tag，它是一个函数。整个表达式的返回值就是tag函数处理模板字符串后的返回值。函数tag依次会接收到多个参数。tag函数的第一个参数是一个数组，该数组的成员是模板字符串中那些没有变量替换的部分，也就是说，变量替换只发生在数组的第一个成员与第二个成员之间、第二个成员与第三个成员之间，以此类推。tag函数的其他参数，都是模板字符串各个变量被替换的值。本例中，模板字符串含有两个变量，因此tag会接收到value1和value2两个参数。tag函数所有参数的实际值如下：</p>
+
+<ul>
+<li>第一个参数： [‘Hello ‘, ’ world’, ”]</li>
+<li>第二个参数: 3</li>
+<li>第三个参数： 2</li>
+</ul>
+
+<p>也就是说，tag函数实际上是用下面的形式调用：</p>
+
+<pre><code>tag(['Hello ',' world', ''], 3, 2);
+</code></pre>
+</blockquote>
+
+<h3 id="使用for-of访问数组">使用for-of访问数组</h3>
+
+<p>前面了解到JavaScript拥有各种方法来处理数组。除了 while和 for循环， 还可以使用for-ino遗憾的是，这个循环访问一个数组的所有的命名属性，而不只是实际的数组值：</p>
+
+<pre><code>&quot;use strict&quot;;
+let arrl = [6, 5, 7, 9];
+arrl.greeting = &quot;hi&quot;;
+for (var x in arrl) {
+    console.log(x); // 显示&quot;0&quot;, n 1&quot;, &quot;2&quot;, &quot;3n , &quot;greeting&quot;
+}
+</code></pre>
+
+<p>为了解决这个问题，ECMAScript 6 引入了 for-of构造，它只是遍历属性值：</p>
+
+<pre><code>&quot;use strict&quot;;
+let arrl = [6, 5, 7, 9];
+arrl.greeting = &quot;hi&quot;;        
+for (var y of arrl) {
+    console.log(y); // 显示”6”，&quot;5&quot;, ”7&quot;, ”9” 
+}
+</code></pre>
+
+<p>在代码段的前面使用了&rdquo;use strict&rdquo;指令，该指令是ECMAScript 5 中引入的，表示JavaScript应该以严格模式执行，也就是使用一组较为严格的解释器规则，要使用ECMAScript6 的某些功能，当前必须用这种模式。</p>
+
+<h3 id="小结-3">小结</h3>
+
+<p>我们了解了ECMAScript6规范中将会给JavaScript语言带来的一些重要的新的变化。新的语言功能使得JavaScript的语法和其他的主流语言更加一致，同时也使得代码更加简练和易于阅读。</p>
+
+<h2 id="使用框架">使用框架</h2>
+
+<p>如果你已经编写过很多应用程序，那么你很可能会一次又一次地解决同样的编码问题。能够减少这种重新发明轮子事情的一种技术，就是使用软件框架。在这里，我们将会学习一种流行的网络样式，叫作MVC （Model-View-Controller,模型-视图-控制器）框架，并且介绍如何使用Google的 AngularJS针对单页面的JavaScript应用 程序实现这样一种框架。</p>
+
+<h3 id="软件框架">软件框架</h3>
+
+<p>框架的作用是提高你编写软件应用程序的效率，与此同时，为应用程序增强一致性，提高质量和可靠性以及稳定性。选择编写良好和合适的框架，可以给你节省更多的时间，以便你关注自己的应用程序的 独特需求，而不会在应用程序架构上花费太多的宝贵时间。</p>
+
+<h4 id="为何要使用框架">为何要使用框架</h4>
+
+<p>框架帮助你复用此前已经构建和测试过的代码，提高应用程序的可靠性，减少了在应用程序创建中所需的编码和测试工作。由于框架将结构强加于你的应用程序之上，它还鼓励了更好的编程实践。最后，框架通常为你提供一些方法来扩展其功能，以使得它更加适合于你的应用程序的需求。</p>
+
+<h4 id="框架和库不同">框架和库不同</h4>
+
+<p>很多人把软件框架和软件库这两个术语搞混淆了，然而，框架和库之间有一个基本的区别，当你使用一个库的时候，该库中的对象和方法是已经存在的，等待定制应用程序调用它们。要创建应用程序，你需要知道自己的代码中会用到哪些对象和方法。当使用框架的时候，你自己要设计和编写应用程序所使用的对象和方法。框架只是为你提供一个编写它们的一致的结构。</p>
+
+<h3 id="模型-视图-控制器-mvc-架构">模型-视图-控制器（MVC）架构</h3>
+
+<p>MVC软件架构的概念相当简单：将应用程序分为不同的单元，其中的每一个单元分别属于如下几个部分之一。</p>
+
+<h4 id="模型">模型</h4>
+
+<p>模型表示应用程序中处理业务数据和业务逻辑的部分。模型可能是一个单个的对象，或者它也可以是由各种对象所组成的某些结构。</p>
+
+<h4 id="视图">视图</h4>
+
+<p>视图是用于将信息展现给用户的一个模型的表示。它通常充当一个表现过滤器，只是将一个模型中包含的某些方面的数据展示出来，而隐藏另外一些数据。视图向模型请求，以获取需要表现的数据。它也可以通过发送相应的命令，来修改模型中的数据。这样的查询和命令，都必须在模型中由语意定义。</p>
+
+<h4 id="控制器">控制器</h4>
+
+<p>控制器充当用户和应用程序之间的连接，它安排视图在屏幕上显示，或者通过显示菜单、输入字段、按钮或其他的页面元素来读取用户输入。控制器先解释用户输入，然后将其传递给一个或多个视图。MVC框架的各个部分的运作如下图所示。
+<img src="https://sltaurusblog.gitee.io/images/JavaScript/JavaScript28.jpg" alt="JavaScript28" /></p>
+
+<p><strong>真实案例</strong></p>
+
+<p>可以用看电视来比喻一个MVC框架。电视台有各种可用的频道，每个频道包含了不同的数据；这些频道都可以看作是MVC系统中的模型。视图是由电视机的屏幕提供的。你可以使用遙控器（控制器）的功能来和电视机进行交互。</p>
+
+<h3 id="针对webapp使用mvc框架">针对WebAPP使用MVC框架</h3>
+
+<p>MVC架构能够很好地用于Web应用程序中。</p>
+
+<ul>
+<li>模型—页面内容存储在支撑应用程序的模型之中。技术性的细节可能有所不同，文本和图像可能存储在数据库中，而服务器文件则以其他的方式存储，但是，数据融合在一起的规则是相同的，都是作为框架的模型部分进行编码的。</li>
+<li>视图—HTML和CSS给内容添加了一个或多个可视化的显示层，应用这些层面可以给Web应用程序一种特定的外观和样式。我们可以修改内容显示的方式，而根本不需要修改模型中存储的初始的内容。</li>
+<li>控制器—— 控制器元素包含了连接到页面上的交互式元素的程序代码，例如，表单字段、按钮和链接等。这些代码解释用户输入并与模型和视图通信。</li>
+</ul>
+
+<h3 id="angularjs-框架">AngularJS 框架</h3>
+
+<p>AngularJS是 Google开发的一个MVC框架，它能够用来构建架构良好的、易于测试的和可维护的JavaScript Web应用程序。它设计来帮助生成强大的、可靠的、单页面的Web应 用程序。</p>
+
+<h4 id="angularjs-概览">AngularJS 概览</h4>
+
+<p>AngularJS是一个MVC框架，它将你的HTML代码 （对应于MVC范型中的视图）和JavaScript对象绑定起来（MVC中的模型部分）。</p>
+
+<p>这样一来，对于模型做出的任何修改，都会自动更新到页面上。反之亦然，例如，当一个文本字段的内容变化的时候，和字段相关联的模型也会更新。同样的方式，视图中的任何修改，例如用户在一个字段输入了信息，或者单击了一个按钮，都会要求修改相应的模型。</p>
+
+<p>在幕后，AngularJS处理了所有这些逻辑，因此，你不必编写代码来更新页面的HTML代码，或者监听并响应用户事件。</p>
+
+<h4 id="在页面中包含angularjs">在页面中包含AngularJS</h4>
+
+<blockquote>
+<p><a href="https://www.angularjs.net.cn/download/">AngularJS官方中文网</a></p>
+</blockquote>
+
+<p>要使用AngularJS,必须在页面中包含它。最容易的方式就是通过Google的CDN来包含它.AngularJS官网本身采用AngularJS库构建，页面中的AngularJS库通过Google的CDN（内容分发网络）引入，所以国内访问会有问题。国内我们一般推荐是以下CDN.</p>
+
+<p>引入百度CDN:</p>
+
+<pre><code>&lt;script src=&quot;http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>bootcdn:</p>
+
+<pre><code>&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>通过上面的引用，你只能使用AngularJS的核心模块,Ng模块。AngularJS还提供了各种功能丰富的模块，如ngRoute，ngAnimate，ngCookies，ngTouch，等等，只要引入相应头文件，在依赖注入你所在的工作模块，则可使用。以下AngularJS个功能模块的CDN，以BootCDN为例。</p>
+
+<p>ngRoute：</p>
+
+<pre><code>&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular-route.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular-route.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>ngAnimate：</p>
+
+<pre><code>&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular-ngAnimate.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular-ngAnimate.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>ngRoute：</p>
+
+<pre><code>&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular-route.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>ngRoute：</p>
+
+<pre><code>&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular-route.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>ngRoute：</p>
+
+<pre><code>&lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular-route.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>通过依赖管理安装</p>
+
+<pre><code>npm
+bower
+</code></pre>
+
+<h4 id="用ng-指令扩展html">用ng-指令扩展HTML</h4>
+
+<p>AngularJS使用了很多的指令，来帮助你把页面的HTML元素和MVC架构中的模型关联起来。这些指令中的每一个都是以ng-打头的，并且可以添加到任何元素中。</p>
+
+<p>在任何页面中必须包含的关键属性是ng-app,它定义了一个AngularJS应用。你需要将其应用于一个元素，而该元素包含了带有ng-指令的其他页面元素。可以将其应用于页面的<body元素（使得整个页面都成为应用程序的一部分），或者应用于包含应用程序的一个<div>元素：</p>
+
+<pre><code>&lt;body ng-app&gt;
+</code></pre>
+
+<p>当页面加载的时候，AngularJS找到这个元素，并且处理在其子元素上所见到的所有ng-指令。</p>
+
+<p>两个更为重要的ng-指令是ng-model和ng-bindo。ng-model指令把输入字段、选择框、文本字段等HTML控件的值和模型中存储的应用程序数据连接起来。ng-bind指令将MVC模型中的应用程序数据绑定到HTML视图中的元素。示例程序清单如下：</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;测试用例&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular.min.js&quot;&gt;&lt;/script&gt;
+    &lt;style&gt;
+        #output {
+            font: 28px bold helvetica, arial, sans-serif;
+            color: red;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body ng-app&gt;
+    &lt;p&gt;Name: &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;&lt;/p&gt;
+    &lt;span id=Houtput” ng-bind=&quot;name&quot;&gt;&lt;/span&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>只要Web页面加载了，AngularJS就会开始工作。ng-app指令告诉AngularJS,在这个例子中，是页面的<code>&lt;body&gt;</code>元素包含了一个AngularJS应用程序。然后ng-model指令将输入字段中包含的值绑定到变量名称。类似地，ng-bind指令将<code>&lt;span&gt;</code>元素的HTML内容绑定到变量名。通过这种方式，span元素变成了 MVC框架中的一个视图。 现在输入字段中做出的任何修改，都会立即反映到<span>元素中.</p>
+
+<h4 id="作用域">作用域</h4>
+
+<p>作用域是一个对象，它将一个DOM元素（MVC架构中的视图部分）连接到控制器；在MVC的术语中，这个对象变成了模型。</p>
+
+<p>控制器和视图都必须访问作用域模型，因此，作用域可以用于控制器和视图之间的通信。 这个作用域对象将会保存用于视图中的数据和方法。</p>
+
+<p>所有的AngularJS应用程序都有一个$rootScope。这个$rootScope是顶级的作用域，它属于包含了ng-app指令的DOM元素。</p>
+
+<p>当在应用程序中没有设置显式的作用域的时候,SrootScope就是AngularJS用来绑定数据和函数的作用域。前面的示例正是因为这样才能够工作的。</p>
+
+<p>为了更好地了解作用域是如何工作的，让我们将控制器绑定到一个特殊的D0M 元素， 为该元素创建一个作用域，然后与其交互。</p>
+
+<h4 id="指令">指令</h4>
+
+<p>在前面的示例中，我们已经见到过几个指令。在 AngularJS中，指令是连接到一个D0M元素的一个函数，使这个元素能够运行方法、连接到控制器和作用域对象，以及操作DOM。</p>
+
+<p>当一个AngularJS应用程序启动的时候，AngularJS开始遍历DOM（从拥有ng-app属性的DOM元素开始），它将会解析负责收集和运行这些指令的代码。</p>
+
+<p>指令负责实现AngularJS应用程序动态化的所有艰苦工作。我们在前面已经看到过指令的几个示例，包括ng-model和ng-bind指令：</p>
+
+<pre><code>&lt;p&gt;Name: &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;&lt;/p&gt;
+&lt;span id=Houtput” ng-bind=&quot;name&quot;&gt;&lt;/span&gt;
+</code></pre>
+
+<p>AngularJS中还内建了很多默认的指令，我们接下来将会介绍其中的一些。</p>
+
+<h4 id="表达式">表达式</h4>
+
+<p>两对花括号用于包含一个表达式指令：</p>
+
+<pre><code>{{ expression }}
+</code></pre>
+
+<p>AngularJS表达式和JavaScript表达式几乎一样，因为它们都包含字面值、操作符和变量。如下都是有效的AngularJS表达式：</p>
+
+<pre><code>{ { 3 + 9 }}
+{{ quantity * cost }}
+{{ firstName + ” &quot; + lastName }}
+</code></pre>
+
+<p>AngularJS表达式在写该表达式的具体位置解释为数字。</p>
+
+<p>ng-init指令在启动的时候运行，在 AngularJS运行任何应用程序代码之前，它就运行了。使用ng-init指令，你可以在运行任何其他函数之前设置默认的变量。</p>
+
+<p>ng-click指令给一个DOM元素添加一个监听器。当单击该元素的时候，AngularJS将执行该指令中定义的表达式。</p>
+
+<p>ng-repeat指令遍历一个集合，并且为每一个项加载一个模板。它所复制的模板，就是拥有ng-repeat属性的元素。</p>
+
+<pre><code>$scope.departments = [
+    { name: 'Sales' },
+    { name: 'Support'},
+    {name: ' Production'}, 
+    { name: 'Shipping'}
+];
+</code></pre>
+
+<p>可以使用ng-repeat来遍历它们：</p>
+
+<pre><code>&lt;body ng-app ng-init=&quot;departments = [
+        { name: 'Sales' },
+        { name: 'Support'},
+        {name: ' Production'}, 
+        { name: 'Shipping'}];&quot;&gt;
+ &lt;ul&gt;
+     &lt;li ng-repeat=&quot;dept in departments&quot;&gt;{{dept.name }}&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>这里的<li>元素将会复制4 次，以得到发送给视图的列表。</p>
+
+<h4 id="过滤器">过滤器</h4>
+
+<p>过滤器的工作就是从数组中选择元素的一个子集，并且将其当作一个新的数组返回。如下是能够对一个数组做的一些事情：</p>
+
+<ul>
+<li>使用currency,将一个数字格式化为货币的格式。</li>
+<li>使用filter,从数组中选择元素的一个子集。</li>
+<li>使用lowercase,将一个字符串格式化为小写的。</li>
+<li>使用orderBy,根据一个表达式来排序数组。</li>
+<li>使用uppercase,将一个字符串格式化为大写的。</li>
+</ul>
+
+<p>如下是AngularJS中一个过滤器的一般语法：</p>
+
+<pre><code>{{filter_expression | filter:expression:comparator}}
+</code></pre>
+
+<p>下面示例中，将会计算表达式{{netTotal + tax } } ,并且结果将会格式化为货币。</p>
+
+<pre><code>&lt;div ng-app&gt;
+    Total: &lt;input type=&quot;number&quot; ng-model=&quot;netTotal&quot;&gt;
+    Tax: &lt;input type=&quot;number&quot; ng-model=&quot;tax&quot;&gt;
+    &lt;p&gt;Invoice Total = {{netTotal + tax | currency}}&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>也可以给任何ng-指令添加一个过滤器，只要使用管道符号(|),后面跟着一个过滤器的说明就可以了：</p>
+
+<pre><code>&lt;ul&gt;
+    &lt;li ng-repeat=&quot;dept in departments | filter: uppercase&quot;&gt;{{ dept.name }}&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<h3 id="构建一个angularjs应用程序">构建一个AngularJS应用程序</h3>
+
+<p>现在，我们将所有的知识综合应用，来构建一个基本的AngularJS应用程序。我们先从一个基本的HTML页面开始，它包含一个文本输入字段，用来接收用户输入的搜索字符串，还有一个<code>&lt;div&gt;</code>元素，用来包含带有输入的字符串的搜索结果的一个列表。下面代码中，模板字符串都是用反引号表示，如果在模板字符串中需要使用反引号，则前面需要用反斜杠转义。</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;测试用例&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/ui/1.10.4/themes/start/jquery-ui.css&quot;&gt;
+    &lt;script src=&quot;//code.jquery.com/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//code.jquery.com/ui/1.10.4/jquery-ui.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryui.com/resources/demos/style.css&quot;&gt;
+    &lt;script src=&quot;//cdn.bootcss.com/angular.js/1.5.8/angular.min.js&quot;&gt;&lt;/script&gt;
+    &lt;style&gt;
+        body {
+            background-color: #ddf;
+            font: 16px bold helvetica, arial, sans-serif;
+        }
+        input {
+            padding: 10px;
+        }
+        #list-container {
+            background-color: white;
+            color: #448;
+            border-radius: 25px;
+            border：1px solid black;
+            padding: 25px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body ng-app ng-init=&quot;departments = [
+    { name: 'Sales',contact: 'Marsha Brown'},
+    { name: 'Support',contact: 'Dave Price'},
+    { name: 'Production',contact: 'Grant Wales'},
+    { name: 'Service',contact: ' Sherry Dell'},
+    { name: 'Administration',contact: 'Sally Bennett'},
+    { name: 'Accounting',contact: 'Kim Sutherland'},
+    { name: 'Shipping',contact: ' Sandy Connell'}]&quot;&gt;
+    &lt;p&gt;Search Departments: &lt;input type=&quot;text&quot; placeholder=&quot;Enter search string&quot; ng-model=&quot;searchString&quot;&gt;&lt;/p&gt;
+    &lt;div id=&quot;list-container&quot;&gt;
+        &lt;ul&gt;
+            &lt;li ng-repeat=&quot;dept in departments | filter: searchString&quot;&gt;{{dept.name + &quot;(&quot; + dept.contact + &quot;)&quot;}}&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>我们对页面应用必要的ng-指令：</p>
+
+<p>对<code>&lt;body&gt;</code>元素应用<code>ng-app</code>指令，将该元素定义为这个AngularJS应用程序的容器。对搜索字段应用ng-model指令，将其定义为MVC框架中的一个模型。对搜索结果的列表中的<code>&lt;li&gt;</code>元素应用<code>ng-repeat</code>指令。<code>&lt;li&gt;</code>元素将会对于每个搜索结果都重复一次。我们还使用了<code>ng-init</code>指令来为应用程序设置一些初始数据。在真实的情况中，这一数据更可能是从诸如服务器端数据库这样的外部来源引入的，但在这里，只是为了充当示例。</p>
+
+<p>这就是我们需要做的所有事情! AngularJS负责处理数据绑定，以便当用户输入数据的时候，过滤器能真正地起作用.</p>
+
+<h3 id="小结-4">小结</h3>
+
+<p>我们学习了模型-视图-控制器框架架构的基础知识，并介绍了如何将其应用于Web应用程序。我们还学习了Google的AngularJS框架，并且添加少量代码甚至不添加代码，就使用它构建了一个简单的Web应用。 实际上，对于AngularJS所能做的事情，我们也只是浅尝辄止。不妨访问AngularJS的官方网站<a href="https://www.angularjs.net.cn/以学习更多内容。">https://www.angularjs.net.cn/以学习更多内容。</a></p>
+
+<h1 id="专业技能">专业技能</h1>
+
+<h2 id="良好的编程习惯">良好的编程习惯</h2>
+
+<h3 id="避免过度使用javascript">避免过度使用JavaScript</h3>
+
+<p>页面到底需要多少JavaScript?在一些并不特别需要的场合，或是一些不建议使用JavaScript的场合，我们总会有添加JavaScript代码和强化页面交互的冲动。</p>
+
+<ul>
+<li>记住：用户在浏览互联网时，花在你的页面上的时间远少于花在其他页面的时间。成熟的互联网用户已经习惯于流行的界面元素，比如菜单、标题和标签化浏览。这些元素之所以流行，一般来说是因为它们工作稳定、外观漂亮，而且不需要用户查看什么手册就可以使用。仔细想一下，用户熟悉的操作风格，与我们自己设计的奇巧界面，哪一个更能提高用户的操作效率呢？</li>
+<li>曾经需要使用JavaScript来实现的视觉效果，现在很多都可以利用CSS完美地实现了。虽然两种方式都可以实现相同的一些效果（比如图像变换和某种菜单），但css通常是更好的方式，它在各种浏览器（除了极少数的变体）的支持都很好，而且通常不会被用户关闭。在极少的不支持CSS的情况下，页面会按照标准HTML显示，通常的结果是页面虽然不是很好看，但功能还是完整的。</li>
+<li>世界各地还有很多用户在使用过时的、性能较差的老旧计算机，而且很可能与互联网的连接也是慢速且不可靠的。在这种情况下，代码对性能的影响是很明显的。</li>
+<li>有时使用代码还可能导致降低页面在搜索引擎的排名，因为它们的嗅控器未必能够正确地索引由JavaScript生成的内容。</li>
+</ul>
+
+<p>在有所规划的前提下谨慎地使用JavaScript,它会是一个很好的工具，但有时候，过犹不及。</p>
+
+<h3 id="编写易读和易维护的代码">编写易读和易维护的代码</h3>
+
+<p>我们无法知道将来的某一天会不会有人要阅读和理解我们编写的代码，即使这个人是程序员自己。时光的流逝与工作内容的不断变化也会造成影响，当时很熟悉的代码也会变得陌生与神秘，如果是其他人要理解我们编写的代码，他们的编码风格、命名规范或经验都与我们不同，就更增加了理解的难度。</p>
+
+<h4 id="明智地使用注释">明智地使用注释</h4>
+
+<p>代码中关键位置的适当注释能够让前面所述的困境大为改观，它是对后来者的说明与提示。</p>
+
+<p>假定后来要阅读代码的人是理解JavaScript的，这并不过分，因此对于语言本身的注释就没有什么意义了。JavaScript开发人员的确在编码风格与技术水平上千差万别，但也的确都遵循相同的语法规则。</p>
+
+<p>在阅读代码时，比较难以说明的是代码背后隐藏的思维过程与算法。从作者个人经验来说，在阅读他人编写的代码时，希望看到如下这些注释：</p>
+
+<ul>
+<li>代码较长的函数或对象的简要说明。</li>
+<li>对易混淆或易误解代码的注释。</li>
+<li>原作者自己的技巧或经验，如果不加注释，代码阅读者不太可能知道这些。</li>
+<li>关于代码修改的注释。</li>
+</ul>
+
+<h4 id="使用适当的文件名称-属性名称和方法名称">使用适当的文件名称、属性名称和方法名称</h4>
+
+<p>代码的自我解释程度越高，源代码里需要的注释就会越少。给方法和属性选择含义明确的名称就是个很好的习惯。</p>
+
+<p>JavaScript对于能够在方法(或函数)及属性(或变量)名称里使用的字符有所限制，但 仍然有足够的空间让我们使用准确且有创意的名称。</p>
+
+<ul>
+<li>惯例之一是让常数的名称全部大写：<code>MONTHS_PER「YEAR = 12;</code></li>
+<li>对于一般的函数、方法和变量，“驼峰命名法”是一种常用的命名方式，就是把组成名称的单词连接起来，每个单词的首字母大写，而名称的第一个字母可以大写或小写。</li>
+<li>构造函数的第一个字母一般是大写的,这种大写方式可以提醒我们要使用关键字new。<code>functiem Car(make, model, color) {....语句}</code>。<code>var herbie = new Car('VW','Beetie','white');</code>。</li>
+</ul>
+
+<h4 id="尽量复用代码">尽量复用代码</h4>
+
+<p>一般来说，代码的模块化程度越高越好。把代码集中到函数或对象这些模块里，从而在程序里反复使用，这个过程被称为“抽象化”。比如下面这个函数：</p>
+
+<pre><code>function getElementArea() {
+    var high = document.getElementByld(&quot;idl&quot;).style.height;
+    var wide = document. getElementByld (&quot;idl&quot;).style.width; 
+    return high * wide;
+}
+</code></pre>
+
+<p>这个函数的功能是返回一个特定元素在屏幕上占据的面积，但它只能得到id=&ldquo;idl&rdquo;这个元素的值，这实际上是没有太大用处的。对于上面这个函数，我们可以把元素的id作为参数传递给它，从而让它具有&rdquo;更高程度的抽象化&rdquo;，更具有通用性：</p>
+
+<pre><code>function getElementArea(elementld) {
+    var elem = document.getElementByld(elementld);
+    var high = elem.style.height;
+    var wide = elem.style.width; 
+    return high * wide;
+}
+</code></pre>
+
+<p>现在就可以对任何具有id的元素调用这个函数了。</p>
+
+<h4 id="不要假设">不要假设</h4>
+
+<p>在使用前面这个函数时，如果传递的参数并不对应于页面上的任何元素，会有什么结果？函数会产生一个错误，代码的执行被挂起。之所以产生这个错误，是因为函数里假设了传递的参数elementld是有效的。现在来修改 这个函数，检查相应的页面元素是否存在并且具有面积：</p>
+
+<pre><code>function getElementArea(elementld) {
+    if(document.getElementByld(elementld)){
+        var elem = document.getElementByld(elementld);
+        var high = elem.style.height;
+        var wide = elem.style.width; 
+        var area = parselnt(high) * parselnt(wide);
+        if(!isNaN(area)){
+            return area;
+        }
+        else{
+            return false
+        }
+    }
+    else{
+        return false;
+    }
+}
+</code></pre>
+
+<p>这样就好多了。如果页面没有相应的元素，或是不能计算出有效的面积数值，或是页面元素不具有width或 height属性，这个函数都会返回false。</p>
+
+<h3 id="平稳退化">平稳退化</h3>
+
+<p>在早期的浏览器中，有些甚至不支持在HTML里包含图片。在开始使用＜img＞元素之后，我们需要某种方式让这些纯文本的浏览器在遇到不支持的标签时能够给用户提供一些有益的帮助。</p>
+
+<p>对于＜img＞标记来说，相应的方式是使用alt属性（替代文本）。页面设计人员给alt属性设置一个字符串，那些纯文本浏览器就会显示这个字符串而不是图像。alt属性包含的字符串没有什么硬性规定，基本都是设计人员的灵光一现，可能是图像的标题，可能是关于图像内容的描述，可能是从其资源获得相关信息的建议。</p>
+
+<p>这是关于“平稳退化”的早期范例，也就是当用户的浏览器缺少某种让页面设计充分展示的功能，或是关闭这种功能时，我们仍然能够尽可能地把站点的内容呈现给用户。</p>
+
+<p>再以JavaScript本身为例，几乎每款浏览器都支持JavaScript,而且只有极少的用户会关闭这个功能。那么我们还需要考虑JavaScript不能应用的情况吗？答案恐怕是肯定的。搜索引擎的嗅控程序也算是网站的一种“用户”，它们会频繁访问站点，为了建立页面内容的完整索引而尝试遍历页面里的全部链接。如果有的链接需要JavaScript服务，那么站点里有些页面内容就可能不被索引了，这可能会影响站点在搜索引擎里的排名情况。</p>
+
+<p>另外一个很重要的方面是辅助选项。无论浏览器的功能如何，总是有一些用户受到其他的限制，比如不能使用鼠标，或是必须使用屏幕阅读软件。如果站点不考虑到这些用户的体验，他们就不会再访问了。</p>
+
+<h3 id="渐进增强">渐进增强</h3>
+
+<p>在谈论平稳退化时，很自然就会想到编写一个考虑周全的页面，为浏览器功能较弱的用户提供完整的访问。</p>
+
+<p>但是，支持“渐进增强”的方案会从另外一个角度来看待这个问题。他们认为应该先建立一个稳定的、可访问的、功能完整的站点，其中的内容可以被几乎任何用户和浏览器访问，而后再逐渐添加额外的功能层次，满足能够利用这些功能的用户。</p>
+
+<p>这种方式确保使用基本配置浏览器的用户能够访问站点，而使用高级浏览器的用户也能获得增强功能。</p>
+
+<h4 id="分离样式-内容和代码">分离样式、内容和代码</h4>
+
+<p>对于采用“渐进增强”技术的页面来说，内容是最关键的资源。HTML利用标签来描述页面内容，把页面元素标签为标题、表格、段落等，我们称之为“<strong>语义层</strong>”。</p>
+
+<p>从理想状态来说,语义层不应该包括任何控制页面显示方式的信息,这些信息应该由CSS技术构成的“<strong>表现层</strong>”提供。通过链接外部的CSS样式，我们可以避免HTML标签里出现与外观相关的信息。即使浏览器不支持CSS,仍然可以访问并显示页面的信息，只是效果可能不是很好。</p>
+
+<p>而JavaScript代码要添加到另一个层，也就是所谓的&rdquo;<strong>行为层</strong>&ldquo;。不支持JavaScript的浏览器仍然可以通过语义标签访问页面内容，如果浏览器支持CSS,就还可以看到表现层的显示效果。如果浏览器支持JavaScript,用户就能使用更丰富的功能，而且不会对前面几层的功能产生影响。</p>
+
+<p>为了达到这个目的，需要编写“代码分离”的JavaScript。</p>
+
+<h3 id="代码分离的javascript">代码分离的JavaScript</h3>
+
+<p>对于什么是“代码分离”的 JavaScript并没有明确的定义，但其核心概念就是保持行为层、内容层和表现层的分离。</p>
+
+<h4 id="脱离html">脱离HTML</h4>
+
+<p>第一步，也可能是最重要的一步，就是从页面标签里清除JavaScript代码。以前的JavaScript应用程序会与HTML标签混在一起，就像下面这个范例中的onClick事件一样：</p>
+
+<pre><code>&lt;input type=&quot;button&quot; style=&quot;border:1px solid blue;color:white&quot; onclick=&quot;doSomething()&quot;/&gt;
+</code></pre>
+
+<p>像前例这样的内联style属性，会让事情变得更糟。好在我们可以把样式信息转移到样式层，比如给HTML标签添加class属性，从而与外 部 CSS文件里的样式声明产生关联：</p>
+
+<pre><code>&lt;input type=&quot;button&quot; class=&quot;blueButtons&quot; onclick=&quot;doSomething()&quot; /&gt;
+</code></pre>
+
+<p>而相关的Css定义可以是这样的：</p>
+
+<pre><code>.blueButtons { 
+    border: lpx solid blue; 
+    color: white;
+}
+</code></pre>
+
+<p>可以利用多种不同的选择符定义自己的样式规则，包括input元素或是利用id属性。</p>
+
+<p>为了让JavaScript代码达到代码分离的目标，可以使用与CSS类似的手段。给HTML标签里页面元素添加一个id属性，就可以把外部JavaScript代码附加到事件处理器，保持JavaScript与HTML标签的分离。修改的HTML元素如下所示：</p>
+
+<pre><code>&lt;input type=&quot;button&quot; class=&quot;blueButtons&quot; id = &quot;btn1&quot; /&gt;
+</code></pre>
+
+<p>而相应的事件处理器是在JavaScript代码里添加的：</p>
+
+<pre><code>function doSomething(){
+//...语句... 
+}
+document.getElemen tByld (&quot;btnl&quot;).onclick = doSomething;
+</code></pre>
+
+<p>注意:在 DOM准备好之前是不能使用它的，所以这样的代码必须通过像window.onload这样的方法来确保DOM的可用性。</p>
+
+<h4 id="仅把javascript作为性能增强手段">仅把JavaScript作为性能增强手段</h4>
+
+<p>在“渐进增强”的理念中，即使JavaScript功能被关闭，页面也应正常工作。JavaScript 对页面效果的增强应该被视作对允许JavaScript的浏览器的一种奖励。</p>
+
+<p>假设我们要编写表单检验代码(这是JavaScript的常见用途之一)，下面是一个简单的搜索表单：</p>
+
+<pre><code>&lt;form action=&quot;process.php&quot;&gt;
+&lt;input id=&quot;searchTerm&quot; name=&quot;term&quot; type=&quot;text&quot; /&gt;&lt;br/&gt;
+&lt;input type=&quot;button&quot; id=&quot;btnl&quot; value=&quot;Search&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>我们要编写一段程序，防止搜索字段为空时提交表单。比如下面的函数checkform(),它将附加到search按钮的onClick事件处理器：</p>
+
+<pre><code>function checkform() {
+    if(document.forms[0].term.value == &quot;&quot;) {
+        alert(&quot;Please enter a search term.&quot;);
+        return false;
+    } else {
+        document.forms[0].submit();
+    }
+window.onload = function() {
+    document.getElementByld(&quot;btnl&quot;).onclick = checkform;
+}
+</code></pre>
+
+<p>这段代码很普通，但如果JavaScript被关闭了，会怎么样？按钮就没有任何功能了，用户也就不能提交表单了。对于用户来说，肯定是更愿意能够使用这个表单，即使没有关于输入检查的“强化”功能。现在对表单进行一点调整，让按钮的类型变为submit而不是button,并且修改checkform()函数。</p>
+
+<pre><code>&lt;form action=&quot;process.php&quot;&gt;
+&lt;input id=&quot;searchTerm&quot; name=&quot;term&quot; type=&quot;text&quot; /&gt;&lt;br/&gt;
+&lt;input type=&quot;submit&quot; id=&quot;btnl&quot; value=&quot;Search&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>修改后的checkform()函数如下：</p>
+
+<pre><code>function checkform() {
+    if(document.forms[0].term.value == &quot;&quot;) {
+        alert(&quot;Please enter a search term.&quot;);
+        return false;
+    } else {
+        return true;
+    }
+window.onload = function() {
+    document.getElementByld(&quot;btnl&quot;).onclick = checkform;
+}
+</code></pre>
+
+<p>当JavaScript功能激活时，给 submit按钮返回false会禁止按钮的默认操作，也就是阻止 表单提交。如果JavaScript功能被关闭，当用户单击这个按钮时，表单仍然会被提交。</p>
+
+<h3 id="功能检测">功能检测</h3>
+
+<p>尽可能直接检测浏览器相应的功能是否存在，并且让代码只使用存在的功能。以clipboardData对象为例，本书编写时只有IE使用这个对象。在代码中使用这个对象之前，执行一些检测是很有必要的：</p>
+
+<ul>
+<li>JavaScript发现这个对象了吗？</li>
+<li>如果对象存在，它是否支持我们要使用的方法？</li>
+</ul>
+
+<p>下面的函数试图利用clipboardData对象直接向剪贴板写入一段文本。</p>
+
+<pre><code>function setClipboard(myText){
+    if((typeof clipboardData != 'undefined') &amp;&amp; (clipboardData.setData)){ 
+        clipboardData.setData(&quot;text&quot;, myText);
+    } else {
+        document.getElementByld(&quot;copytext&quot;).innerHTML = myText;
+        aler t (&quot;Please copy the text from the 'Copy Text' field to your clipboard&quot;);
+    }
+}
+</code></pre>
+
+<p>它首先利用typeof测试对象是否存在：</p>
+
+<pre><code>if((typeof clipboardData != 'undefined')....
+</code></pre>
+
+<p>根据操作数的不同，typeof操作符返回如下一些结果：&rdquo;undefined&rdquo; &ldquo;object&rdquo; &ldquo;function&rdquo; &ldquo;boolean&rdquo; &ldquo;string&rdquo; 或 &ldquo;number&rdquo;。
+同时，函数还要求setData()方法必须存在：</p>
+
+<pre><code>... &amp;&amp; (dipboardData.setData) ) {
+</code></pre>
+
+<p>只要有一个条件不满足，函数就会提供另一种稍微麻烦一点的方法，就是把文本写入到页面元素，再让用户把文本复制:</p>
+
+<pre><code>document.getElementByld(&quot;copytext&quot;).innerHTML = myText;
+alert(n Please copy the text from the * copytext * field to your clipboard&quot;);
+</code></pre>
+
+<p>在这段代码里并没有检测浏览器是否是IE (或其他浏览器)。只要其他浏览器支持所需要的功能，这段代码就能正确检测到。</p>
+
+<h3 id="妥善处理错误">妥善处理错误</h3>
+
+<p>当JavaScript程序遇到某种错误时，JavaScript解析器内部会生成一个错误或警告。它是否会显示给用户，以及把什么显示给用户，取决于用户使用的浏览器及设置。用户可能会看到某种形式的错误消息，或是产生错误的程序不反馈什么信息但也不正常运行。</p>
+
+<p>这两种情况对于用户来说都不好，因为不知道哪里出了问题，也不知道如何处理这些情况。在编写跨浏览器和跨平台的代码时，我们能够预见到某些领域可能发生的错误，比如:</p>
+
+<ul>
+<li>不确定浏览器是否支持某个对象，或是这种支持是否是与标准兼容的。</li>
+<li>独立进程是否已经运行结束，比如外部文件是否已经完成加载。</li>
+</ul>
+
+<h4 id="使用try和catch">使用try和catch</h4>
+
+<p>使用try和catch语句可以捕获潜在的错误，并且按照一定规则处理它们。try语句让我们可以尝试运行一段代码，如果运行正常，就没有任何问题。如果发生了错误，可以使用catch语句在错误消息被发送给用户之前捕获它，并且决定如何处理这个错误。</p>
+
+<pre><code>try { 
+    doSomething ();
+}
+catch(err) {
+    doSomethingElse();
+}
+</code></pre>
+
+<p>注意这个语法：</p>
+
+<pre><code>catch(identifier)
+</code></pre>
+
+<p>这里的identifier是错误被捕获时创建的一个对象，它包含了关于错误的信息。举例来说, 如果要提示用户关于JavaScript运行时的错误，可以使用这样的代码结构：</p>
+
+<pre><code>catch(err) { 
+    alert(err.description);
+}
+</code></pre>
+
+<h3 id="把代码调整为-代码分离-状态程序清单">把代码调整为“代码分离”状态程序清单</h3>
+
+<p>我们时常都需要修改代码，让它保持良好的代码分离状态。现在先来看看前面编写的一段分离度不够的代码，如程序清单所示:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Current Date and Time&lt;/title&gt;
+    &lt;style&gt;
+        p {
+            font: 14px normal arial, verdana, helvetica;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        function telltime() {
+            var out = &quot;&quot;;
+            var now = new Date();
+            out += &quot;&lt;br/&gt; Date : &quot; + now.getDate();
+            out += &quot;&lt;br/&gt; Month  : &quot; + now.getMonth();
+            out += &quot;&lt;br/&gt; Year : &quot; + now.getFullYear();
+            out += &quot;&lt;br/&gt; Hours : &quot; + now.getHours();
+            out += &quot;&lt;br/&gt; Minutes : &quot; + now.getMinutes();
+            out += &quot;&lt;br/&gt; Seconds : &quot; + now.getSeconds();
+            document.getElementById(&quot;div1&quot;).innerHTML = out;
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    The current date and time are:&lt;br /&gt;
+    &lt;div id=&quot;div1&quot;&gt;&lt;/div&gt;&lt;br /&gt;
+    &lt;script&gt;
+        telltime();
+    &lt;/script&gt;
+    &lt;input type=&quot;button&quot; onclick=&quot;location.reload()&quot; value=&quot;Refresh&quot; /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>很显然，这段脚本有一些可以改进的地方：</p>
+
+<ul>
+<li>JavaScript语句位于页面的<script>和</script>标签之间,而它们最好是位于单独的文件里。</li>
+<li>按钮有个内联的事件处理器。</li>
+<li>在不支持JavaScript的浏览器里，按钮不会完成任何功能。</li>
+</ul>
+
+<p>首先，我们把JavaScript代码都转移到一个单独的文件，并且去除内联的事件处理器;还要给按钮设置id属性，用于在代码里标识这个按钮以添加事件处理程序。</p>
+
+<p>接下来，要处理浏览器不使用JavaScript的情况。为此，利用<noscript>元素给用户显示 一段信息，引导他们使用其他的时间信息来源：</p>
+
+<pre><code>&lt;noscript&gt;
+Your browser does not support JavaScript&lt;br /&gt; Please consult your computer's operating system for local date and time information or click &lt;a href=&quot;clock.php&quot; target=&quot;_blankn &gt;HERE&lt;/a&gt; to read the server time. 
+&lt;/noscript&gt;
+</code></pre>
+
+<p>对于关闭JavaScript功能或是不支持客户端脚本的浏览器来说，<noscript> 标签提供了一些额外可用的内容。任何能够用于HTML<body>内部的元素都可以用于noscript,并且会在浏览器不能运行脚本时自动呈现。修改后的HTML页面如程序清单所示：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Current Date and Time&lt;/title&gt;
+    &lt;script src=&quot;JS/datetime.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;Resources/datetime.css&quot; /&gt;
+&lt;/head &gt;
+            &lt;body&gt;
+                The current date and time are:&lt;br /&gt;
+                &lt;div id=&quot;div1&quot;&gt;&lt;/div&gt;&lt;br /&gt;
+                &lt;input id=&quot;btn1&quot; type=&quot;button&quot; value=&quot;Refresh&quot; /&gt;
+                &lt;noscript&gt;
+                    &lt;p&gt;你的浏览器不支持JavaScript .&lt;/p&gt;
+                    &lt;p&gt;有关本地日期和时间信息，请咨询您的计算机操作系统或者点击&lt;a href=&quot;http://time.tianqi.com/&quot; target=&quot;_blank&quot;&gt;这里&lt;/a&gt;读取服务器时间。&lt;/p&gt;
+                &lt;/noscript&gt;
+            &lt;/body&gt;
+&lt;/html &gt;
+</code></pre>
+
+<p>在JavaScript源文件datetime.js里，我们利用window.onload给按钮添加事件处理器，然后调用telltime()来生成要在页面上显示的日期与时间信息。datetime.js代码如程序清单所示:</p>
+
+<pre><code>window.onload = function () {
+    document.getElementById(&quot;btn1&quot;).onclick = function () {
+            location.reload();
+        }
+    telltime();
+}
+
+function telltime() {   
+    var out = &quot;&quot;;
+    var now = new Date();
+    out += &quot;&lt;br/&gt; Date : &quot; + now.getDate();
+    out += &quot;&lt;br/&gt; Month  : &quot; + now.getMonth();
+    out += &quot;&lt;br/&gt; Year : &quot; + now.getFullYear();
+    out += &quot;&lt;br/&gt; Hours : &quot; + now.getHours();
+    out += &quot;&lt;br/&gt; Minutes : &quot; + now.getMinutes();
+    out += &quot;&lt;br/&gt; Seconds : &quot; + now.getSeconds();
+    document.getElementById(&quot;div1&quot;).innerHTML = out;
+}
+</code></pre>
+
+<h3 id="小结-5">小结</h3>
+
+<p>这里介绍了在编写代码时的一些好方式，它们可以帮助我们更快速地完成项目，并且具有更好的质量，更易于维护。</p>
+
+<p>问答：</p>
+
+<p>问：为什么有的用户会关闭JavaScript功能？</p>
+
+<p>答：服务商或是公司管理者都可能关闭浏览器的JavaScript功能来提高安全性，比如学 校或是网吧就是这种典型的环境。</p>
+
+<p>另外，有些公司的防火墙、广告屏蔽和杀毒软件都可能禁止JavaScript运行。而有些手 机上的浏览器对JavaScript的支持也不完全。</p>
+
+<p>问：在处理不启用JavaScript功能的情况时，除j＜noscript＞标签，还有其他方法吗？</p>
+
+<p>答：避免使用＜noscript＞的一种方法是把启用JavaScript功能的用户跳转到包含JavaScript代码的增强页面：</p>
+
+<pre><code>＜script＞window.location=&quot;enhancedPage.html&quot;;＜/script＞
+</code></pre>
+
+<p>如果JavaScript功能是开启的，上面这行代码就会把用户转到增强页面。如果浏览器不 支持JavaScript,这行代码就不会执行，用户就会继续查看普通版本的页面。</p>
+
+<h2 id="调试代码">调试代码</h2>
+
+<p>当深入到较为高级的脚本时，我们迟早都会遇到代码出错误的情况。</p>
+
+<p>很多小小的失误都可能导致JavaScript错误，比如开始与结束括号不匹配，变量名称或 关键字输入错误，调用不存在的方法，等等。这里针对诊断错误和修正代码给出了一些简单的提示和建议，以使得你的编程过程更加愉快而有成果。</p>
+
+<h3 id="调试简介">调试简介</h3>
+
+<p>找到并修正bug的过程叫作调试,这可能是开发过程中最需要技巧也最令人沮丧的一步。</p>
+
+<h4 id="错误类型">错误类型</h4>
+
+<p>代码中可能出现的错误通常是如下3种类型之一。</p>
+
+<ul>
+<li>语法错误—— 这包括录入错误和拼写错误、漏掉了引号或错误匹配的引号、漏掉或错误匹配的圆括号或花括号，以及大小写错误。</li>
+<li>运行时错误一 当 JavaScript解释器试图做某些它无法理解的事情的时候所发生的 错误。例如，试图将一个字符串当作一个数值处理，以及试图用一个数除以0。</li>
+<li>程序逻辑错误—— 这种错误并不总是能够生成错误消息，代码可能是完全合法的， 但是脚本不会做你想让它做的事情。这通常是和脚本中的算法或逻辑流程相关的问题。</li>
+</ul>
+
+<h4 id="选择程序员的编辑器">选择程序员的编辑器</h4>
+
+<p>不管你使用什么平台，也不管你选择什么浏览器，选择一个好的编辑器是有用的。尽管使用WindowsNotepad这样的简单的文本编辑器编写代码也是可以的，但一个专业的编辑器会使得编程容易很多。</p>
+
+<p>有很多这样的程序可供使用，往往是根据开源或类似的许可可供免费使用。这里列出一些不需要花钱的编辑器，但是，请根据你的平台、你的工作方式和你的经济情况从中选择适合的一款。</p>
+
+<ul>
+<li>Notepad++ ( Windows)</li>
+<li>JEdit (能够在安装了 Java的任何平台上工作)</li>
+<li>PSPad (Windows)</li>
+<li>JuffEd (Windows、Linux)</li>
+<li>Geany (Windows&gt; Linux)</li>
+</ul>
+
+<p>编辑器提供了很多的功能，但我建议你找一款至少具备如下功能的编辑器：</p>
+
+<ul>
+<li>代码行编号—如果你将JavaScript代码存储到外部文件中的话(并且在可行的情况下，你应该尽可能地这么做)，这一功能特别有用。浏览器的调试程序所生成的任何错误消息中的行号，通常和你在编辑器中打开的源文件中的行号是一致的。</li>
+<li>语法高亮显示—当你熟悉了编辑器的语法高亮显示方案，很多时候，你能够很容易地找到代码中的错误，因为编辑器中的代码“看上去就是错的”。在你所喜欢的编辑程序中，你会感到惊讶的是，自己很快就习惯了关键字、变量、字符串字面值、对象等的颜色。很多编辑器允许你将语法高亮显示的颜色方案修改为你自己喜欢的形式。</li>
+<li>括号匹配一作为查找错误的工具，括号匹配很有用。好的编辑器将会显示成对的、匹配出现的开始和结束括号，而且针对方括号、花括号和圆括号等所有类型的括号都有此功能。当你的代码有几个层级的括号嵌套的时候，很容易会匹配错误。</li>
+<li>代码自动填充和工具提示式的语法帮助—一些编辑器针对命令函数和表达式提供了弹出式的、工具提示式的帮助。这可以节省你的时间，你不必再将目光从编辑器窗口移开以查找外部的参考。</li>
+</ul>
+
+<h4 id="使用alert-进行简单调试">使用alert()进行简单调试</h4>
+
+<p>有时候，你真得只是想要一种简单而快速的方法来读取一个变量的值，或者记录代码执行的顺序。</p>
+
+<p>可能最简单的方法就是在代码中相应的位置插入一条JavaScript alert()语句。假设你 想要知道一个看似没有响应的函数是否真的被调用了，并且如果调用了，是使用什么参数调用的：</p>
+
+<pre><code>function myFunc(a, b) {
+    alert(&quot;myFunc() called・\na: &quot; + a + &quot;\nb: ” + b); 
+    // ...函数其他的代码在这里...
+...}
+</code></pre>
+
+<p>记住，在显示消息中稍微多放置一些信息，而不要只是放置变量值或者一句话的提示，在忙碌的时候，你很可能忘记了 alert()中提及的变量或属性是什么。</p>
+
+<h3 id="更高级的调试">更高级的调试</h3>
+
+<p>在代码中放置alert()调用，作为调试较简短的代码的一种快速而简单的方法是没有问题的。然而这种方法有几个严重的缺点：</p>
+
+<ul>
+<li>在每个对话框上，必须单击“0K” 按钮，才能允许程序继续执行。这可能会令人沮丧，尤其是在处理较长的循环的时候。</li>
+<li>接收到的消息并没有存储到任何的地方，而是当对话框退出的时候就消失了，随后也没有办法再返回来看看所报告的消息。</li>
+<li>在代码正式发布之前，需要回到编辑器中删除掉所有的alert()调用。</li>
+</ul>
+
+<h4 id="控制台">控制台</h4>
+
+<p>好在大多数现代的浏览器都提供了一个JavaScript控制台，它可以用来更加有效地记录 调试消息。在不同的浏览器中，打开控制台的方法也是不同的：</p>
+
+<ul>
+<li>在Internet Explorer中，按下F12键打开Developer Tools。</li>
+<li>要打开Chrome 的Developer Tools和Opera 的Dragonfly Debugger,按下Ctrl+Shift+I。</li>
+<li>在Firefox中，按下F12键打开Firebug extension。</li>
+</ul>
+
+<p>本节中的示例假设你使用前面的调试器中的一种。如果不是的话，你可能必须查看自己的调试器的文档，看看如何执行我所提到的一些任务。在不同的浏览器中，它们展示这些错误的方式也可能有所不同。</p>
+
+<p>使用浏览器的调试工具，错误代码如下：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Current Date and Time&lt;/title&gt;
+&lt;/head &gt;
+&lt;body&gt;
+    &lt;script&gt;
+        function sayHi() {
+            alert(&quot;Hello!);
+        }
+    &lt;/script&gt;
+    &lt;input type=&quot;button&quot; value=&quot;good&quot; onclick=&quot;sayHi()&quot; /&gt;
+    &lt;input type=&quot;button&quot; value=&quot;bad&quot; onclick=&quot;sayhi()&quot; /&gt;
+&lt;/body&gt;
+&lt;/html &gt;
+</code></pre>
+
+<p>这段代码有两个不同类型的错误。首先在调用alert()方法的时候，参数漏掉了结束的引号。其次，在第2 个按钮的onclickhandler处理器中，它调用了 sayhi(),别忘了，函数名是区 分大小写的，因此实际上并没有定义名为sayhi()的函数。</p>
+
+<p>在 Firefbx中加载该页面，你将会看到预期的两个按钮，一个标签为“good”，另一个标签为&rdquo;bad&rdquo;。二者看上去似乎都没做什么事情。你可以按下Ctrl+Shft+J打开Firefox的 Error Console。</p>
+
+<p>这是一个很有用的开始。Firefox告诉我们，它发现一个不完整的字符串字面值，给出了 行号，甚至显示了该行代码，并且用一个箭头指出了有问题的位置。</p>
+
+<p>改正了错误之后，再次保存文件，我准备再尝试一次。首先，单击了 Error Console具栏上的Clear以清除旧的错误消息，然后重新加载测试页面。</p>
+
+<p>看上去很好。页面再次出现了，并且Error Console保持空白。在标签为“good”的按钮上单击，打开一个预期的alert()对话框，到目前为止，一切正常！</p>
+
+<p>但是，单击了标签为“bad”的按钮的时候，并没有看到任何内容，因此我再次查看了Error Console,Firefox再次指出了问题:&rdquo; sayhi is not defined&rdquo;。现在，我们知道了如何让代码经过完整调试并正确工作。</p>
+
+<p>其他的高级调试，火狐浏览器的话都使用Ctrl+Shft+ I和Ctrl+Shft+J来进行查看就好了，包括断点，还有最知名的方法console.log()。除了 console.log(),还可以利用 console.wam()、console.infb()和 console.error()。这些都会以略微不同的风格在控制台记录消息，以使得你能够全面地了解脚本是如何运行的。</p>
+
+<p>这里我们对于Google Chrome/Chromium中的调试器功能的介绍只是浅尝辄止。要学习更多的内容，<a href="https://developer.chrome.com/devtools/docs/javascript-debugging">https://developer.chrome.com/devtools/docs/javascript-debugging</a> 有一
+个很好的教程，能帮助你入门。</p>
+
+<p>如果你选择Firefox来进行开发工作，安装流行的Firebug extension会使你工作得更好，可以通过<a href="http://getfirebug.conrjavascript">http://getfirebug.conrjavascript</a> 了解它，该扩展拥有很多类似的功能。</p>
+
+<p>使用Microsoft Internet Explorer的用户，可以通过F12Developer Tools来找到关于调试的更多信息(参见 <a href="https://msdn.microsoft.com/en-us/library/ie/gg589512(v=vs.85).aspx">https://msdn.microsoft.com/en-us/library/ie/gg589512(v=vs.85).aspx</a> )。 Opera则包含了Dragonfly调试工具 ，可以通过 <a href="http://www.opera.com/dragonfly/documentation/">http://www.opera.com/dragonfly/documentation/</a> 来了解它。</p>
+
+<h4 id="分组消息">分组消息</h4>
+
+<p>将控制台调试消息排序分组，使得它们更具有可读性。可以按照你喜欢的方式命名单个的消息组：</p>
+
+<pre><code>function myFunc(a, b) {
+    console.group(&quot;myFunc execution&quot;);
+    console.log(&quot;Executing myFunc()&quot;);
+    if (isNaN(a) || isNaN(b)) {
+        console.warn(&quot;One or more arguments non-numeric&quot;);
+    }
+    console.groupEnd();
+    myOtherFunc(a + b);
+}
+
+function myOtherFunc(c) {
+    console.group(&quot;myOtherFunc execution&quot;);
+    console.log(&quot;Executing myOtherFunc ()&quot;);
+    if (isNaN(c)) {
+        console.info(&quot;Argument is not numeric&quot;);
+    }
+    console.groupEnd();
+    //...函数其他的代码在这里...
+}
+</code></pre>
+
+<p>在这段代码中，我们定义了两个console.group()部分，并且将其命名为与它们所在的函数相关。每一组最后都以一条console.groupEnd()语句结束。当这段代码运行的时候，任何的控制台消息都会按照组来显示。</p>
+
+<h4 id="使用断点停止代码执行">使用断点停止代码执行</h4>
+
+<p>随着脚本变得越来越复杂，你甚至可能会发现，控制台日志消息已经不足以让你有效地进行调试了。要执行更详细的调试，可以在代码中你所关心的位置设置所谓的断点。当代码执行到断点的时候，它会暂停下来，在保持冻结的时间里，你可以查看代码是如何运行的、检查变量值、读取日志消息等。</p>
+
+<p>要在大多数流行的调试器中设置断点，需要打开Scripts面板，其中，将会看到所列岀的代码。在行号上(或者只是在行号的左边)单击，就在该行上设置了一个断点。己经在代码中的第8行上设置了一个断点。执行会在这里停止，并且可以在右边的面板中看到单个的变量的当前的值。可以通过在左边边缘的断点图标上再次单击，从而删除断点。</p>
+
+<h4 id="条件性断点">条件性断点</h4>
+
+<p>有时候，只有当特定的情况发生的时候，暂停代码的执行才是有帮助的。可以通过在左边的列中的断点图标上单击鼠标右键，并且输入一个条件语句，从而设置一个条件性断点。</p>
+
+<p>代码将会持续执行而不会中断，直到满足了该条件，执行就会在该断点停止。只要在断点图标上再次单击鼠标右键，随时可以编辑表达式。</p>
+
+<p>当代码执行在一个断点停止的时候，你可以选择继续代码执行，或者变为每次执行一条语句的单步形式，使用一个代码执行按钮来每次执行一步；通常会有类似VCR的控件出现在调试器顶部的面板中。在大多数的调试器中，具有如下的一些选项：</p>
+
+<ul>
+<li>Continue—继续执行代码，只有到达另一个断点的时候才再次暂停。</li>
+<li>Step Over—执行当前的行，包括执行它所调用的任何函数，然后移动到下一行。</li>
+<li>Step Into—和Step Over一样，移动到下一行，除非该行调用一个函数；如果调用 了函数的话，就进入到该函数的第一行。</li>
+<li>Step Out—离开当前的函数，并且返回到调用该函数的位置。</li>
+</ul>
+
+<h4 id="从代码中启动调试器">从代码中启动调试器</h4>
+
+<p>在 JavaScript代码中设置断点，这也是可以的，而且常常还很有用。我们可以使用关键 词 debugger来做到这一点：</p>
+
+<pre><code>function myFunc(a, b) {
+    if(isNaN(a) || isNaN(b)) {
+        debugger;
+    }
+    // ...函数其他的代码在这里...
+}
+</code></pre>
+
+<p>在这个示例中，只有在条件表达式为真的时候，代码执行才会停止并打开调试器。调试工具也允许你在其他的条件下暂停代码执行，例如，当DOM发生变化的时候，或者检测到一个未捕获的异常的时候，但是，这些更为高级的情况超出了本书的讨论范围。</p>
+
+<h4 id="监视表达式">监视表达式</h4>
+
+<p>监视表达式是一个有效的JavaScript表达式，调试器会持续地计算它，使得其值可供你查看。可以使用任何有效的表达式，范围从一个简单的变量名，到包含了逻辑和算术表达式或调用其他的函数的一个表达式。</p>
+
+<p>可以通过右边的Script标签页，输入一个新的监视表达式( Firefox/Firebug)。</p>
+
+<h3 id="验证javascript">验证JavaScript</h3>
+
+<p>检查JavaScript代码的一种不同的和补充性的方法，就是使用一个验证程序。这将会检查代码是否符合该语言的正确的语法规则。这些验证程序通常会和商业化的JavaScript编辑器绑定到一起，或者你可以直接使用Douglas Crockford开发的 JavaScript Lint,可以通过<a href="http://www.jslint.com/">http://www.jslint.com/</a> 在线使用它。</p>
+
+<p>在这里，只需要简单地将代码粘贴到显示的窗口中，并且单击按钮就可以了。如果程序报告了很多错误的话，也不要太担心，只需要每次查看代码就行了。JSLint会进行非常全面严格的检查，甚至会报告根本不会影响到代码运行的编码风格问题，但这些确实有助改进你的程序。</p>
+
+<h3 id="小结-6">小结</h3>
+
+<p>网上有很多在线的教程，从W3Schools发布的那些教程开始，参见<a href="http://www.w3schools.com/js/js_debugging.aspa">http://www.w3schools.com/js/js_debugging.aspa</a></p>
+	  </article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+        
+          <a class="ui label" href="https://sltaurusblog.gitee.io/tags/javascript" title="JavaScript">JavaScript</a>
+        
+      
+      <div
+        class="ui label"
+        style="float: right; background: #1b1c1d !important; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i> Save as image
+      </div>
+    </footer>
+
+    
+
+    
+      <footer class="ui bottom attached stacked segment post-disqus-area" data-html2canvas-ignore="true">
+        <div id="disqus_thread"></div>
+        <script>
+          
+
+
+          var disqus_config = function () {
+            this.page.url = 'https:\/\/sltaurusblog.gitee.io\/2019\/09\/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B\/';  
+            this.page.identifier = '\/2019\/09\/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B\/'; 
+          };
+
+          (function() { 
+            var d = document, s = d.createElement('script');
+            s.src = 'https://' + '...' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </footer>
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="https://sltaurusblog.gitee.io/images/head.jpg">
+      
+    </div>
+
+    <h1 class="ui medium header">SLTaurus的博客<div class="sub header" style="margin-top: 0.5rem;">合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。</div>
+    </h1>
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="https://sltaurusblog.gitee.io/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="https://sltaurusblog.gitee.io/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+  <section class="ui attached center aligned segment dream-tags">
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/ado.net" title="ado.net">ado.net</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/ef" title="ef">ef</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/hugo" title="hugo">hugo</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/javascript" title="javascript">javascript</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8" title="markdown快速入门">markdown快速入门</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E6%95%B4%E7%89%88" title="markdown语法完整版">markdown语法完整版</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/mvc" title="mvc">mvc</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/mysql" title="mysql">mysql</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/orm%E5%AF%B9%E6%AF%94" title="orm对比">orm对比</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/orm%E6%95%B4%E7%90%86" title="orm整理">orm整理</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/powershell" title="powershell">powershell</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/redis" title="redis">redis</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/ref%E5%92%8Cout" title="ref和out">ref和out</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/sqlservice" title="sqlservice">sqlservice</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98" title="内置泛型委托">内置泛型委托</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E5%8F%8D%E5%B0%84" title="反射">反射</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E7%B2%BE%E9%80%9Ac" title="精通c#">精通c#</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%88%9B%E5%BB%BA%E5%9E%8B" title="设计模式-创建型">设计模式-创建型</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8E%9F%E5%88%99" title="设计模式-原则">设计模式-原则</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%BB%93%E6%9E%84%E5%9E%8B" title="设计模式-结构型">设计模式-结构型</a>
+    
+      <a class="ui label" href="https://sltaurusblog.gitee.io/tags/%E9%A1%B9%E7%9B%AE" title="项目">项目</a>
+    
+  </section>
+  
+
+  
+  <section class="ui attached segment dream-categories">
+    <div class="ui accordion">
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/c" class="item">c#</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/11/%E5%86%85%E7%BD%AE%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%89%98actionfunc%E5%92%8Cpredicate/" class="item">内置泛型委托：Action、Func和Predicate</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/%E5%8F%8D%E5%B0%84%E6%95%B4%E7%90%86%E4%B9%8B%E6%97%A5%E5%B8%B8%E7%94%A8%E9%80%94/" class="item">反射整理之日常用途</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/ado.net/" class="item">ADO.NET</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/mvc%E6%95%B4%E7%90%86/" class="item">MVC整理</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/%E7%B2%BE%E9%80%9Acsharp%E7%AC%AC%E5%85%AD%E7%89%88/" class="item">精通CSharp(第六版)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/ref%E5%92%8Cout%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E5%8C%BA%E5%88%AB/" class="item">ref和out使用时的区别</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/javascript" class="item">javascript</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/09/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B/" class="item">JavaScript入门经典第6版笔记(下)</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8A/" class="item">JavaScript入门经典第6版笔记(上)</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/markdown" class="item">markdown</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E6%95%B4%E7%89%88/" class="item">Markdown语法完整版</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/markdown%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="item">Markdown快速入门</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/orm" class="item">orm</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/" class="item">EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/entityframework/" class="item">EntityFramework</a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/orm%E6%95%B4%E7%90%86/" class="item">ORM整理</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/redis" class="item">redis</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/06/redis%E5%9F%BA%E7%A1%80/" class="item">Redis基础</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E5%8D%9A%E5%AE%A2" class="item">博客</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/" class="item">windows10环境下搭建Hugo个人博客&#43;git分布式版本控制&#43;valine评论</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93" class="item">数据库</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/mysql%E6%8B%BE%E9%81%97/" class="item">MySql拾遗 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2019/10/sqlservice%E7%AC%94%E8%AE%B0/" class="item">SqlService笔记</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E8%87%AA%E5%8A%A8%E5%8C%96" class="item">自动化</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/windows-powershell%E6%8C%87%E5%8D%97/" class="item">Windows PowerShell指南</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" class="item">设计模式</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%8E%9F%E5%88%99/" class="item">24种设计模式之设计模式原则 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A1%8C%E4%B8%BA%E5%9E%8B/" class="item">24种设计模式之行为型 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BB%93%E6%9E%84%E5%9E%8B/" class="item">24种设计模式之结构型 </a>
+              </div>
+            </div>
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/04/24%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%9E%8B/" class="item">24种设计模式之创建型 </a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+        <div class="title">
+          <i class="dropdown icon"></i>
+          <a href="https://sltaurusblog.gitee.io/categories/%E9%A1%B9%E7%9B%AE" class="item">项目</a>
+        </div>
+        <div class="content">
+          <div class="ui list">
+          
+            <div class="item">
+              <div class="content">
+                <a href="https://sltaurusblog.gitee.io/2020/05/%E8%AE%A1%E4%BB%B6%E5%B7%A5%E8%B5%84%E9%A1%B9%E7%9B%AE/" class="item">计件工资项目</a>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      
+    </div>
+  </section>
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="mailto:1641061313@qq.com">
+        <i class=" mail icon" title="email"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://twitter.com/SLTaurus" target="_blank">
+        <i class=" twitter icon" title="twitter"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://facebook.com/SLTaurus" target="_blank">
+        <i class=" facebook icon" title="facebook"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://instagram.com/SLTaurus" target="_blank">
+        <i class=" instagram icon" title="instagram"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.linkedin.com/in/SLTaurus" target="_blank">
+        <i class=" linkedin icon" title="linkedin"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/SLTaurus" target="_blank">
+        <i class=" github icon" title="github"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.stackoverflow.com/users/SLTaurus" target="_blank">
+        <i class=" stack overflow icon" title="stackoverflow"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://codepen.io/SLTaurus" target="_blank">
+        <i class=" codepen icon" title="codepen"></i>
+      </a>
+    </div>
+  
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2019 - 2020 SLTaurus的博客</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+  </section>
+</article>
+
+  </div>
+</div>
+
+        </section>
+        <section class="back">
+          
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/sltaurusblog.gitee.io'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+</nav>
+
+          <div class="ui centered relaxed grid dream-grid dream-back">
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交链接</h3>
+      </div>
+      <div class="ui attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="mailto:1641061313@qq.com">
+        <i class="large mail icon" title="email"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://twitter.com/SLTaurus" target="_blank">
+        <i class="large twitter icon" title="twitter"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://facebook.com/SLTaurus" target="_blank">
+        <i class="large facebook icon" title="facebook"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://instagram.com/SLTaurus" target="_blank">
+        <i class="large instagram icon" title="instagram"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.linkedin.com/in/SLTaurus" target="_blank">
+        <i class="large linkedin icon" title="linkedin"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/SLTaurus" target="_blank">
+        <i class="large github icon" title="github"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://www.stackoverflow.com/users/SLTaurus" target="_blank">
+        <i class="large stack overflow icon" title="stackoverflow"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://codepen.io/SLTaurus" target="_blank">
+        <i class="large codepen icon" title="codepen"></i>
+      </a>
+    </div>
+  
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+  
+    <section class="sixteen wide mobile eight wide tablet eight wide computer column dream-column">
+      <footer class="ui segment">
+        <div id="disqus_thread"></div>
+        <script>
+          
+
+
+          var disqus_config = function () {
+            this.page.url = 'https:\/\/sltaurusblog.gitee.io\/2019\/09\/javascript%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E7%AC%AC6%E7%89%88%E7%AC%94%E8%AE%B0%E4%B8%8B\/about';  
+            this.page.identifier = '/about'; 
+          };
+
+          (function() { 
+            var d = document, s = d.createElement('script');
+            s.src = 'https://' + '...' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </footer>
+    </section>
+  
+
+</div>
+
+        </section>
+      </div>
+    </div>
+
+    <script src="https://sltaurusblog.gitee.io/js/jquery.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/semantic.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/imagesloaded.pkgd.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/masonry.pkgd.min.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/nav.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/header.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/main.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/theme.js"></script>
+<script src="https://sltaurusblog.gitee.io/js/html2canvas.min.js"></script>
+
+  
+    <script src="https://sltaurusblog.gitee.io/js/prism.js"></script>
+  
+
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', '...', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+  </body>
+</html>

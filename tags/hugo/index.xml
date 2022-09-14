@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hugo on SLTaurus的博客</title>
+    <link>https://sltaurusblog.gitee.io/tags/hugo/</link>
+    <description>Recent content in hugo on SLTaurus的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cmn-Hans</language>
+    <lastBuildDate>Fri, 23 Aug 2019 17:05:35 +0800</lastBuildDate>
+    
+	<atom:link href="https://sltaurusblog.gitee.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>windows10环境下搭建Hugo个人博客&#43;git分布式版本控制&#43;valine评论</title>
+      <link>https://sltaurusblog.gitee.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/</link>
+      <pubDate>Fri, 23 Aug 2019 17:05:35 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/08/windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E6%90%AD%E5%BB%BAhugo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2-git%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6-valine%E8%AF%84%E8%AE%BA/</guid>
+      <description>&lt;p&gt;自己在windows平台上搭建hugo个人博客的教程，这个博客部署在远端github的仓库上，添加了Valine评论和页面内音乐。详细记录下搭建博客的大概流程，以及搭建过程中遇到的困难，给想搭建自己博客的童鞋们做个铺路。&lt;/p&gt;
+
+&lt;p&gt;可以看下&lt;a href=&#34;https://www.bilibili.com/video/av51574688&#34;&gt;B站up主CodeSheep的视频&lt;/a&gt;和&lt;a href=&#34;https://saquarius.com/2019/07/hugo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2windows10/&#34;&gt;saquarius&lt;/a&gt;的教程，解决了我很多的迷惑，一路跟着搭建的，非常感谢！&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

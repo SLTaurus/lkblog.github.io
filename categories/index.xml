@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on SLTaurus的博客</title>
+    <link>https://sltaurusblog.gitee.io/categories/</link>
+    <description>Recent content in Categories on SLTaurus的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cmn-Hans</language>
+    <lastBuildDate>Fri, 05 Jun 2020 09:00:03 +0800</lastBuildDate>
+    
+	<atom:link href="https://sltaurusblog.gitee.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Redis</title>
+      <link>https://sltaurusblog.gitee.io/categories/redis/</link>
+      <pubDate>Fri, 05 Jun 2020 09:00:03 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/categories/redis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>项目</title>
+      <link>https://sltaurusblog.gitee.io/categories/%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Mon, 11 May 2020 15:10:26 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/categories/%E9%A1%B9%E7%9B%AE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>自动化</title>
+      <link>https://sltaurusblog.gitee.io/categories/%E8%87%AA%E5%8A%A8%E5%8C%96/</link>
+      <pubDate>Mon, 27 Apr 2020 16:55:15 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/categories/%E8%87%AA%E5%8A%A8%E5%8C%96/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>设计模式</title>
+      <link>https://sltaurusblog.gitee.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Mon, 27 Apr 2020 16:28:11 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据库</title>
+      <link>https://sltaurusblog.gitee.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Mon, 20 Apr 2020 22:22:11 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ORM</title>
+      <link>https://sltaurusblog.gitee.io/categories/orm/</link>
+      <pubDate>Mon, 20 Apr 2020 21:21:47 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/categories/orm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C#</title>
+      <link>https://sltaurusblog.gitee.io/categories/c#/</link>
+      <pubDate>Thu, 14 Nov 2019 15:28:26 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/categories/c#/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JavaScript</title>
+      <link>https://sltaurusblog.gitee.io/categories/javascript/</link>
+      <pubDate>Mon, 23 Sep 2019 14:46:39 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/categories/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>博客</title>
+      <link>https://sltaurusblog.gitee.io/categories/%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Fri, 23 Aug 2019 17:05:35 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/categories/%E5%8D%9A%E5%AE%A2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Markdown</title>
+      <link>https://sltaurusblog.gitee.io/categories/markdown/</link>
+      <pubDate>Thu, 22 Aug 2019 17:14:39 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/categories/markdown/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

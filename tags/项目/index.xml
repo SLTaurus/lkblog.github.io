@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>项目 on SLTaurus的博客</title>
+    <link>https://sltaurusblog.gitee.io/tags/%E9%A1%B9%E7%9B%AE/</link>
+    <description>Recent content in 项目 on SLTaurus的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cmn-Hans</language>
+    <lastBuildDate>Mon, 11 May 2020 15:10:26 +0800</lastBuildDate>
+    
+	<atom:link href="https://sltaurusblog.gitee.io/tags/%E9%A1%B9%E7%9B%AE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>计件工资项目</title>
+      <link>https://sltaurusblog.gitee.io/2020/05/%E8%AE%A1%E4%BB%B6%E5%B7%A5%E8%B5%84%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Mon, 11 May 2020 15:10:26 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/05/%E8%AE%A1%E4%BB%B6%E5%B7%A5%E8%B5%84%E9%A1%B9%E7%9B%AE/</guid>
+      <description>&lt;p&gt;计件工资项目学习过程整理记录。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

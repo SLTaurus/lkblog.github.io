@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ORM on SLTaurus的博客</title>
+    <link>https://sltaurusblog.gitee.io/categories/orm/</link>
+    <description>Recent content in ORM on SLTaurus的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cmn-Hans</language>
+    <lastBuildDate>Mon, 20 Apr 2020 21:21:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://sltaurusblog.gitee.io/categories/orm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比 </title>
+      <link>https://sltaurusblog.gitee.io/2020/04/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/</link>
+      <pubDate>Mon, 20 Apr 2020 21:21:47 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/04/efchloesqlsugardos.orm%E5%9B%9B%E7%A7%8Dorm%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文地址：&lt;a href=&#34;https://blog.csdn.net/qq_40600379/article/details/101680870&#34;&gt;EF、Chloe、SqlSugar、DOS.ORM四种ORM框架的对比&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>EntityFramework</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/entityframework/</link>
+      <pubDate>Wed, 23 Oct 2019 08:25:23 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/entityframework/</guid>
+      <description>&lt;p&gt;ADO.NET Entity Framework 是一个对象-关系的映射架构。它支持直接定义完全独立于数据库结构的实体类，并把它们映射到数据库的表和关系上。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ORM整理</title>
+      <link>https://sltaurusblog.gitee.io/2019/10/orm%E6%95%B4%E7%90%86/</link>
+      <pubDate>Tue, 22 Oct 2019 08:46:45 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2019/10/orm%E6%95%B4%E7%90%86/</guid>
+      <description>&lt;p&gt;对象关系映射（Object-Relational Mapping），是一种程序技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。从效果上说，它其实是创建了一个可在编程语言里使用的&amp;ndash;“虚拟对象数据库”。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

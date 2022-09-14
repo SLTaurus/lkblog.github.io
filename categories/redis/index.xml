@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Redis on SLTaurus的博客</title>
+    <link>https://sltaurusblog.gitee.io/categories/redis/</link>
+    <description>Recent content in Redis on SLTaurus的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cmn-Hans</language>
+    <lastBuildDate>Fri, 05 Jun 2020 09:00:03 +0800</lastBuildDate>
+    
+	<atom:link href="https://sltaurusblog.gitee.io/categories/redis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Redis基础</title>
+      <link>https://sltaurusblog.gitee.io/2020/06/redis%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Fri, 05 Jun 2020 09:00:03 +0800</pubDate>
+      
+      <guid>https://sltaurusblog.gitee.io/2020/06/redis%E5%9F%BA%E7%A1%80/</guid>
+      <description>&lt;p&gt;Redis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
